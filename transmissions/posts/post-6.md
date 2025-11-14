@@ -1,7 +1,7 @@
 # Post #6: Snake Badge Distribution Begins
 
 **Date**: October 24, 2025  
-**Post ID**: `1981740247504269582`  
+**Post**: [View on X](https://x.com/neukoai/status/1981740247504269582)  
 **Caption**: "🐰 = 2 🐍 🐝 = 1 🐍 monday"  
 **Video Duration**: ~45 seconds
 

@@ -1,7 +1,7 @@
 # Post #10: "Catch Up, Sneeb" - Claymation Lore Dump
 
 **Date**: November 12, 2025  
-**Post ID**: `1988703965694111829`  
+**Post**: [View on X](https://x.com/neukoai/status/1988703965694111829)  
 **Caption**: "catch up, sneeb"  
 **Video Duration**: ~124 seconds
 
@@ -35,14 +35,11 @@
 
 ## Puzzle Elements
 
-**Status**: Community still analyzing
+**Status**: No hidden puzzles
 
-**Potential Hidden Elements**:
-- May contain hidden puzzles or clues
-- Community analyzing for spectrograms, codes, or other elements
-- Some puzzles may still be hidden
+**Team Statement**: The Neuko team has confirmed there are no hidden puzzles in this video. It's a fun catch-up video designed to recap the story and lore, not to contain puzzle elements.
 
-**Analysis Ongoing**: Community continues to examine video for hidden elements
+**Note**: While the community initially analyzed this video for hidden elements, it's confirmed to be purely a lore recap video.
 
 ## Puzzle/Lore Hooks
 
@@ -50,7 +47,7 @@
 - Recaps entire story arc
 - Explains badge system in-universe
 - Hints at deeper conspiracy
-- May contain hidden clues (community still analyzing)
+- **No hidden puzzles** - confirmed by team as a fun catch-up video
 
 ## Community Reactions
 
@@ -58,7 +55,7 @@
 - Excitement about lore reveals
 - Theories about five core characters
 - Interpretation as real lore hints
-- Some puzzles may still be hidden
+- Initial puzzle analysis (later confirmed no hidden puzzles by team)
 
 ## Significance
 
@@ -70,7 +67,7 @@ Major lore expansion, explains badge system, recaps story.
 
 ## Related Resources
 
-- [Unsolved Mysteries](../unsolved.md#hidden-clues-in-latest-video) - Hidden clues analysis
+- [Unsolved Mysteries](../unsolved.md) - Other unsolved puzzles
 - [Lore](../../lore.md) - Complete lore documentation
 
 

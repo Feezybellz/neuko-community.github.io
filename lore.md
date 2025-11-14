@@ -162,7 +162,7 @@ The three badge types (Rabbit 🐰, Moth 🐝, Snake 🐍) represent different p
 ### Operative Designations
 - Community members adopt "OPERATIVE" designations
 - Format: `{Designation:; #:XXX}`
-- Example: `@satoshi_owl OPERATIVE {Designation:; #:100}`
+- Example: `[@satoshi_owl](https://x.com/satoshi_owl) OPERATIVE {Designation:; #:100}`
 - Creates sense of belonging and identity
 
 ### Red Hoodie Meme
@@ -173,9 +173,9 @@ The three badge types (Rabbit 🐰, Moth 🐝, Snake 🐍) represent different p
 
 ### Community Shoutouts in Lore
 - Team weaves real community members into videos
-- @TheKeeperOfX: "HEMLET CORP" (helmet stays on meme)
-- @CharliegNFTeth: Frog gummies (ribbit meme)
-- @satoshi_owl: Owl hoots in audio
+- [@TheKeeperOfX](https://x.com/TheKeeperOfX): "HEMLET CORP" (helmet stays on meme)
+- [@CharliegNFTeth](https://x.com/CharliegNFTeth): Frog gummies (ribbit meme)
+- [@satoshi_owl](https://x.com/satoshi_owl): Owl hoots in audio
 - Blurs line between fiction and reality
 
 ### Memes and Culture

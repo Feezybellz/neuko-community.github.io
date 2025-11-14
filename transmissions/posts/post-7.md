@@ -1,7 +1,7 @@
 # Post #7: Puzzle Escalation - Channel Flipping
 
 **Date**: October 27, 2025  
-**Post ID**: `1982894878280569063`  
+**Post**: [View on X](https://x.com/neukoai/status/1982894878280569063)  
 **Caption**: "dropping to distributors stage 1: complete stage 2: initiating"  
 **Video Duration**: ~62 seconds
 
@@ -23,21 +23,21 @@
 
 **Type**: Multi-layer (Visual + Community Shoutouts)
 
-**Solvers**: @thrax_nft, @eleven88eth, @Sinsonx, community
+**Solvers**: [@thrax_nft](https://x.com/thrax_nft), [@eleven88eth](https://x.com/eleven88eth), [@Sinsonx](https://x.com/Sinsonx), community
 
 ### Community Shoutouts (Hidden in Video)
 
-1. **@TheKeeperOfX**: 
+1. **[@TheKeeperOfX](https://x.com/TheKeeperOfX)**: 
    - Radios with "HEMLET CORP" branding
    - Reference to "the helmet stays on" meme
    - Code: STAYS-28
 
-2. **@CharliegNFTeth**: 
+2. **[@CharliegNFTeth](https://x.com/CharliegNFTeth)**: 
    - Spilled "Frog Gummies" in car console
    - Reference to "ribbit" meme
    - Code: HOPS-13
 
-3. **@satoshi_owl**: 
+3. **[@satoshi_owl](https://x.com/satoshi_owl)**: 
    - Owl hoots in background audio
    - Code: HOOTS-49
 
@@ -46,9 +46,9 @@
 **Discovery Method**: Frame-by-frame video analysis, adjusting contrast/brightness in image editors
 
 **Codes Deciphered**:
-- HOOTS-49 (from @satoshi_owl scene)
-- HOPS-13 (from @CharliegNFTeth scene)
-- STAYS-28 (from @TheKeeperOfX scene)
+- HOOTS-49 (from [@satoshi_owl](https://x.com/satoshi_owl) scene)
+- HOPS-13 (from [@CharliegNFTeth](https://x.com/CharliegNFTeth) scene)
+- STAYS-28 (from [@TheKeeperOfX](https://x.com/TheKeeperOfX) scene)
 
 **Process**:
 1. Identify shoutout in video
@@ -73,7 +73,7 @@
 - Intense puzzle-solving effort
 - Community members writing down channel numbers
 - Analyzing walls, backgrounds, audio
-- @thrax_nft and @eleven88eth key solvers
+- [@thrax_nft](https://x.com/thrax_nft) and [@eleven88eth](https://x.com/eleven88eth) key solvers
 - PTSD jokes about unpacking the video
 
 ## Significance

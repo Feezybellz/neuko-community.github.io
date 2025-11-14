@@ -1,7 +1,7 @@
 # Post #4: Cognitive Assessment
 
 **Date**: October 20, 2025  
-**Post ID**: `1980355518771392550`  
+**Post**: [View on X](https://x.com/neukoai/status/1980355518771392550)  
 **Caption**: *(blank)*  
 **Video Duration**: ~48 seconds
 

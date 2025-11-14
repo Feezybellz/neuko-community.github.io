@@ -10,11 +10,11 @@ Neuko is built by a team with a proven track records in building NFT IP and comm
 
 ### Core Founders
 
-**@austin_hurwitz** - Co-founder  
-**@SQU1NCH** - Co-founder  
-**@greenie_sr** - Co-founder  
-**@demdev007** - Developer  
-**@boris0chuck** - Developer  
+**[@austin_hurwitz](https://x.com/austin_hurwitz)** - Co-founder  
+**[@SQU1NCH](https://x.com/SQU1NCH)** - Co-founder  
+**[@greenie_sr](https://x.com/greenie_sr)** - Co-founder  
+**[@demdev007](https://x.com/demdev007)** - Developer  
+**[@boris0chuck](https://x.com/boris0chuck)** - Developer  
 
 **Background**: All founders are former Doodles team members  
 
@@ -138,7 +138,7 @@ Neuko is built by a team with a proven track records in building NFT IP and comm
 
 ### Key Quotes
 
-> "been thinking a lot about the people that make @neukoai what it is. the ones who show up, build, create, share, and hold on when it'd be easier to walk away."
+> "been thinking a lot about the people that make [@neukoai](https://x.com/neukoai) what it is. the ones who show up, build, create, share, and hold on when it'd be easier to walk away."
 
 > "we gave people a reason to join, but you give them a reason to stay."
 

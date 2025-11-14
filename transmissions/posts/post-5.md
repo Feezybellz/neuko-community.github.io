@@ -1,7 +1,7 @@
 # Post #5: Distribution Complete
 
 **Date**: October 22, 2025  
-**Post ID**: `1981125805104312473`  
+**Post**: [View on X](https://x.com/neukoai/status/1981125805104312473)  
 **Caption**: *(blank)*  
 **Video Duration**: ~26 seconds
 
@@ -23,7 +23,7 @@
 
 **Type**: Spectrogram (Audio Analysis)
 
-**Discovery**: Found by @0xstateoftheart using audio analysis tools
+**Discovery**: Found by [@0xstateoftheart](https://x.com/0xstateoftheart) using audio analysis tools
 
 **Solution**: 
 - Analyzed audio track using spectrogram tools

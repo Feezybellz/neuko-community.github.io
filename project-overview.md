@@ -63,7 +63,7 @@ Neuko is a Solana-based Web3 project that launched in mid-October 2025, combinin
 ### How to Participate Today
 
 **1. Follow and Engage**
-- Follow [@neukoai](https://twitter.com/neukoai) on X
+- Follow [@neukoai](https://x.com/neukoai) on X
 - Watch all videos in chronological order
 - Engage with community threads and discussions
 - Participate in puzzle-solving if interested
@@ -74,7 +74,7 @@ Neuko is a Solana-based Web3 project that launched in mid-October 2025, combinin
 - Wait for future distributions
 
 **3. Join the Community**
-- Read community recaps by @satoshi_owl, @Sinsonx, @thrax_nft
+- Read community recaps by [@satoshi_owl](https://x.com/satoshi_owl), [@Sinsonx](https://x.com/Sinsonx), [@thrax_nft](https://x.com/thrax_nft)
 - Adopt red hoodie PFP (community identity marker)
 - Use OPERATIVE designation format
 - Contribute through content creation or puzzle-solving
@@ -197,12 +197,14 @@ Neuko is a Solana-based Web3 project that launched in mid-October 2025, combinin
 ## Key Resources
 
 ### Official Channels
-- **X (Twitter)**: [@neukoai](https://twitter.com/neukoai)
+- **X (Twitter)**: [@neukoai](https://x.com/neukoai)
 - **Website**: [neuko.ai](https://neuko.ai)
-- **Badge Collection**: [Magic Eden](https://magiceden.io/marketplace/gboy_badges) | [Tensor](https://tensor.trade/trade/gboy_badges)
+- **Magic Eden**: [G*Boy Badges Collection](https://magiceden.io/marketplace/gboy_badges)
+- **Tensor**: [G*Boy Badges Collection](https://tensor.trade/trade/gboy_badges)
+- **Telegram**: [Neuko Community](https://t.me/neukoai)
 
 ### Community Documentation
-- Community recaps by @satoshi_owl, @Sinsonx, @thrax_nft
+- Community recaps by [@satoshi_owl](https://x.com/satoshi_owl), [@Sinsonx](https://x.com/Sinsonx), [@thrax_nft](https://x.com/thrax_nft)
 - Puzzle-solving threads and analysis
 - Community-driven onboarding content
 

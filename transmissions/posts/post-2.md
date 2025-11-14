@@ -1,7 +1,7 @@
 # Post #2: "We're Watching" - Official Launch
 
 **Date**: October 13, 2025, 8:48 AM UTC  
-**Post ID**: `1977763395408429229`  
+**Post**: [View on X](https://x.com/neukoai/status/1977763395408429229)  
 **Caption**: "we're watching"  
 **Video Duration**: ~10 seconds
 

@@ -62,19 +62,21 @@ This wiki is a community effort designed to help newcomers and veterans alike di
 
 ---
 
-## Key Resources
+## Official Links
 
-### Official Channels
-
-- **X (Twitter)**: [@neukoai](https://twitter.com/neukoai) - Primary communication channel
+- **X (Twitter)**: [@neukoai](https://x.com/neukoai) - Primary communication channel
 - **Website**: [neuko.ai](https://neuko.ai) - Puzzle-gated portal
-- **Badge Collections**: 
-  - [Magic Eden](https://magiceden.io/marketplace/gboy_badges)
-  - [Tensor](https://tensor.trade/trade/gboy_badges)
+- **Magic Eden**: [G*Boy Badges Collection](https://magiceden.io/marketplace/gboy_badges)
+- **Tensor**: [G*Boy Badges Collection](https://tensor.trade/trade/gboy_badges)
+- **Telegram**: [Neuko Community](https://t.me/neukoai) - Community chat
+
+---
+
+## Key Resources
 
 ### Community Documentation
 
-- Community recaps by @satoshi_owl, @Sinsonx, @thrax_nft
+- Community recaps by [@satoshi_owl](https://x.com/satoshi_owl), [@Sinsonx](https://x.com/Sinsonx), [@thrax_nft](https://x.com/thrax_nft)
 - Puzzle-solving threads and analysis
 - Community-driven onboarding content
 

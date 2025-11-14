@@ -24,7 +24,7 @@ The Neuko community has developed strong cultural identity through shared marker
 ### Operative Designations
 
 **Format**: `{Designation:; #:XXX}`  
-**Example**: `@satoshi_owl OPERATIVE {Designation:; #:100}`  
+**Example**: `[@satoshi_owl](https://x.com/satoshi_owl) OPERATIVE {Designation:; #:100}`  
 **Significance**:
 - Creates sense of belonging
 - Community identity marker
@@ -38,8 +38,8 @@ The Neuko community has developed strong cultural identity through shared marker
 
 ### HEMLET
 
-**Origin**: @TheKeeperOfX's tagline "the helmet stays on"  
-**Evolution**: @RLH_Permaban mistakenly wrote "The HEMLET stays on"  
+**Origin**: [@TheKeeperOfX](https://x.com/TheKeeperOfX)'s tagline "the helmet stays on"  
+**Evolution**: [@RLH_Permaban](https://x.com/RLH_Permaban) mistakenly wrote "The HEMLET stays on"  
 **Result**: HEMLET meme born, became part of culture  
 **Integration**: Team included "HEMLET CORP" branding in videos as shoutout
 
@@ -48,7 +48,7 @@ The Neuko community has developed strong cultural identity through shared marker
 
 ### Ribbit
 
-**Origin**: @CharliegNFTeth's distinctive "ribbit" messages  
+**Origin**: [@CharliegNFTeth](https://x.com/CharliegNFTeth)'s distinctive "ribbit" messages  
 **Spread**: Contagious in group chats  
 **Integration**: Team included "Frog Gummies" in videos as shoutout  
 **Significance**: Community culture recognized by team
@@ -58,7 +58,7 @@ The Neuko community has developed strong cultural identity through shared marker
 
 ### Owl Hoots
 
-**Origin**: @satoshi_owl's community presence  
+**Origin**: [@satoshi_owl](https://x.com/satoshi_owl)'s community presence  
 **Integration**: Team included owl hoots in audio as shoutout  
 **Significance**: Community members woven into lore
 
@@ -80,7 +80,7 @@ The Neuko community has developed strong cultural identity through shared marker
 
 - Community members adopt "OPERATIVE" designations
 - Format: `{Designation:; #:XXX}`
-- Example: `@satoshi_owl OPERATIVE {Designation:; #:100}`
+- Example: `[@satoshi_owl](https://x.com/satoshi_owl) OPERATIVE {Designation:; #:100}`
 - Creates sense of belonging and identity
 
 ### Red Hoodie Meme
@@ -93,9 +93,9 @@ The Neuko community has developed strong cultural identity through shared marker
 ### Community Shoutouts in Lore
 
 - Team weaves real community members into videos
-- @TheKeeperOfX: "HEMLET CORP" (helmet stays on meme)
-- @CharliegNFTeth: Frog gummies (ribbit meme)
-- @satoshi_owl: Owl hoots in audio
+- [@TheKeeperOfX](https://x.com/TheKeeperOfX): "HEMLET CORP" (helmet stays on meme)
+- [@CharliegNFTeth](https://x.com/CharliegNFTeth): Frog gummies (ribbit meme)
+- [@satoshi_owl](https://x.com/satoshi_owl): Owl hoots in audio
 - Blurs line between fiction and reality
 
 ### Memes and Culture

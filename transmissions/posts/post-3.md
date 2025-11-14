@@ -1,7 +1,7 @@
 # Post #3: "Early Matters" - Badge Tease
 
 **Date**: October 17, 2025  
-**Post ID**: `1979268208340406384`  
+**Post**: [View on X](https://x.com/neukoai/status/1979268208340406384)  
 **Caption**: "early matters"  
 **Video Duration**: ~21 seconds
 
@@ -18,7 +18,7 @@
 
 ## Founder Comments
 
-All three founders (@austin_hurwitz, @SQU1NCH, @greenie_sr) posted cryptic "🐰" comment
+All three founders ([@austin_hurwitz](https://x.com/austin_hurwitz), [@SQU1NCH](https://x.com/SQU1NCH), [@greenie_sr](https://x.com/greenie_sr)) posted cryptic "🐰" comment
 
 ## Puzzle/Lore Hooks
 

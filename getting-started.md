@@ -38,7 +38,7 @@ Neuko is a Solana-based Web3 project that launched in mid-October 2025, combinin
 
 ### Official Channels
 
-**X (Twitter)**: [@neukoai](https://twitter.com/neukoai)
+**X (Twitter)**: [@neukoai](https://x.com/neukoai)
 - Primary communication channel
 - All videos and announcements posted here
 - Community discussions and threads
@@ -59,7 +59,7 @@ Neuko is a Solana-based Web3 project that launched in mid-October 2025, combinin
 
 **Tensor**: [G*Boy Badges](https://tensor.trade/trade/gboy_badges)
 - Alternative marketplace
-- Official collection link (from founder @SQU1NCH)
+- Official collection link (from founder [@SQU1NCH](https://x.com/SQU1NCH))
 
 ---
 
@@ -83,8 +83,8 @@ Neuko is a Solana-based Web3 project that launched in mid-October 2025, combinin
 
 - **Red Hoodie**: Community identity marker (many members adopt red hoodie PFPs)
 - **OPERATIVE**: Community designation format `{Designation:; #:XXX}`
-- **Ribbit**: Meme from @CharliegNFTeth (frog/Ribbit theme)
-- **HEMLET**: Meme from @TheKeeperOfX ("the helmet stays on" → "HEMLET stays on")
+- **Ribbit**: Meme from [@CharliegNFTeth](https://x.com/CharliegNFTeth) (frog/Ribbit theme)
+- **HEMLET**: Meme from [@TheKeeperOfX](https://x.com/TheKeeperOfX) ("the helmet stays on" → "HEMLET stays on")
 - **Diamond Hands**: Strong conviction, low sell pressure (only 2-3% listed)
 
 ---
@@ -109,9 +109,9 @@ Watch all Neuko videos on X in chronological order:
 
 ### 3. Join the Community
 
-- **Follow @neukoai** on X
+- **Follow [@neukoai](https://x.com/neukoai)** on X
 - **Engage with community threads** (search for Neuko threads)
-- **Read community recaps** by @satoshi_owl, @Sinsonx, @thrax_nft
+- **Read community recaps** by [@satoshi_owl](https://x.com/satoshi_owl), [@Sinsonx](https://x.com/Sinsonx), [@thrax_nft](https://x.com/thrax_nft)
 - **Participate in puzzle-solving** if interested
 
 ### 4. Get a Badge (Optional)
@@ -185,7 +185,7 @@ No confirmed utilities yet, but theories include AI tools, generative art, or ev
 
 ### Q: Is there a Discord?
 
-**A**: No official Discord. Team has warned against fake Discords. Official communication is on X (@neukoai) only.
+**A**: No official Discord. Team has warned against fake Discords. Official communication is on X ([@neukoai](https://x.com/neukoai)) only.
 
 ### Q: How do I solve puzzles?
 
@@ -224,12 +224,12 @@ If you want to fully understand Neuko:
 
 ## Key Community Members to Follow
 
-- **@satoshi_owl** - DEBRIEF series, puzzle documentation ([Community Members](./community/members.md))
-- **@Sinsonx** - Comprehensive recaps and analysis ([Community Members](./community/members.md))
-- **@thrax_nft** - Puzzle solver, website discovery ([Puzzle Contributors](./transmissions/puzzle-contributors.md))
-- **@TheKeeperOfX** - Community onboarding, HEMLET meme ([Community Members](./community/members.md))
-- **@CharliegNFTeth** - Community culture, Ribbit meme ([Community Members](./community/members.md))
-- **@eleven88eth** - Puzzle collaboration, analysis ([Puzzle Contributors](./transmissions/puzzle-contributors.md))
+- **[@satoshi_owl](https://x.com/satoshi_owl)** - DEBRIEF series, puzzle documentation ([Community Members](./community/members.md))
+- **[@Sinsonx](https://x.com/Sinsonx)** - Comprehensive recaps and analysis ([Community Members](./community/members.md))
+- **[@thrax_nft](https://x.com/thrax_nft)** - Puzzle solver, website discovery ([Puzzle Contributors](./transmissions/puzzle-contributors.md))
+- **[@TheKeeperOfX](https://x.com/TheKeeperOfX)** - Community onboarding, HEMLET meme ([Community Members](./community/members.md))
+- **[@CharliegNFTeth](https://x.com/CharliegNFTeth)** - Community culture, Ribbit meme ([Community Members](./community/members.md))
+- **[@eleven88eth](https://x.com/eleven88eth)** - Puzzle collaboration, analysis ([Puzzle Contributors](./transmissions/puzzle-contributors.md))
 
 ---
 

@@ -158,7 +158,7 @@ The Snake badge distribution was designed as a social experiment to test communi
 
 ### Transferable by Design
 
-From founder @SQU1NCH:
+From founder [@SQU1NCH](https://x.com/SQU1NCH):
 - Badges are fully transferable, sellable, "do-whatever-you-wantable"
 - Team considered soul-bound tokens but chose transferability
 - "Everything has a price" - free market approach

@@ -1,7 +1,7 @@
 # Post #8: "Last Call" Ultimatum
 
 **Date**: October 31, 2025 (Halloween)  
-**Post ID**: `1984362507784351883`  
+**Post**: [View on X](https://x.com/neukoai/status/1984362507784351883)  
 **Caption**: "last call, 🐍 hoarders"  
 **Video Duration**: ~41 seconds
 

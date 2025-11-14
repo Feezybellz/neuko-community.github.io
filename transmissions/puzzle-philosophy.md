@@ -36,7 +36,7 @@ Team actively monitors engagement to curate puzzle distribution. They watch who 
 
 ### Involving Members
 
-Real community members receive codes to distribute. In Post #7, three community members (@satoshi_owl, @CharliegNFTeth, @TheKeeperOfX) received code parts to share.
+Real community members receive codes to distribute. In Post #7, three community members ([@satoshi_owl](https://x.com/satoshi_owl), [@CharliegNFTeth](https://x.com/CharliegNFTeth), [@TheKeeperOfX](https://x.com/TheKeeperOfX)) received code parts to share.
 
 ### Rewarding Solvers
 

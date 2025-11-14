@@ -38,9 +38,9 @@ The Neuko website ([neuko.ai](https://neuko.ai)) is a minimalistic, puzzle-gated
 ### PIN Components
 
 **Codes Discovered** (from Post #7):
-- **HOOTS-49**: From @satoshi_owl (owl hoots in audio)
-- **HOPS-13**: From @CharliegNFTeth (frog gummies)
-- **STAYS-28**: From @TheKeeperOfX (HEMLET CORP radios)
+- **HOOTS-49**: From [@satoshi_owl](https://x.com/satoshi_owl) (owl hoots in audio)
+- **HOPS-13**: From [@CharliegNFTeth](https://x.com/CharliegNFTeth) (frog gummies)
+- **STAYS-28**: From [@TheKeeperOfX](https://x.com/TheKeeperOfX) (HEMLET CORP radios)
 
 **Combination**: These codes combine to form the website PIN
 
@@ -51,7 +51,7 @@ The Neuko website ([neuko.ai](https://neuko.ai)) is a minimalistic, puzzle-gated
 
 ### Discovery Process
 
-**Discoverer**: @thrax_nft  
+**Discoverer**: [@thrax_nft](https://x.com/thrax_nft)  
 **Location**: [sj-securelab.net](https://sj-securelab.net/)  
 **Method**: Browser developer tools inspection  
 **Date**: October 30, 2025

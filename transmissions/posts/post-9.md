@@ -1,7 +1,7 @@
 # Post #9: Website Portal Reveal
 
 **Date**: November 5, 2025  
-**Post ID**: `1986152753412919577`  
+**Post**: [View on X](https://x.com/neukoai/status/1986152753412919577)  
 **Caption**: "https://www.neuko.ai/"  
 **Video Duration**: ~60 seconds
 
@@ -29,7 +29,7 @@
 - TV frame aesthetic
 - "Unlock" section with "Enter PIN to unlock" prompt
 - PIN system requires codes from previous puzzles (Post #7)
-- Console logs accessible via browser dev tools (discovered by @thrax_nft)
+- Console logs accessible via browser dev tools (discovered by [@thrax_nft](https://x.com/thrax_nft))
 
 ## Treasure Trail
 
@@ -42,7 +42,7 @@
 
 **Type**: Website/Code Extraction
 
-**Discovery**: Found by @thrax_nft through console inspection
+**Discovery**: Found by [@thrax_nft](https://x.com/thrax_nft) through console inspection
 
 **Process**:
 1. Inspected website source code

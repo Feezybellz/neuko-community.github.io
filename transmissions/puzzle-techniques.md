@@ -21,7 +21,7 @@ Puzzles in Neuko videos require various analysis techniques. This guide covers t
 - **Post #5 (Distribution Complete)**: Spectrograms reveal:
   - Time machine imagery
   - Testing chamber with badge on device
-- **Discovery**: Found by @0xstateoftheart using audio tools
+- **Discovery**: Found by [@0xstateoftheart](https://x.com/0xstateoftheart) using audio tools
 
 **Tools Used**:
 - Audio spectrogram viewers
@@ -43,7 +43,7 @@ Puzzles in Neuko videos require various analysis techniques. This guide covers t
 **Examples**:
 - **Post #7 (Channel Flipping)**: Hidden contrast codes at community shoutout scenes
   - Deciphered to: HOOTS-49, HOPS-13, STAYS-28
-  - These codes given to community members (@satoshi_owl, @CharliegNFTeth, @TheKeeperOfX)
+  - These codes given to community members ([@satoshi_owl](https://x.com/satoshi_owl), [@CharliegNFTeth](https://x.com/CharliegNFTeth), [@TheKeeperOfX](https://x.com/TheKeeperOfX))
   - Combined to form PIN for neuko.ai website unlock
 - **Post #8 (Ultimatum)**: Similar contrast codes in shoutout scenes
 
@@ -71,7 +71,7 @@ Puzzles in Neuko videos require various analysis techniques. This guide covers t
   - Console logs reveal G*Boy directives
   - .txt files contain badge protocols and lore
   - "Zion-Campaign" directives found
-- **Discovery**: Found by @thrax_nft through console inspection
+- **Discovery**: Found by [@thrax_nft](https://x.com/thrax_nft) through console inspection
 
 **Key Discoveries**:
 - Badge logistics and integrity checks
@@ -125,15 +125,15 @@ Puzzles in Neuko videos require various analysis techniques. This guide covers t
 - Follow clues to community members for codes
 
 **Examples**:
-- **@TheKeeperOfX**: 
+- **[@TheKeeperOfX](https://x.com/TheKeeperOfX)**: 
   - Radios with "HEMLET CORP" branding
   - Reference to "the helmet stays on" meme
   - Code: STAYS-28
-- **@CharliegNFTeth**: 
+- **[@CharliegNFTeth](https://x.com/CharliegNFTeth)**: 
   - Spilled "Frog Gummies" in car console
   - Reference to "ribbit" meme
   - Code: HOPS-13
-- **@satoshi_owl**: 
+- **[@satoshi_owl](https://x.com/satoshi_owl)**: 
   - Owl hoots in background audio
   - Code: HOOTS-49
 

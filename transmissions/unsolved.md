@@ -41,16 +41,17 @@ Some puzzles remain unsolved, and new mysteries continue to emerge. This page do
 
 ---
 
-### 3. Hidden Clues in Latest Video
+### 3. ~~Hidden Clues in Latest Video~~ (Resolved)
 
 **Location**: Post #10 (November 12, 2025 - Claymation)  
-**Status**: Community still analyzing  
+**Status**: Resolved - No hidden puzzles  
 **Details**:
 - Major lore dump video
-- May contain hidden puzzles or clues
-- Community analyzing for spectrograms, codes, or other elements
+- **Team Statement**: Neuko team confirmed there are no hidden puzzles in this video
+- It's a fun catch-up video to recap the story and lore
+- Focus is on lore explanation, not puzzle-solving
 
-**Analysis**: Community continues to examine video for hidden elements. May contain spectrograms, contrast codes, or other puzzle types.
+**Note**: While the community initially analyzed this video for hidden elements, the team has clarified it's purely a lore recap video with no hidden puzzles.
 
 
 ---

@@ -8,7 +8,7 @@ The Neuko puzzle-solving community is collaborative and active. These contributo
 
 ## Key Solvers
 
-### @thrax_nft - "The Detective"
+### [@thrax_nft](https://x.com/thrax_nft) - "The Detective"
 
 **Profile**: `{Designation: 069}`
 
@@ -26,7 +26,7 @@ The Neuko puzzle-solving community is collaborative and active. These contributo
 
 ---
 
-### @0xstateoftheart - "The Puzzle Man"
+### [@0xstateoftheart](https://x.com/0xstateoftheart) - "The Puzzle Man"
 
 **Contributions**:
 - First to discover spectrograms in audio
@@ -42,10 +42,10 @@ The Neuko puzzle-solving community is collaborative and active. These contributo
 
 ---
 
-### @eleven88eth - Puzzle Collaborator
+### [@eleven88eth](https://x.com/eleven88eth) - Puzzle Collaborator
 
 **Contributions**:
-- Worked with @thrax_nft on complex puzzles
+- Worked with [@thrax_nft](https://x.com/thrax_nft) on complex puzzles
 - Community puzzle coordination
 - Video analysis
 - Key solver for Post #7 PIN unlock
@@ -58,7 +58,7 @@ The Neuko puzzle-solving community is collaborative and active. These contributo
 
 ---
 
-### @Sinsonx - "Our Voice"
+### [@Sinsonx](https://x.com/Sinsonx) - "Our Voice"
 
 **Profile**: `{Designation:; #:465}`
 
@@ -76,7 +76,7 @@ The Neuko puzzle-solving community is collaborative and active. These contributo
 
 ---
 
-### @satoshi_owl - "The Owl"
+### [@satoshi_owl](https://x.com/satoshi_owl) - "The Owl"
 
 **Profile**: `{Designation:; #:100}`
 
@@ -94,7 +94,7 @@ The Neuko puzzle-solving community is collaborative and active. These contributo
 
 ---
 
-### @TheKeeperOfX - "The Keeper"
+### [@TheKeeperOfX](https://x.com/TheKeeperOfX) - "The Keeper"
 
 **Contributions**:
 - Community onboarding and support
@@ -110,7 +110,7 @@ The Neuko puzzle-solving community is collaborative and active. These contributo
 
 ---
 
-### @CharliegNFTeth - "The Ribbit"
+### [@CharliegNFTeth](https://x.com/CharliegNFTeth) - "The Ribbit"
 
 **Contributions**:
 - Community culture contributor
@@ -126,7 +126,7 @@ The Neuko puzzle-solving community is collaborative and active. These contributo
 
 ---
 
-### @afkboom - Puzzle Analyzer
+### [@afkboom](https://x.com/afkboom) - Puzzle Analyzer
 
 **Contributions**:
 - Discovered hidden clues in community videos
@@ -143,9 +143,9 @@ The Neuko puzzle-solving community is collaborative and active. These contributo
 
 ## Puzzle Discovery Timeline
 
-1. **Post #5**: @0xstateoftheart discovers spectrograms
-2. **Post #7**: @thrax_nft, @eleven88eth, @Sinsonx solve PIN unlock puzzle
-3. **Post #9**: @thrax_nft discovers website console logs
+1. **Post #5**: [@0xstateoftheart](https://x.com/0xstateoftheart) discovers spectrograms
+2. **Post #7**: [@thrax_nft](https://x.com/thrax_nft), [@eleven88eth](https://x.com/eleven88eth), [@Sinsonx](https://x.com/Sinsonx) solve PIN unlock puzzle
+3. **Post #9**: [@thrax_nft](https://x.com/thrax_nft) discovers website console logs
 
 ## Community Collaboration
 

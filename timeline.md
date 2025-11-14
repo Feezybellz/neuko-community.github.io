@@ -27,7 +27,7 @@
 - **Video**: ~21 seconds, panoramic white lab with old computers, badge close-ups (Rabbit and Moth), ends with hooded figure in rainy alley
 - **Details**: Rabbit badges shown with clean cases, Moth badges slightly worn - hinting at distribution phases
 - **Significance**: Introduces Rabbit 🐰, Moth 🐝, and Snake 🐍 badge system
-- **Founder Comments**: All three founders (@austin_hurwitz, @SQU1NCH, @greenie_sr) posted cryptic "🐰" comment
+- **Founder Comments**: All three founders ([@austin_hurwitz](https://x.com/austin_hurwitz), [@SQU1NCH](https://x.com/SQU1NCH), [@greenie_sr](https://x.com/greenie_sr)) posted cryptic "🐰" comment
 
 ### October 20, 2025
 **Cognitive Assessment Video**
@@ -72,7 +72,7 @@
 - **Caption**: "dropping to distributors stage 1: complete stage 2: initiating"
 - **Video**: ~62 seconds, more TV channel flipping (jungle snake, taxi fight, news, record player, bedroom jacket)
 - **Puzzle Discovery**: 
-  - Community shoutouts hidden in video (@TheKeeperOfX with radios, @CharliegNFTeth with frog gummies, @satoshi_owl with owl hoots)
+  - Community shoutouts hidden in video ([@TheKeeperOfX](https://x.com/TheKeeperOfX) with radios, [@CharliegNFTeth](https://x.com/CharliegNFTeth) with frog gummies, [@satoshi_owl](https://x.com/satoshi_owl) with owl hoots)
   - Hidden contrast codes at shoutout scenes lead to website PIN parts
   - Codes deciphered: HOOTS-49, HOPS-13, STAYS-28
 - **Significance**: Leads to neuko.ai website unlock, most complex puzzle to date
@@ -90,7 +90,7 @@
 
 ### October 30, 2025
 **Website Puzzle Discovery**
-- **Event**: @thrax_nft discovers hidden console logs on neuko.ai
+- **Event**: [@thrax_nft](https://x.com/thrax_nft) discovers hidden console logs on neuko.ai
 - **Discovery**: 
   - Found disabled login portal for "Saint Juniper Research Campus"
   - Extracted .txt files from console reveal G*Boy logs
@@ -115,13 +115,13 @@
 
 ### November 1, 2025
 **Community Debrief Threads**
-- **Event**: @satoshi_owl posts comprehensive debrief thread analyzing ultimatum video
+- **Event**: [@satoshi_owl](https://x.com/satoshi_owl) posts comprehensive debrief thread analyzing ultimatum video
 - **Content**: Breaks down shoutouts, puzzle clues, and lore elements
 - **Significance**: Community documentation and analysis begins
 
 ### November 4, 2025
 **DEBRIEF#03**
-- **Event**: @satoshi_owl publishes third debrief thread
+- **Event**: [@satoshi_owl](https://x.com/satoshi_owl) publishes third debrief thread
 - **Content**: 
   - Updates on puzzle discoveries
   - Reveals team involvement in puzzle distribution
@@ -144,7 +144,7 @@
 
 ### November 9, 2025
 **Community Recap Thread**
-- **Event**: @Sinsonx posts comprehensive recap thread
+- **Event**: [@Sinsonx](https://x.com/Sinsonx) posts comprehensive recap thread
 - **Content**: 
   - Complete timeline recap
   - Team background and bullish points
