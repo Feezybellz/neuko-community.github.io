@@ -2,6 +2,8 @@
 
 > A community-built wiki to help people dive into Neuko. Everything you need to know about the cryptic Web3 project, its lore, puzzles, community, and more.
 
+**Version**: 0.3.0
+
 ## Welcome
 
 This wiki is a community effort designed to help newcomers and veterans alike discover and explore Neuko. Whether you're just discovering the project or want to dive deep into the lore and puzzles, you'll find everything organized here.
@@ -149,6 +151,7 @@ This wiki is community-built and maintained. Contributions, corrections, and upd
 
 ## Status
 
+**Version**: 0.3.0  
 **Last Updated**: November 2025  
 **Coverage**: Complete through November 13, 2025  
 **Maintenance**: Wiki is a living document, updated as new information emerges
