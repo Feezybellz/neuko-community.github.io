@@ -4,7 +4,7 @@
 
 ## Overview
 
-The Neuko community has developed strong cultural identity through shared markers, memes, and rituals that create belonging and cohesion.
+The Neuko community has developed strong cultural identity through shared markers, memes, and content
 
 ## Community Identity Markers
 

@@ -1,10 +1,12 @@
 # Neuko Wiki
 
-> Welcome to the comprehensive Neuko wiki. Everything you need to know about the cryptic Web3 project, its lore, puzzles, community, and more.
+> A community-built wiki to help people dive into Neuko. Everything you need to know about the cryptic Web3 project, its lore, puzzles, community, and more.
 
 ## Welcome
 
-This wiki is designed for newcomers and veterans alike. Whether you're just discovering Neuko or want to dive deep into the lore and puzzles, you'll find everything organized here.
+This wiki is a community effort designed to help newcomers and veterans alike discover and explore Neuko. Whether you're just discovering the project or want to dive deep into the lore and puzzles, you'll find everything organized here.
+
+**Community-Built**: This wiki was created and maintained by the Neuko community to help others understand and engage with the project. It's not an official Neuko resource, but a collaborative documentation effort by community members.
 
 **What is Neuko?** A Solana-based Web3 project combining AI, NFTs, and interactive storytelling. Built by former Doodles members, it emphasizes organic community building, cryptic lore, and puzzle-solving over traditional marketing.
 
@@ -127,7 +129,9 @@ Each page includes:
 
 ## Contributing
 
-**Wiki Pages**: Organized, newcomer-friendly documentation
+This wiki is community-built and maintained. Contributions, corrections, and updates from the community are welcome to help keep the documentation accurate and comprehensive.
+
+**Wiki Pages**: Organized, newcomer-friendly documentation created by the Neuko community
 
 ---
 
