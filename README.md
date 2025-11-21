@@ -117,19 +117,6 @@ This wiki is community-built and maintained. Contributions, corrections, and upd
 
 ***
 
-## Status
-
-**Version**: 0.4.0\
-**Last Updated**: November 2025\
-**Coverage**: Complete through November 13, 2025\
-**Maintenance**: Wiki is a living document, updated as new information emerges
-
-***
-
-Welcome to the Neuko wiki. We're watching. 👁️
-
-***
-
 ## References
 
 This wiki was built using information from community threads and documentation. The following threads provided valuable information that helped shape this wiki:
@@ -145,6 +132,3 @@ This wiki was built using information from community threads and documentation. 
 
 * [**@thrax\_nft - Puzzle Discovery Thread**](https://x.com/thrax_nft/status/1983930928754782692) - Technical investigation thread documenting the discovery of hidden console logs on neuko.ai, website code analysis, and puzzle-solving methodology. Critical source for website documentation and puzzle techniques.
 
-***
-
-_These threads are preserved in the `sources/` directory for reference. Full transcriptions and analysis from these threads have been integrated throughout the wiki._
