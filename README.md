@@ -4,7 +4,7 @@
 
 **What is Neuko?** A Solana-based Web3 project combining AI, NFTs, and interactive storytelling. Built by former Doodles members, it emphasizes organic community building, cryptic lore, and puzzle-solving over traditional marketing.
 
-**Current Status** (November 2025): \~13,462 followers, 1,100+ badge holders, strong community culture, team speaking at SolanaConf in December.
+**Current Status** (November 2025): \~13,462 followers, 1,100+ badge holders, strong community culture, team speaking at Solana Breakpoint in December.
 
 ***
 
@@ -46,10 +46,6 @@
 * [**Team**](team.md) - Founders and team: complete roster, philosophy, Doodles background, and approach to community building
 * [**Website**](website.md) - neuko.ai portal: PIN system, console logs discovered, and treasure trails
 
-### Maintenance
-
-* [**Future Cleanup**](future-cleanup.md) - Migration checklist
-
 ***
 
 ## Official Links
@@ -69,24 +65,6 @@
 * Community recaps by [@satoshi\_owl](https://x.com/satoshi_owl), [@Sinsonx](https://x.com/Sinsonx), [@thrax\_nft](https://x.com/thrax_nft)
 * Puzzle-solving threads and analysis
 * Community-driven onboarding content
-
-***
-
-## Wiki Structure
-
-This wiki is organized to help you:
-
-1. **Get oriented quickly** - Start with What's Neuko? and Project Overview
-2. **Understand the story** - Read Timeline and Lore
-3. **Explore content** - Study Neuko X Transmissions and Puzzles
-4. **Learn about systems** - Understand Badges, Community, and Website
-5. **Know the team** - Read Team for founder philosophy
-
-Each page includes:
-
-* Clear explanations for newcomers
-* Detailed information for deep dives
-* Cross-references to related pages
 
 ***
 
@@ -126,12 +104,9 @@ Each page includes:
 
 This wiki is community-built and maintained. Contributions, corrections, and updates from the community are welcome to help keep the documentation accurate and comprehensive.
 
-**Wiki Pages**: Organized, newcomer-friendly documentation created by the Neuko community
-
 ***
 
 ## Quick Links
-
 
 * [What's Neuko?](whats-neuko.md)
 * [What are the badges?](badges.md)
@@ -144,7 +119,7 @@ This wiki is community-built and maintained. Contributions, corrections, and upd
 
 ## Status
 
-**Version**: 0.3.0\
+**Version**: 0.4.0\
 **Last Updated**: November 2025\
 **Coverage**: Complete through November 13, 2025\
 **Maintenance**: Wiki is a living document, updated as new information emerges
