@@ -5,7 +5,12 @@
 **Caption**: "🐰 = 2 🐍 🐝 = 1 🐍 monday"  
 **Video Duration**: ~45 seconds
 
-## Video Description
+## Video & Description
+
+<video controls width="20%">
+  <source src="../../media/videos/posts/post_2025_10_24.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 - Old computers transmitting protocols (Phase 3)
 - Printers outputting papers

@@ -5,7 +5,12 @@
 **Caption**: *(blank)*  
 **Video Duration**: ~26 seconds
 
-## Video Description
+## Video & Description
+
+<video controls width="20%">
+  <source src="../../media/videos/posts/post_2025_10_22.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 - Hands opening green and red boxes containing badges
 - Computer screens showing "Distribution Complete, Field Deployment Authorized"

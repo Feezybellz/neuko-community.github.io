@@ -5,7 +5,12 @@
 **Caption**: *(blank)*  
 **Video Duration**: ~48 seconds
 
-## Video Description
+## Video & Description
+
+<video controls width="20%">
+  <source src="../../media/videos/posts/post_2025_10_20.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 - Black screen with "STOP" text
 - Breathing instructions with countdowns ("Breathe In/Out")

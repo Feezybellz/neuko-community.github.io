@@ -5,7 +5,12 @@
 **Caption**: "dropping to distributors stage 1: complete stage 2: initiating"  
 **Video Duration**: ~62 seconds
 
-## Video Description
+## Video & Description
+
+<video controls width="20%">
+  <source src="../../media/videos/posts/post_2025_10_27.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 - More TV channel flipping:
   - Highway scene

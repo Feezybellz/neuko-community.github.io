@@ -5,7 +5,12 @@
 **Caption**: "we're watching"  
 **Video Duration**: ~10 seconds
 
-## Video Description
+## Video & Description
+
+<video controls width="20%">
+  <source src="../../media/videos/posts/post_2025_10_13.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 - Red/yellow logo fades in/out
 - Hooded red-caped figure (G*Boy) in dark lab with monitors

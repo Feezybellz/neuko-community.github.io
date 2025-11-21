@@ -5,7 +5,12 @@
 **Caption**: "catch up, sneeb"  
 **Video Duration**: ~124 seconds
 
-## Video Description
+## Video & Description
+
+<video controls width="20%">
+  <source src="../../media/videos/posts/post_2025_11_12.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 - Stop-motion clay/toy figures in studio setting
 - Figures discuss conspiracies and experiments
@@ -64,6 +69,7 @@ Major lore expansion, explains badge system, recaps story.
 ## Related Posts
 
 - [Post #9: Website Reveal](./post-9.md) - Previous post
+- [Post #11: [Title TBD]](./post-11.md) - Next post
 
 ## Related Resources
 
