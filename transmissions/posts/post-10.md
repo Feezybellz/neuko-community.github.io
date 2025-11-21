@@ -1,39 +1,39 @@
-# Post #10: "Catch Up, Sneeb" - Claymation Lore Dump
+# Post 10
 
-**Date**: November 12, 2025  
-**Post**: [View on X](https://x.com/neukoai/status/1988703965694111829)  
-**Caption**: "catch up, sneeb"  
-**Video Duration**: ~124 seconds
+**Date**: November 12, 2025\
+**Post**: [View on X](https://x.com/neukoai/status/1988703965694111829)\
+**Caption**: "catch up, sneeb"\
+**Video Duration**: \~124 seconds
 
 ## Video & Description
 
-📹 **[Watch Video](../../media/videos/posts/post_2025_11_12.mp4)** (22MB)
+{% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F5VvgOYQg7lBopCK10lUB%2Fuploads%2FBnhbwXwFqXd93vQwcjW8%2Fpost_2025_11_12.mp4?alt=media&token=34ee613a-0f19-433d-bffe-d1d099138759" %}
 
-- Stop-motion clay/toy figures in studio setting
-- Figures discuss conspiracies and experiments
-- Scenes include:
-  - Lab experiments
-  - Model facility
-  - Graffiti
-  - Toy-like visuals
-- Humorous yet eerie dialogue
-- Style: Playful yet dark, claymation
+* Stop-motion clay/toy figures in studio setting
+* Figures discuss conspiracies and experiments
+* Scenes include:
+  * Lab experiments
+  * Model facility
+  * Graffiti
+  * Toy-like visuals
+* Humorous yet eerie dialogue
+* Style: Playful yet dark, claymation
 
 ## Video Content (from subtitles/dialogue)
 
-- Discussion of MITER-Corp lab experiments
-- "Homeless babies" experimented on to create psychic soldiers
-- Animal badges represent test subjects/operatives
-- G*Boy escape and "general chaos"
-- References to "darker, insidious experiments"
-- Humorous lines like "darker, insidious experiments"
+* Discussion of MITER-Corp lab experiments
+* "Homeless babies" experimented on to create psychic soldiers
+* Animal badges represent test subjects/operatives
+* G\*Boy escape and "general chaos"
+* References to "darker, insidious experiments"
+* Humorous lines like "darker, insidious experiments"
 
 ## Lore Reveals
 
-- **MITER-Corp**: Fictional corporation conducting experiments (play on real-world MITRE)
-- **G*Boy/G304**: Escaped subject causing chaos
-- **Experiments**: Psychic soldiers created from "homeless babies"
-- **Five Core Characters**: Hints at "Neuko gang" behind scenes
+* **MITER-Corp**: Fictional corporation conducting experiments (play on real-world MITRE)
+* **G\*Boy/G304**: Escaped subject causing chaos
+* **Experiments**: Psychic soldiers created from "homeless babies"
+* **Five Core Characters**: Hints at "Neuko gang" behind scenes
 
 ## Puzzle Elements
 
@@ -45,19 +45,19 @@
 
 ## Puzzle/Lore Hooks
 
-- Major lore dump
-- Recaps entire story arc
-- Explains badge system in-universe
-- Hints at deeper conspiracy
-- **No hidden puzzles** - confirmed by team as a fun catch-up video
+* Major lore dump
+* Recaps entire story arc
+* Explains badge system in-universe
+* Hints at deeper conspiracy
+* **No hidden puzzles** - confirmed by team as a fun catch-up video
 
 ## Community Reactions
 
-- Praise for claymation quality
-- Excitement about lore reveals
-- Theories about five core characters
-- Interpretation as real lore hints
-- Initial puzzle analysis (later confirmed no hidden puzzles by team)
+* Praise for claymation quality
+* Excitement about lore reveals
+* Theories about five core characters
+* Interpretation as real lore hints
+* Initial puzzle analysis (later confirmed no hidden puzzles by team)
 
 ## Significance
 
@@ -65,12 +65,10 @@ Major lore expansion, explains badge system, recaps story.
 
 ## Related Posts
 
-- [Post #9: Website Reveal](./post-9.md) - Previous post
-- [Post #11: [Title TBD]](./post-11.md) - Next post
+* [Post #9: Website Reveal](post-9.md) - Previous post
+* [Post #11: \[Title TBD\]](post-11.md) - Next post
 
 ## Related Resources
 
-- [Unsolved Mysteries](../unsolved.md) - Other unsolved puzzles
-- [Lore](../../lore.md) - Complete lore documentation
-
-
+* [Unsolved Mysteries](../unsolved.md) - Other unsolved puzzles
+* [Lore](../../lore.md) - Complete lore documentation

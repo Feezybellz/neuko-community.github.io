@@ -1,25 +1,25 @@
-# Post #5: Distribution Complete
+# Post 5
 
-**Date**: October 22, 2025  
-**Post**: [View on X](https://x.com/neukoai/status/1981125805104312473)  
-**Caption**: *(blank)*  
-**Video Duration**: ~26 seconds
+**Date**: October 22, 2025\
+**Post**: [View on X](https://x.com/neukoai/status/1981125805104312473)\
+**Caption**: _(blank)_\
+**Video Duration**: \~26 seconds
 
-## Video & Description
+## Video &  Description
 
-📹 **[Watch Video](../../media/videos/posts/post_2025_10_22.mp4)** (2.1MB)
+{% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F5VvgOYQg7lBopCK10lUB%2Fuploads%2F2oMC13HUkXI4Ks23pGa4%2Fpost_2025_10_22.mp4?alt=media&token=ea9f157e-a29d-4650-a060-16306848d367" %}
 
-- Hands opening green and red boxes containing badges
-- Computer screens showing "Distribution Complete, Field Deployment Authorized"
-- Badges being pinned or dropped
-- First hint at Snake 🐍 badge
-- Static/aggressive sounds toward end
-- Style: Simple, reveal-focused
+* Hands opening green and red boxes containing badges
+* Computer screens showing "Distribution Complete, Field Deployment Authorized"
+* Badges being pinned or dropped
+* First hint at Snake 🐍 badge
+* Static/aggressive sounds toward end
+* Style: Simple, reveal-focused
 
 ## Distribution
 
-- Phase 1: 250 Rabbit 🐰 badges airdropped first to 250 people
-- Phase 2: 750 Moth 🐝 badges airdropped after Rabbits to next wave
+* Phase 1: 250 Rabbit 🐰 badges airdropped first to 250 people
+* Phase 2: 750 Moth 🐝 badges airdropped after Rabbits to next wave
 
 ## Puzzle Discovery
 
@@ -27,11 +27,12 @@
 
 **Discovery**: Found by [@0xstateoftheart](https://x.com/0xstateoftheart) using audio analysis tools
 
-**Solution**: 
-- Analyzed audio track using spectrogram tools
-- Discovered hidden images in audio frequency spectrum:
-  - Time machine imagery
-  - Testing chamber with badge on device
+**Solution**:
+
+* Analyzed audio track using spectrogram tools
+* Discovered hidden images in audio frequency spectrum:
+  * Time machine imagery
+  * Testing chamber with badge on device
 
 **Significance**: First puzzle discovered, revealed lore elements about experimental facilities
 
@@ -39,15 +40,15 @@
 
 ## Puzzle/Lore Hooks
 
-- "Field Deployment Authorized" suggests operational phase
-- Snake 🐍 badge first teased
-- Spectrogram puzzle rewards careful analysis
+* "Field Deployment Authorized" suggests operational phase
+* Snake 🐍 badge first teased
+* Spectrogram puzzle rewards careful analysis
 
 ## Community Reactions
 
-- Excitement about receiving badges
-- Puzzle solvers discovering spectrograms
-- Community holding badges (diamond hands) despite down market
+* Excitement about receiving badges
+* Puzzle solvers discovering spectrograms
+* Community holding badges (diamond hands) despite down market
 
 ## Significance
 
@@ -55,12 +56,10 @@ First two badge phases complete, Snake teased, first puzzle discovered.
 
 ## Related Posts
 
-- [Post #4: Cognitive Assessment](./post-4.md) - Previous post
-- [Post #6: Snake Distribution](./post-6.md) - Snake badges begin
+* [Post #4: Cognitive Assessment](post-4.md) - Previous post
+* [Post #6: Snake Distribution](post-6.md) - Snake badges begin
 
 ## Related Resources
 
-- [Puzzle-Solving Techniques](../puzzle-techniques.md#spectrogram-analysis) - How to analyze spectrograms
-- [Puzzle Contributors](../puzzle-contributors.md#0xstateoftheart) - The solver
-
-
+* [Puzzle-Solving Techniques](../puzzle-techniques.md#spectrogram-analysis) - How to analyze spectrograms
+* [Puzzle Contributors](../puzzle-contributors.md#0xstateoftheart) - The solver
