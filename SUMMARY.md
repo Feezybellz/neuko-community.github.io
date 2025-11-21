@@ -21,6 +21,7 @@
   * [Post 9](transmissions/posts/post-9.md)
   * [Post 10](transmissions/posts/post-10.md)
   * [Post 11](transmissions/posts/post-11.md)
+  * [Post 12](transmissions/posts/post-12.md)
 * [Lore](lore.md)
 
 ## Systems & Community

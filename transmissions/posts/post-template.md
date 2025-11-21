@@ -1,6 +1,6 @@
 # Post _(xx)_
 
-**Date**: November 14, 2025\
+**Date**: _(Date)_\
 **Post**: [View on X](https://x.com/neukoai)\
 **Caption**: _(to be filled)_\
 **Video Duration**: _(to be determined)_
