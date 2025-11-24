@@ -1,4 +1,4 @@
-# Post 7
+# Post 7: Channel Flipping
 
 **Date**: October 27, 2025\
 **Post**: [View on X](https://x.com/neukoai/status/1982894878280569063)\
@@ -90,6 +90,6 @@ Leads to neuko.ai website unlock, demonstrates team watching community.
 
 ## Related Resources
 
-* [Puzzle-Solving Techniques](../puzzle-techniques.md#contrast-adjustment) - How to find contrast codes
-* [Puzzle Contributors](../puzzle-contributors.md) - Key solvers
+* [Puzzle-Solving Techniques](broken-reference) - How to find contrast codes
+* [Puzzle Contributors](broken-reference) - Key solvers
 * [Website PIN System](../../website.md#pin-unlock-system) - Website unlock details

@@ -1,12 +1,10 @@
-# Home
+# (iii)
 
-**Community-Built Documentation for** [**Neuko**](https://neuko.ai)
-
-> This is a community-maintained resource. It is not official documentation from the Neuko team.
-
-<div data-with-frame="true"><img src="https://neuko-random-image.vercel.app/image.png" alt=""></div>
+**Community-Built Wiki for** [**Neuko**](https://neuko.ai)
 
 ## Where to Start
+
+<figure><img src=".gitbook/assets/header.png" alt=""><figcaption></figcaption></figure>
 
 ### 🆕 Newcomers
 

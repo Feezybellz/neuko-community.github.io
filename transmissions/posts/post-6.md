@@ -1,4 +1,4 @@
-# Post 6
+# Post 6: Snake Badge Begins
 
 **Date**: October 24, 2025\
 **Post**: [View on X](https://x.com/neukoai/status/1981740247504269582)\
@@ -70,4 +70,4 @@ Major social experiment begins, community takes control.
 ## Related Resources
 
 * [Unsolved Mysteries](../unsolved.md#channel-number-codes) - Channel number codes
-* [Community Experiment](../../community/experiment.md) - Social experiment details
+* [Community Experiment](broken-reference) - Social experiment details

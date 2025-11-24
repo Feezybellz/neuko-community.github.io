@@ -1,4 +1,4 @@
-# Post 5
+# Post 5: Distribution Complete
 
 **Date**: October 22, 2025\
 **Post**: [View on X](https://x.com/neukoai/status/1981125805104312473)\
@@ -61,5 +61,5 @@ First two badge phases complete, Snake teased, first puzzle discovered.
 
 ## Related Resources
 
-* [Puzzle-Solving Techniques](../puzzle-techniques.md#spectrogram-analysis) - How to analyze spectrograms
-* [Puzzle Contributors](../puzzle-contributors.md#0xstateoftheart) - The solver
+* [Puzzle-Solving Techniques](broken-reference) - How to analyze spectrograms
+* [Puzzle Contributors](broken-reference) - The solver

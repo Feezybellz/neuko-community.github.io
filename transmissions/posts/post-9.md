@@ -1,4 +1,4 @@
-# Post 9
+# Post 9: Website Portal
 
 **Date**: November 5, 2025\
 **Post**: [View on X](https://x.com/neukoai/status/1986152753412919577)\
@@ -90,4 +90,4 @@ Website officially revealed, new puzzle layer unlocked.
 
 * [Website Documentation](../../website.md) - Complete website details
 * [Unsolved Mysteries](../unsolved.md#treasure-trail-completion) - Treasure trail status
-* [Puzzle Contributors](../puzzle-contributors.md#thrax_nft) - The solver
+* [Puzzle Contributors](broken-reference) - The solver

@@ -1,4 +1,4 @@
-# Post 8
+# Post 8: Last Call
 
 **Date**: October 31, 2025 (Halloween)\
 **Post**: [View on X](https://x.com/neukoai/status/1984362507784351883)\
@@ -78,4 +78,4 @@ Consequences of ultimatum still unknown.
 
 * [Unsolved Mysteries](../unsolved.md#ultimatum-consequences) - Ultimatum consequences
 * [Unsolved Mysteries](../unsolved.md#sf-06-door) - SF-06 door significance
-* [Community Experiment](../../community/experiment.md) - Social experiment context
+* [Community Experiment](broken-reference) - Social experiment context
