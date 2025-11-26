@@ -78,4 +78,4 @@ Consequences of ultimatum still unknown.
 
 * [Unsolved Mysteries](../unsolved.md#ultimatum-consequences) - Ultimatum consequences
 * [Unsolved Mysteries](../unsolved.md#sf-06-door) - SF-06 door significance
-* [Community Experiment](broken-reference) - Social experiment context
+* [Community Experiment](/broken/pages/OnGflm4sDnXyyuhd3AXn) - Social experiment context

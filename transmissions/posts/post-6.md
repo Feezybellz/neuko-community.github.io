@@ -70,4 +70,4 @@ Major social experiment begins, community takes control.
 ## Related Resources
 
 * [Unsolved Mysteries](../unsolved.md#channel-number-codes) - Channel number codes
-* [Community Experiment](broken-reference) - Social experiment details
+* [Community Experiment](/broken/pages/OnGflm4sDnXyyuhd3AXn) - Social experiment details

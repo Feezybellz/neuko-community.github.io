@@ -90,4 +90,4 @@ Website officially revealed, new puzzle layer unlocked.
 
 * [Website Documentation](../../website.md) - Complete website details
 * [Unsolved Mysteries](../unsolved.md#treasure-trail-completion) - Treasure trail status
-* [Puzzle Contributors](broken-reference) - The solver
+* [Puzzle Contributors](/broken/pages/KCSxnlJ6sVXLA938zkiV#thrax_nft) - The solver

@@ -90,6 +90,6 @@ Leads to neuko.ai website unlock, demonstrates team watching community.
 
 ## Related Resources
 
-* [Puzzle-Solving Techniques](broken-reference) - How to find contrast codes
-* [Puzzle Contributors](broken-reference) - Key solvers
+* [Puzzle-Solving Techniques](/broken/pages/Qelq6aiJV5Z1vGIi1YBQ#contrast-adjustment) - How to find contrast codes
+* [Puzzle Contributors](/broken/pages/KCSxnlJ6sVXLA938zkiV) - Key solvers
 * [Website PIN System](../../website.md#pin-unlock-system) - Website unlock details

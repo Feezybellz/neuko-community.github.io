@@ -57,9 +57,9 @@ All posts are documented individually:
 
 ## Puzzle Resources
 
-* [**Puzzle-Solving Techniques**](broken-reference) - Methods and tools for solving puzzles
-* [**Puzzle Contributors**](broken-reference) - Key community members who solve puzzles
-* [**Puzzle Philosophy**](broken-reference) - Design principles and team approach
+* [**Puzzle-Solving Techniques**](/broken/pages/Qelq6aiJV5Z1vGIi1YBQ) - Methods and tools for solving puzzles
+* [**Puzzle Contributors**](/broken/pages/KCSxnlJ6sVXLA938zkiV) - Key community members who solve puzzles
+* [**Puzzle Philosophy**](/broken/pages/41KcZ0J34eswsvefYQvv) - Design principles and team approach
 * [**Unsolved Mysteries**](unsolved.md) - Ongoing puzzles and mysteries
 
 ## Related Pages
@@ -67,5 +67,5 @@ All posts are documented individually:
 * [Timeline](../timeline.md) - Chronological events and discoveries
 * [Lore](../lore.md) - Story elements revealed through transmissions
 * [Badges](../badges.md) - Badge system introduced in transmissions
-* [Community](broken-reference) - Community reactions and engagement
+* [Community](/broken/pages/EtYhig5EtUHa2YA48j1Y) - Community reactions and engagement
 * [Website](../website.md) - Website revealed in Post #9

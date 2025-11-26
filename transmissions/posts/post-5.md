@@ -61,5 +61,5 @@ First two badge phases complete, Snake teased, first puzzle discovered.
 
 ## Related Resources
 
-* [Puzzle-Solving Techniques](broken-reference) - How to analyze spectrograms
-* [Puzzle Contributors](broken-reference) - The solver
+* [Puzzle-Solving Techniques](/broken/pages/Qelq6aiJV5Z1vGIi1YBQ#spectrogram-analysis) - How to analyze spectrograms
+* [Puzzle Contributors](/broken/pages/KCSxnlJ6sVXLA938zkiV#0xstateoftheart) - The solver

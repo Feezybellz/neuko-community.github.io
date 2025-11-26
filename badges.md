@@ -219,5 +219,5 @@ From founder [@SQU1NCH](https://x.com/SQU1NCH):
 
 * [Timeline](timeline.md) - Badge distribution events chronologically
 * [Lore](lore.md) - Badge symbolism in the story
-* [Community](broken-reference) - Community distribution and culture
-* [What's Neuko?](broken-reference) - How to get involved
+* [Community](/broken/pages/EtYhig5EtUHa2YA48j1Y) - Community distribution and culture
+* [What's Neuko?](/broken/pages/dD3RzmRGOi7wZsUi2xiv) - How to get involved
