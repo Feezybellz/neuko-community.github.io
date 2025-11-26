@@ -76,7 +76,7 @@ https://x.com/LostSnow_Rin/status/1992576141115417030
 
 **Code:** `5`
 
-Justthego
+Patron
 
 ![friend_8.png](../media/images/friends/friend_8.png)
 
