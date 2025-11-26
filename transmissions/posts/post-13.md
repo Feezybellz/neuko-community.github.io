@@ -1,8 +1,8 @@
 # Post 13: \[Title TBD]
 
-**Date**: _(Date)_\
+**Date**: November 26, 2025\
 **Post**: [View on X](https://x.com/neukoai/status/1993801736142909814)\
-**Caption**: _(to be filled)_\
+**Caption**: "choose rich or rich choose you 👁️\
 **Video Duration**: _(to be determined)_
 
 ## Video & Description
