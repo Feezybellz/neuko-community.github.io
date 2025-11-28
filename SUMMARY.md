@@ -36,6 +36,7 @@
 
 * [Techniques & Solvers](transmissions/puzzle-guide.md)
 * [Unsolved Mysteries](transmissions/unsolved.md)
+* [The Bloc x Thrax](puzzle-guide/the-bloc-x-thrax.md)
 
 ## Maintenance
 
