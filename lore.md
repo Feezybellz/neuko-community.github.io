@@ -309,6 +309,6 @@ Discovered by "The Bloc" in November 2025, these archived video logs from Septem
 
 * [Timeline](timeline.md) - Chronological events and lore reveals
 * [Neuko X Transmissions](transmissions/overview.md) - Videos and posts with lore elements
-* [Puzzle Resources](transmissions/puzzle-techniques.md) - Lore discoveries through puzzle-solving
+* [Puzzle Resources](/transmissions/puzzle-guide) - Lore discoveries through puzzle-solving
 * [Badges](badges.md) - Badge system and symbolism
 * [Community](community/overview.md) - Community-developed lore and culture
