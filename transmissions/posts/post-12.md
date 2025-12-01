@@ -7,7 +7,7 @@
 
 ## Video & Description
 
-{% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F5VvgOYQg7lBopCK10lUB%2Fuploads%2FL7v0jSJFr9fkAdXLysDb%2Fpost_2025_11_19.mp4?alt=media&token=b0864d3c-449a-4ee2-aa78-03d230079482" %}
+<video controls width="100%"><source src="../../media/videos/posts/post_2025_11_19.mp4" type="video/mp4"></video>
 
 *   **Visuals**: Fast-paced montage of G*Boy images in various styles (cyberpunk, claymation, realistic).
 *   **Reveal**: Text overlay announcing the URL "gboyspecial.com".

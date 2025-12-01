@@ -1,14 +1,32 @@
-# Neuko Website
+# Neuko Websites
 
-> Documentation of the neuko.ai portal, PIN system, console logs, and treasure trails.
+> A directory of official and community-created websites in the Neuko ecosystem.
 
-## Overview
+## Official Sites
+
+| Site | Description | URL |
+| :--- | :--- | :--- |
+| **Neuko.ai** | The main portal. A puzzle-gated experience. | [neuko.ai](https://www.neuko.ai/) |
+| **SJ Secure Lab** | St. Juniper's Research Campus. Contains lore and console logs. | [sj-securelab.net](https://www.sj-securelab.net/) |
+| **G*BOY Special** | AI image generator for the G*Boy aesthetic. | [gboyspecial.com](https://www.gboyspecial.com/) |
+| **Meme Depot** | Official repository for G*Boy memes and assets. | [memedepot.com/d/gboy](https://memedepot.com/d/gboy) |
+
+## Community Sites
+
+| Site | Description | URL |
+| :--- | :--- | :--- |
+| **Neuko Wiki** | The community-maintained knowledge base (You are here). | [neuko.wiki](https://neuko.wiki) |
+| **Bloc Rocks** | A Neuko-themed music player. | [bloc.rocks](https://bloc.rocks) |
+
+---
+
+## Neuko.ai (The Portal)
 
 The Neuko website ([neuko.ai](https://neuko.ai)) is a minimalistic, puzzle-gated portal that serves as both a teaser and a puzzle layer. The site features a PIN unlock system requiring codes discovered through video puzzles. Hidden console logs with lore and directives were discovered on [sj-securelab.net](https://sj-securelab.net/) in the `/dir` directory.
 
-## Website Structure
+### Website Structure
 
-### Public View
+**Public View**
 
 **Design**: Minimalistic, retro-futuristic aesthetic  
 **Elements**:
@@ -221,7 +239,7 @@ The Neuko website ([neuko.ai](https://neuko.ai)) is a minimalistic, puzzle-gated
 
 ## Related Pages
 
-- [Puzzle-Solving Techniques](./transmissions/puzzle-techniques.md) - Website puzzle solutions and methods
+- [Puzzle-Solving Techniques](/transmissions/puzzle-guide.md) - Website puzzle solutions and methods
 - [Lore](./lore.md) - Lore elements discovered in console logs
 - [Timeline](./timeline.md) - Website discovery events
 - [Post #9: Website Reveal](./transmissions/posts/post-9.md) - Website reveal video

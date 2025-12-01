@@ -7,7 +7,7 @@
 
 ## Video &  Description
 
-{% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F5VvgOYQg7lBopCK10lUB%2Fuploads%2F2oMC13HUkXI4Ks23pGa4%2Fpost_2025_10_22.mp4?alt=media&token=ea9f157e-a29d-4650-a060-16306848d367" %}
+<video controls width="100%"><source src="../../media/videos/posts/post_2025_10_22.mp4" type="video/mp4"></video>
 
 * Hands opening green and red boxes containing badges
 * Computer screens showing "Distribution Complete, Field Deployment Authorized"
@@ -61,5 +61,5 @@ First two badge phases complete, Snake teased, first puzzle discovered.
 
 ## Related Resources
 
-* [Puzzle-Solving Techniques](/broken/pages/Qelq6aiJV5Z1vGIi1YBQ#spectrogram-analysis) - How to analyze spectrograms
-* [Puzzle Contributors](/broken/pages/KCSxnlJ6sVXLA938zkiV#0xstateoftheart) - The solver
+* [Puzzle-Solving Techniques](/transmissions/puzzle-guide#spectrogram-analysis) - How to analyze spectrograms
+* [Puzzle Contributors](/community/overview#0xstateoftheart) - The solver

@@ -7,7 +7,7 @@
 
 ## Video & Description
 
-{% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F5VvgOYQg7lBopCK10lUB%2Fuploads%2FYQ0LLmchZwdJYIPZH4f6%2Fpost_2025_10_20.mp4?alt=media&token=e7c28123-30ff-44d9-b4c0-98f6bc189141" %}
+<video controls width="100%"><source src="../../media/videos/posts/post_2025_10_20.mp4" type="video/mp4"></video>
 
 * Black screen with "STOP" text
 * Breathing instructions with countdowns ("Breathe In/Out")

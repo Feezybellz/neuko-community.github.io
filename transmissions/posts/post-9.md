@@ -7,7 +7,7 @@
 
 ## Video & Description
 
-{% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F5VvgOYQg7lBopCK10lUB%2Fuploads%2FzAao2sQimr0aLZQDCLpZ%2Fpost_2025_11_05.mp4?alt=media&token=ca1c5145-4cde-4f29-852f-bdd289c61e0e" %}
+<video controls width="100%"><source src="../../media/videos/posts/post_2025_11_05.mp4" type="video/mp4"></video>
 
 * Montage of old white TV sets
 * Each screen displays animated hooded figures (red cape, black eyes) in fantastical scenes:
@@ -90,4 +90,4 @@ Website officially revealed, new puzzle layer unlocked.
 
 * [Website Documentation](../../website.md) - Complete website details
 * [Unsolved Mysteries](../unsolved.md#treasure-trail-completion) - Treasure trail status
-* [Puzzle Contributors](/broken/pages/KCSxnlJ6sVXLA938zkiV#thrax_nft) - The solver
+* [Puzzle Contributors](/community/overview#thrax_nft) - The solver

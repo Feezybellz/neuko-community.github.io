@@ -7,7 +7,7 @@
 
 ## Video & Description
 
-{% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F5VvgOYQg7lBopCK10lUB%2Fuploads%2FBnhbwXwFqXd93vQwcjW8%2Fpost_2025_11_12.mp4?alt=media&token=34ee613a-0f19-433d-bffe-d1d099138759" %}
+<video controls width="100%"><source src="../../media/videos/posts/post_2025_11_12.mp4" type="video/mp4"></video>
 
 * Stop-motion clay/toy figures in studio setting
 * Figures discuss conspiracies and experiments

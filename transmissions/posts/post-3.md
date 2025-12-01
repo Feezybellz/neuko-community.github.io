@@ -7,7 +7,7 @@
 
 ## Video & Description
 
-{% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F5VvgOYQg7lBopCK10lUB%2Fuploads%2Fwi8RJqzJr84Kxlyeeua0%2Fpost_2025_10_17.mp4?alt=media&token=8cef2ee0-8df8-4497-83cb-64de6dfccf07" %}
+<video controls width="100%"><source src="../../media/videos/posts/post_2025_10_17.mp4" type="video/mp4"></video>
 
 * Panoramic white lab with cluttered desks, old computers, papers
 * Zooms on details (notebooks, screens)

@@ -7,7 +7,7 @@
 
 ## Video & Description
 
-{% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F5VvgOYQg7lBopCK10lUB%2Fuploads%2F9D8EBOpDS2GvWdObT1lg%2Fpost_2025_11_14.mp4?alt=media&token=4d9be8fd-b43e-470a-bc02-3de7d3e1e0d3" %}
+<video controls width="100%"><source src="../../media/videos/posts/post_2025_11_14.mp4" type="video/mp4"></video>
 
 *   **Visuals**: Grainy, CCTV-style footage of the Saint Juniper Research Campus.
 *   **Audio**: Alarms blaring, distant panic, garbled radio communications.

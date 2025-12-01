@@ -7,7 +7,7 @@
 
 ## Video & Description
 
-{% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F5VvgOYQg7lBopCK10lUB%2Fuploads%2FRrQEra2VpwADO4tr0PA9%2Fpost_2025_10_27.mp4?alt=media&token=4e6bd515-0a35-4b13-86df-b75188fb098c" %}
+<video controls width="100%"><source src="../../media/videos/posts/post_2025_10_27.mp4" type="video/mp4"></video>
 
 * More TV channel flipping:
   * Highway scene
@@ -90,6 +90,6 @@ Leads to neuko.ai website unlock, demonstrates team watching community.
 
 ## Related Resources
 
-* [Puzzle-Solving Techniques](/broken/pages/Qelq6aiJV5Z1vGIi1YBQ#contrast-adjustment) - How to find contrast codes
-* [Puzzle Contributors](/broken/pages/KCSxnlJ6sVXLA938zkiV) - Key solvers
+* [Puzzle-Solving Techniques](/transmissions/puzzle-guide#contrast-adjustment) - How to find contrast codes
+* [Puzzle Contributors](/community/overview) - Key solvers
 * [Website PIN System](../../website.md#pin-unlock-system) - Website unlock details

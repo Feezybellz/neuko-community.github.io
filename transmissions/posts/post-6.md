@@ -7,7 +7,7 @@
 
 ## Video & Description
 
-{% embed url="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F5VvgOYQg7lBopCK10lUB%2Fuploads%2FHPl38YDebyg5qXCNTO0L%2Fpost_2025_10_24.mp4?alt=media&token=6826cf0c-b785-4650-b924-abc68728e3ba" %}
+<video controls width="100%"><source src="../../media/videos/posts/post_2025_10_24.mp4" type="video/mp4"></video>
 
 * Old computers transmitting protocols (Phase 3)
 * Printers outputting papers
@@ -70,4 +70,4 @@ Major social experiment begins, community takes control.
 ## Related Resources
 
 * [Unsolved Mysteries](../unsolved.md#channel-number-codes) - Channel number codes
-* [Community Experiment](/broken/pages/OnGflm4sDnXyyuhd3AXn) - Social experiment details
+* [Community Experiment](/community/overview) - Social experiment details

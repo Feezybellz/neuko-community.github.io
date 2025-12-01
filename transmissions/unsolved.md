@@ -114,6 +114,6 @@ If you discover something new or solve an unsolved mystery:
 
 ## Related Pages
 
-* [Puzzle-Solving Techniques](/broken/pages/Qelq6aiJV5Z1vGIi1YBQ) - Methods to analyze unsolved puzzles
-* [Puzzle Contributors](/broken/pages/KCSxnlJ6sVXLA938zkiV) - Solvers working on mysteries
+* [Puzzle-Solving Techniques](/transmissions/puzzle-guide) - Methods to analyze unsolved puzzles
+* [Puzzle Contributors](/community/overview) - Solvers working on mysteries
 * [Transmissions Overview](overview.md) - All posts with potential puzzles
