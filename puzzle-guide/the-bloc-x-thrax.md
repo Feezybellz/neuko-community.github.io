@@ -1,12 +1,13 @@
 ---
-description: >-
-  The Bloc scooped Thrax, locked him in a basement, de-programed him, and issued
-  a puzzle to the community to get him back.
+description: The Bloc scooped Thrax, locked him in a basement, de-programed him, and issued a puzzle to the community to get him back.
 cover: ../.gitbook/assets/Screenshot 2025-11-28 at 9.03.46 AM.png
-coverY: 187.35536739021958
 ---
 
+<img src="../.gitbook/assets/Screenshot 2025-11-28 at 9.03.46 AM.png" alt="The Bloc x Thrax Banner" style="width: 100%; height: auto; display: block; margin: 0 0 2rem 0;" />
+
 # The Bloc x Thrax
+
+> The Bloc scooped Thrax, locked him in a basement, de-programed him, and issued a puzzle to the community to get him back.
 
 #### Debrief by [@eleven88eth](https://x.com/eleven88eth)
 
