@@ -71,3 +71,40 @@
 .VPSidebarItem.is-active>.item>.link {
   color: var(--vp-c-brand-1) !important;
 }
+
+/* Fix Table Backgrounds in Dark Mode */
+.vp-doc table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.vp-doc tr {
+  background-color: var(--vp-c-bg);
+  border-top: 1px solid var(--vp-c-border);
+}
+
+.vp-doc tr:nth-child(2n) {
+  background-color: var(--vp-c-bg-alt);
+}
+
+.vp-doc th,
+.vp-doc td {
+  border: 1px solid var(--vp-c-border);
+  padding: 8px 16px;
+  background-color: transparent;
+  /* Ensure no white background leaks through */
+}
+
+/* Blockquotes */
+.vp-doc blockquote {
+  background-color: var(--vp-c-bg-alt);
+  border-left-color: var(--vp-c-brand-1);
+}
+
+/* Feature Cards (Homepage) */
+.VPFeature {
+  background-color: var(--vp-c-bg-alt) !important;
+  border-color: var(--vp-c-border) !important;
+}

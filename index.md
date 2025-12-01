@@ -5,24 +5,26 @@ hero:
   name: "Neuko Wiki"
   text: "Community-Built Documentation"
   tagline: "Unraveling the mysteries of Neuko.ai"
-  actions:
-    - theme: brand
-      text: Start Here
-      link: /whats-neuko
-    - theme: alt
-      text: View on GitHub
-      link: https://github.com/neuko-community/neuko-wiki
+  actions: []
 
 features:
   - title: The Story
-    details: Lore, Transmissions, and the history of G*Boy.
+    details: Catch up on the Lore, Timeline, and Transmissions.
     link: /lore
+    linkText: Read the Lore
   - title: Puzzle Guide
     details: Techniques, solvers, and unsolved mysteries.
     link: /transmissions/puzzle-guide
+    linkText: Solve Puzzles
   - title: Ecosystem
     details: Badges, Community, and Team.
     link: /community/overview
+    linkText: Explore Community
+  - title: Newcomers
+    details: Start here if you are new to Neuko.
+    link: /whats-neuko
+    linkText: Get Started
+
 ---
 
 ## Video Intro: What the Hell is Neuko?
