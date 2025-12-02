@@ -30,6 +30,7 @@ _(To be documented)_
 ## Related Posts
 
 * [Post #12: "drown them in his image - gboyspecial.com"](post-12.md) - Previous post
+* [Post #14: \[Title TBD\]](post-14.md) - Next post
 
 ## Related Resources
 
