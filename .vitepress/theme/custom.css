@@ -201,78 +201,38 @@ h1 {
 }
 
 /* Video Intro Section */
-.video-intro-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin: 4rem 0;
-  align-items: flex-start;
-  border-top: 1px solid #333;
-  padding-top: 2rem;
+
+/* Hide default H1 on wiki pages since it's in the banner */
+.wiki-page .vp-doc h1:first-of-type {
+  display: none;
 }
 
-@media (min-width: 768px) {
-  .video-intro-container {
-    flex-direction: row;
-    align-items: center;
+/* Mobile Global Adjustments */
+@media (max-width: 768px) {
+  :root {
+    --vp-sidebar-width: 100%;
   }
-}
 
-.video-intro-text {
-  flex: 1;
-  padding-right: 2rem;
-}
+  h1 {
+    font-size: 2rem !important;
+  }
 
-.video-intro-title {
-  color: var(--vp-c-brand-1);
-  font-family: var(--vp-font-family-mono);
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-  line-height: 1.2;
-  border-bottom: 1px solid #333;
-  padding-bottom: 0.5rem;
-  display: inline-block;
-}
+  h2 {
+    font-size: 1.5rem !important;
+  }
 
-.video-intro-text p {
-  margin-bottom: 1rem;
-  color: #ccc;
-  font-family: var(--vp-font-family-mono);
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
+  h3 {
+    font-size: 1.25rem !important;
+  }
 
-.video-intro-text a {
-  color: #fff;
-  text-decoration: underline;
-  text-decoration-color: var(--vp-c-brand-1);
-  transition: color 0.2s;
-}
+  .vp-doc table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 
-.video-intro-text a:hover {
-  color: var(--vp-c-brand-1);
-}
-
-.video-intro-embed {
-  flex: 1;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #050505;
-  border: 1px solid #222;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
-
-/* Video Embed */
-.neuko-video-embed {
-  width: 100%;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  display: block;
+  .vp-doc th,
+  .vp-doc td {
+    padding: 8px;
+  }
 }

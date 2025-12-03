@@ -47,4 +47,15 @@ onMounted(() => {
   transform: scale(1.2); /* Make it 20% larger */
   transform-origin: top center;
 }
+
+@media (max-width: 768px) {
+  .tweet-container {
+    transform: scale(1); /* Reset scale on mobile */
+    width: 100% !important;
+  }
+  
+  .tweet-wrapper {
+    min-height: auto;
+  }
+}
 </style>

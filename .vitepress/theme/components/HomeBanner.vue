@@ -188,20 +188,53 @@ import { withBase } from 'vitepress'
 }
 
 @media (max-width: 768px) {
+    .banner-container {
+        padding: 0 1rem;
+    }
+
     .banner-top {
         height: 240px;
     }
     .banner-overlay {
         padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
-    .title, .subtitle {
+    .title {
         font-size: 2rem;
+    }
+    .subtitle {
+        font-size: 1.8rem;
     }
     .tagline {
         font-size: 0.6rem;
+        line-height: 1.4;
     }
     .desktop-only {
         display: none;
+    }
+    
+    .banner-bottom {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .bottom-left, .bottom-right {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .action-btn {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+    
+    .bottom-right {
+        flex-direction: column;
+        gap: 0.5rem;
     }
 }
 

@@ -27,6 +27,31 @@ import { withBase } from 'vitepress'
 
 
 
+    <!-- Row 2: Video Intro -->
+    <div class="video-intro-section">
+      <div class="video-text">
+        <span class="section-tag">VIDEO INTRO</span>
+        <h2 class="video-title">WHAT THE HELL IS NEUKO?</h2>
+        <p class="intro-desc">
+          Community member <a href="https://x.com/kezo_futura" target="_blank">@kezo_futura</a> put together an amazing <a href="https://x.com/kezo_futura/status/1993398379217584410" target="_blank">12 minute intro video</a> on everything Neuko and G*boy.
+        </p>
+        <p class="intro-desc">
+          A must watch if you are diving in for the first time.
+        </p>
+      </div>
+      <div class="video-embed">
+        <video 
+          class="neuko-video-embed" 
+          controls 
+          playsinline 
+          poster="https://pbs.twimg.com/amplify_video_thumb/1993397046053834752/img/cJbwGhMttPFpsjOW.jpg"
+        >
+          <source src="https://video.twimg.com/amplify_video/1993397046053834752/vid/avc1/1920x1080/x10bIwOwtauTsexk.mp4?tag=21" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
     <!-- Row 3: How it Started & Latest Transmission -->
     <div class="content-grid">
       
@@ -53,7 +78,7 @@ import { withBase } from 'vitepress'
             <div class="transmission-info">
               <h4>THE 1994 ARCHIVES</h4>
               <p>Archived video logs from September 1994 reveal the origin of G*Boy.</p>
-              <a href="/transmissions/overview" class="watch-btn">WATCH LOGS</a>
+              <a href="/transmissions/overview" class="watch-btn">VIEW LOGS</a>
             </div>
           </div>
         </div>
@@ -107,7 +132,7 @@ import { withBase } from 'vitepress'
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 4rem; /* Increased to match other sections */
 }
 
 .feature-card {
@@ -146,9 +171,12 @@ import { withBase } from 'vitepress'
 .video-intro-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 4rem;
   margin-bottom: 4rem;
   align-items: center;
+  /* border-bottom: 1px solid #333; Removed border */
+  /* padding-bottom: 4rem; Removed padding */
+  padding-top: 2rem; /* Added padding above */
 }
 
 .video-text {
@@ -157,22 +185,63 @@ import { withBase } from 'vitepress'
   justify-content: center;
 }
 
+.section-tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-family: var(--vp-font-family-mono);
+  color: var(--vp-c-brand-1);
+  /* border: 1px solid var(--vp-c-brand-1); Removed border */
+  padding: 0; /* Removed padding to align with text */
+  margin-bottom: 0.25rem; /* Reduced margin to be closer to title */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.video-title {
+  font-family: var(--vp-font-family-mono);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: white;
+  margin: 0 0 1.5rem 0;
+  text-transform: uppercase;
+}
+
 .intro-desc {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #ccc;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #bbb;
   margin-bottom: 1rem;
+  max-width: 90%;
 }
 
 .intro-desc a {
-  color: var(--vp-c-brand-1);
-  text-decoration: underline;
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid var(--vp-c-brand-1);
+  transition: all 0.2s;
+  font-weight: bold;
+}
+
+.intro-desc a:hover {
+  background-color: var(--vp-c-brand-1);
+  color: black;
+  box-shadow: 0 0 10px rgba(255, 232, 0, 0.3);
 }
 
 .video-embed {
   width: 100%;
   display: flex;
   justify-content: center;
+  /* Removed border and background */
+}
+
+.neuko-video-embed {
+  width: 100%;
+  border-radius: 12px;
+  /* Removed border to match request */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  display: block;
 }
 
 /* Grid Layouts */
@@ -295,13 +364,29 @@ import { withBase } from 'vitepress'
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .home-content {
+    padding: 0 1rem;
+  }
+
   .features-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   .community-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .video-intro-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .content-grid {
+    margin-bottom: 2rem;
+    gap: 1.5rem;
   }
 }
 </style>
