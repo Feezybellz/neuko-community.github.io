@@ -191,6 +191,7 @@ import { withBase } from 'vitepress'
 @media (max-width: 768px) {
     .banner-container {
         padding: 0 1rem;
+        margin-bottom: 1rem;
     }
 
     .banner-top {

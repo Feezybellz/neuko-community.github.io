@@ -411,6 +411,8 @@ import CustomTweet from './CustomTweet.vue'
   .video-intro-section {
     margin-bottom: 2rem;
     padding-bottom: 2rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .content-grid {
