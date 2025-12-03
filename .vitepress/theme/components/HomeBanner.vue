@@ -84,6 +84,7 @@ import { withBase } from 'vitepress'
   line-height: 1;
   color: var(--vp-c-brand-1); /* Yellow */
   margin: 0;
+  word-spacing: -0.3em; /* Tighten space for monospace */
 }
 
 .subtitle {
@@ -92,7 +93,7 @@ import { withBase } from 'vitepress'
 
 .tagline {
   font-family: var(--vp-font-family-mono);
-  font-size: .8rem;
+  font-size: 0.8rem; /* Doubled from 0.8rem */
   margin-top: 1rem;
   color: #ccc;
   text-transform: uppercase;
@@ -200,14 +201,15 @@ import { withBase } from 'vitepress'
         padding-right: 1.5rem;
     }
     .title {
-        font-size: 2rem;
+        font-size: 1.9rem !important; /* Force uniform size */
     }
     .subtitle {
-        font-size: 1.8rem;
+        font-size: 1.9rem !important; /* Force uniform size */
     }
     .tagline {
-        font-size: 0.6rem;
+        font-size: 0.9rem; /* Doubled from 0.6rem */
         line-height: 1.4;
+        max-width: 85% ; /* Shorten line wrapping by 20% */
     }
     .desktop-only {
         display: none;
@@ -216,8 +218,8 @@ import { withBase } from 'vitepress'
     .banner-bottom {
         flex-direction: column;
         height: auto;
-        padding: 1rem;
-        gap: 1rem;
+        padding: 1rem 0.5rem;
+        gap: 0.75rem;
     }
 
     .bottom-left, .bottom-right {
@@ -226,15 +228,23 @@ import { withBase } from 'vitepress'
         flex-wrap: wrap;
     }
 
+    .ticker-text {
+        font-size: 0.8rem; /* Increased from 0.65rem */
+    }
+
     .action-btn {
-        width: 100%;
+        width: auto; /* Allow buttons to size naturally or flex */
+        flex: 1; /* Make them share width equally */
         text-align: center;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0; /* Remove bottom margin */
+        padding: 8px 12px; /* Slightly smaller padding for mobile */
+        font-size: 0.7rem; /* Slightly smaller text */
     }
     
     .bottom-right {
-        flex-direction: column;
+        flex-direction: row; /* Side by side */
         gap: 0.5rem;
+        padding: 0 0.5rem; /* Ensure buttons don't touch edges */
     }
 }
 
