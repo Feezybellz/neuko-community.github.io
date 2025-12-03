@@ -29,7 +29,7 @@
   --vp-sidebar-bg-color: #0a0a0a;
   --vp-sidebar-width: 280px;
   --vp-nav-bg-color: #0a0a0a;
-  --vp-nav-height: 0px;
+  --vp-nav-height: 70px;
 
   /* Fonts */
   --vp-font-family-base: 'Inter', sans-serif;
@@ -38,10 +38,10 @@
 
 /* GLOBAL BRUTALIST STYLES */
 
-/* Sharp corners everywhere - REMOVED for rounded design */
-/* * {
+/* Sharp corners everywhere */
+* {
   border-radius: 0 !important;
-} */
+}
 
 /* Headers */
 h1,
@@ -200,79 +200,103 @@ h1 {
   background: var(--vp-c-brand-1);
 }
 
-/* Video Intro Section */
-.video-intro-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin: 4rem 0;
-  align-items: flex-start;
-  border-top: 1px solid #333;
-  padding-top: 2rem;
+/* --- CUSTOM HERO BANNER (G*BOY SPECIAL STYLE) --- */
+
+html .VPHero {
+  padding-top: 32px !important;
+  padding-bottom: 32px !important;
 }
 
-@media (min-width: 768px) {
-  .video-intro-container {
-    flex-direction: row;
-    align-items: center;
-  }
+html .VPHero .container {
+  display: flex !important;
+  flex-direction: column !important;
+  max-width: 96vw !important;
+  /* Almost full width */
+  margin: 0 auto;
+  padding: 0 !important;
 }
 
-.video-intro-text {
-  flex: 1;
-  padding-right: 2rem;
+html .VPHero .image {
+  order: -1;
+  /* Image on top */
+  width: 100% !important;
+  flex: none !important;
+  margin-bottom: 32px;
+  padding: 0 !important;
+  display: block !important;
+  /* Ensure it is visible */
 }
 
-.video-intro-title {
-  color: var(--vp-c-brand-1);
-  font-family: var(--vp-font-family-mono);
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-  line-height: 1.2;
-  border-bottom: 1px solid #333;
-  padding-bottom: 0.5rem;
-  display: inline-block;
+html .VPHero .image-container {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 24px;
+  /* Rounded corners */
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  margin: 0 !important;
+  transform: none !important;
+  /* Remove any default tilt/transform */
 }
 
-.video-intro-text p {
-  margin-bottom: 1rem;
-  color: #ccc;
-  font-family: var(--vp-font-family-mono);
-  font-size: 0.9rem;
-  line-height: 1.6;
+html .VPHero .image-bg {
+  display: none !important;
+  /* Hide background blobs */
 }
 
-.video-intro-text a {
-  color: #fff;
-  text-decoration: underline;
-  text-decoration-color: var(--vp-c-brand-1);
-  transition: color 0.2s;
+html .VPHero .image-src {
+  width: 100% !important;
+  height: auto !important;
+  max-width: none !important;
+  object-fit: cover;
+  display: block;
 }
 
-.video-intro-text a:hover {
-  color: var(--vp-c-brand-1);
+/* Hide default text since banner has it, but keep actions */
+html .VPHero .main {
+  width: 100% !important;
+  max-width: 1000px !important;
+  margin: 0 auto;
+  text-align: center;
+  order: 2;
 }
 
-.video-intro-embed {
-  flex: 1;
-  width: 100%;
+html .VPHero .name,
+html .VPHero .text,
+html .VPHero .tagline {
+  display: none !important;
+}
+
+html .VPHero .actions {
   display: flex;
   justify-content: center;
-  align-items: center;
-  background: #050505;
-  border: 1px solid #222;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  gap: 16px;
 }
 
-/* Video Embed */
-.neuko-video-embed {
-  width: 100%;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  display: block;
+/* --- CUSTOM NAV BAR --- */
+
+.VPNavBar {
+  background-color: rgba(10, 10, 10, 0.8) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #333;
+}
+
+.VPNavBar .content {
+  max-width: 98vw !important;
+  padding: 0 24px !important;
+}
+
+.VPNavBarTitle .title {
+  font-family: var(--vp-font-family-mono);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.VPNavBarMenuLink {
+  font-family: var(--vp-font-family-mono);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
 }

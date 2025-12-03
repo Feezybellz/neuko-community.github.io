@@ -50,6 +50,10 @@ We need your help to keep this resource accurate, up-to-date, and visually stunn
    * Fork this repository.
    * Make your changes.
    * Submit a Pull Request (PR).
+   * **Running Locally**:
+     * Install [Bun](https://bun.sh).
+     * Run `bun install`.
+     * Run `bun run docs:dev` to start the server (automatically handles port conflicts).
 3. **Quick Drops**:
    * Found something new? Post it in the community Telegram/X threads and tag [**@afkboom**](https://x.com/afkboom).
 

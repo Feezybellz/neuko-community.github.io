@@ -38,7 +38,7 @@ onMounted(() => {
 .tweet-wrapper {
   display: flex;
   justify-content: center;
-  margin: 2rem 0;
+  margin: 0;
   min-height: 300px;
   overflow: hidden; /* Hide overflow from scaling */
 }

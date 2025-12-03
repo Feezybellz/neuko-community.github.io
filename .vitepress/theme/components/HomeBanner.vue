@@ -1,0 +1,231 @@
+<script setup>
+import { withBase } from 'vitepress'
+</script>
+
+<template>
+  <div class="banner-container">
+    <div class="banner-wrapper">
+      <!-- Top Section: Image & Main Text -->
+      <div class="banner-top" :style="{ backgroundImage: `url(${withBase('/images/home-banner.jpg')})` }">
+        <div class="banner-overlay">
+          <div class="banner-main-text">
+            <h1 class="title">THE COMMUNITY </h1>
+            <h2 class="subtitle">NEUKO<span class="lowered-asterisk">*</span>WIKI</h2>
+            <p class="tagline">UNOFFICIAL ARCHIVE OF NEUKO.AI AND THE STORY OF G*BOY SO FAR</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Section: Info Bar -->
+      <div class="banner-bottom">
+        <div class="bottom-left">
+          <span class="ticker-text">
+            BUY ON: 
+            <a href="https://magiceden.us/marketplace/gboy_badges_" target="_blank" class="banner-link">MAGIC EDEN</a>
+            <span class="separator">/</span>
+            <a href="https://www.tensor.trade/trade/gboy_badges" target="_blank" class="banner-link">TENSOR</a>
+            <span class="separator desktop-only">|</span>
+            <a href="https://x.com/neukoai" target="_blank" class="banner-link desktop-only">VIEW OFFICIAL X ACCOUNT @NEUKOAI</a>
+          </span>
+        </div>
+
+        <div class="bottom-right">
+          <a href="/whats-neuko" class="action-btn primary">START HERE</a>
+          <a href="https://gboyspecial.com" target="_blank" class="action-btn secondary">GBOYSPECIAL.COM</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.banner-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto 2rem auto;
+  padding: 0 2rem;
+}
+
+.banner-wrapper {
+  position: relative;
+  width: 100%;
+  height: auto; /* Fixed: Remove fixed height to avoid gap */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Light outline */
+}
+
+.banner-top {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background-size: cover;
+  background-position: center;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  padding-left: 4rem;
+}
+
+.banner-main-text {
+  text-align: left;
+}
+
+.title, .subtitle {
+  font-family: var(--vp-font-family-mono);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--vp-c-brand-1); /* Yellow */
+  margin: 0;
+}
+
+.subtitle {
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  font-family: var(--vp-font-family-mono);
+  font-size: .8rem;
+  margin-top: 1rem;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.banner-bottom {
+  background-color: var(--vp-c-brand-1); /* Yellow Background */
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.7rem;
+  color: black; /* Black Text */
+  border-top: 1px solid #333;
+}
+
+.bottom-left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    overflow: hidden;
+}
+
+.bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ticker-text {
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+}
+
+.arrow {
+    color: black;
+    margin: 0 0.25rem;
+}
+
+.action-btn {
+    padding: 8px 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    transition: all 0.2s;
+    border: 1px solid black;
+    white-space: nowrap;
+}
+
+.action-btn.primary {
+    background-color: black;
+    color: var(--vp-c-brand-1);
+}
+
+.action-btn.primary:hover {
+    background-color: #333;
+    color: white;
+}
+
+.action-btn.secondary {
+    background-color: transparent;
+    color: black;
+}
+
+.action-btn.secondary:hover {
+    background-color: black;
+    color: var(--vp-c-brand-1);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .banner-bottom {
+        height: auto;
+        padding: 1rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+    }
+    
+    .bottom-left, .bottom-right {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-top {
+        height: 240px;
+    }
+    .banner-overlay {
+        padding-left: 1.5rem;
+    }
+    .title, .subtitle {
+        font-size: 2rem;
+    }
+    .tagline {
+        font-size: 0.6rem;
+    }
+    .desktop-only {
+        display: none;
+    }
+}
+
+.banner-link {
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+    margin: 0 0.25rem;
+}
+
+.banner-link:hover {
+    border-bottom-color: black;
+}
+
+.separator {
+    color: rgba(0,0,0,0.4);
+    margin: 0 0.25rem;
+}
+
+.lowered-asterisk {
+  position: relative;
+  top: 0.25em;
+  font-size: 0.68em;
+  margin: 0 0.05em;
+}
+</style>
