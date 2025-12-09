@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { withBase } from 'vitepress'
 import Tweet from './Tweet.vue'
-import { data as tweets } from '../../../wiki/tweets.data'
+import { data as tweets } from '../../data/tweets.data'
 import { homeConfig } from '../../config/home'
 </script>
 
