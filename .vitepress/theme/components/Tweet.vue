@@ -1,44 +1,35 @@
 <script setup>
-import { onMounted, ref, computed } from 'vue'
+import { computed } from 'vue'
 import CustomTweet from './CustomTweet.vue'
+import { data as tweetsData } from '../../../wiki/tweets.data'
 
 const props = defineProps({
   id: String,
-  data: Object // Optional: pre-fetched data
+  data: Object // Optional: pre-fetched data (for backward compatibility)
 })
 
-const internalData = ref(null)
-const loading = ref(true)
-const error = ref(null)
-
-onMounted(async () => {
+// Use build-time data from tweets.data.ts
+const finalData = computed(() => {
+  // If data prop is provided, use it (for backward compatibility)
   if (props.data) {
-    loading.value = false
-    return
+    return props.data
   }
   
-  if (!props.id) {
-    loading.value = false
-    return
+  // Otherwise, look up tweet by ID from build-time data
+  if (props.id && tweetsData[props.id]) {
+    return tweetsData[props.id]
   }
-
-  try {
-    const res = await fetch(`https://react-tweet.vercel.app/api/tweet/${props.id}`)
-    const json = await res.json()
-    if (json.data) {
-      internalData.value = json.data
-    } else {
-      error.value = 'Tweet not found'
-    }
-  } catch (e) {
-    console.error(e)
-    error.value = 'Error loading tweet'
-  } finally {
-    loading.value = false
+  
+  // Tweet not found in build-time data
+  if (props.id) {
+    console.warn(`Tweet ${props.id} not found in build-time data`)
   }
+  
+  return null
 })
 
-const finalData = computed(() => props.data || internalData.value)
+const loading = computed(() => false) // No loading state needed for build-time data
+const error = computed(() => finalData.value ? null : 'Tweet not found')
 
 const mappedProps = computed(() => {
   const t = finalData.value

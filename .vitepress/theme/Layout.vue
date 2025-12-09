@@ -14,7 +14,13 @@ const { frontmatter } = useData()
     <template #home-hero-before>
       <div class="hero-spacer"></div>
       <HomeBanner v-if="frontmatter.layout === 'home' && !frontmatter.hide_home_elements" />
-      <HomeContent v-if="frontmatter.layout === 'home' && !frontmatter.hide_home_elements" />
+
+      <!-- <HomeContent v-if="frontmatter.layout === 'home' && !frontmatter.hide_home_elements" /> -->
+
+
+
+
+
     </template>
     <template #layout-bottom>
       <ScrollingBar v-if="frontmatter.layout === 'home' && !frontmatter.hide_scrolling_bar" />

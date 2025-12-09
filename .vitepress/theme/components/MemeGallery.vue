@@ -1,8 +1,20 @@
 <script setup lang="ts">
-import { data } from '../../../wiki/memes.data'
-import { computed } from 'vue'
+import { ref, onMounted } from 'vue'
 
-const memes = computed(() => data.memes)
+const memes = ref<any[]>([])
+
+onMounted(async () => {
+    try {
+        const res = await fetch('/memes-archive.json')
+        if (res.ok) {
+            const json = await res.json()
+            // Randomize for gallery
+            memes.value = (json.memes || []).sort(() => Math.random() - 0.5).slice(0, 100) // Limit to 100 for gallery
+        }
+    } catch (e) {
+        console.error('Failed to load memes', e)
+    }
+})
 
 // Helper to get image URL for a meme
 // Using cdn-cgi link format seen in the API response or fallback to direct if needed.
