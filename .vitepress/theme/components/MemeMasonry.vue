@@ -1,4 +1,4 @@
-
+<script setup lang="ts">
 import { ref, onMounted, computed, nextTick, shallowRef } from 'vue'
 import ScrollingBar from './ScrollingBar.vue'
 
