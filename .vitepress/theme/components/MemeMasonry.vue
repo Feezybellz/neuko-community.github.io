@@ -8,7 +8,7 @@ const isDev = import.meta.env.DEV
 // --- Configuration ---
 const CELL_SIZE = 100 
 const GUTTER = 16     
-const CHUNK_SIZE = 4000 
+const CHUNK_SIZE = 2000 
 
 // --- Types ---
 interface Meme {
