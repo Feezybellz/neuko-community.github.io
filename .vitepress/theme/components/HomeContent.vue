@@ -1,7 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import { withBase } from 'vitepress'
 import Tweet from './Tweet.vue'
-import { data as tweets } from '../../../wiki/tweets.data.ts'
+import { data as tweets } from '../../../wiki/tweets.data'
+import { homeConfig } from '../../config/home'
 </script>
 
 <template>
@@ -9,46 +10,29 @@ import { data as tweets } from '../../../wiki/tweets.data.ts'
     
     <!-- Row 1: Feature Shortcuts (Full Width Grid) - Text Only -->
     <div class="features-grid">
-      <a href="/lore" class="feature-card">
-        <h4>THE STORY</h4>
-        <p>The complete timeline of G*Boy, MITER-Corp, and the Operatives.</p>
-      </a>
-      <a href="/gboy-statues" class="feature-card">
-        <h4>G*BOY STATUES</h4>
-        <p>The 6" premium vinyl collection, drop details, and winners list.</p>
-      </a>
-      <a href="/community/overview" class="feature-card">
-        <h4>ECOSYSTEM</h4>
-        <p>Badges, Markets, and Community stats.</p>
-      </a>
-      <a href="/memes" class="feature-card">
-        <h4>SEIZE THE MEMES</h4>
-        <p>View the community images contributed to memedepot as we drown them in his image.</p>
+      <a v-for="feature in homeConfig.features" :key="feature.title" :href="feature.link" class="feature-card">
+        <h4>{{ feature.title }}</h4>
+        <p>{{ feature.desc }}</p>
       </a>
     </div>
-
-
 
     <!-- Row 2: Video Intro -->
     <div class="video-intro-section">
       <div class="video-text">
-        <span class="section-tag">VIDEO INTRO</span>
-        <h2 class="video-title">WHAT THE HELL IS NEUKO?</h2>
-        <p class="intro-desc">
-          Community member <a href="https://x.com/kezo_futura" target="_blank">@kezo_futura</a> put together an amazing <a href="https://x.com/kezo_futura/status/1993398379217584410" target="_blank">12 minute intro video</a> on everything Neuko and G*boy.
-        </p>
-        <p class="intro-desc">
-          A must watch if you are diving in for the first time.
-        </p>
+        <span class="section-tag">{{ homeConfig.videoIntro.tag }}</span>
+        <h2 class="video-title">{{ homeConfig.videoIntro.title }}</h2>
+        <p class="intro-desc" v-html="homeConfig.videoIntro.desc1"></p>
+        <p class="intro-desc">{{ homeConfig.videoIntro.desc2 }}</p>
+        <BadgeCounter />
       </div>
       <div class="video-embed">
         <video 
           class="neuko-video-embed" 
           controls 
           playsinline 
-          poster="https://pbs.twimg.com/amplify_video_thumb/1993397046053834752/img/cJbwGhMttPFpsjOW.jpg"
+          :poster="homeConfig.videoIntro.poster"
         >
-          <source src="https://video.twimg.com/amplify_video/1993397046053834752/vid/avc1/1920x1080/x10bIwOwtauTsexk.mp4?tag=21" type="video/mp4">
+          <source :src="homeConfig.videoIntro.src" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
@@ -59,28 +43,24 @@ import { data as tweets } from '../../../wiki/tweets.data.ts'
       
       <!-- How it Started -->
       <div class="grid-item large-item">
-        <h3 class="section-title">HOW IT STARTED</h3>
+        <h3 class="section-title">{{ homeConfig.howItStarted.title }}</h3>
         <div class="card-content">
-          <p class="lore-text">
-            Neuko's lore centers on a cryptic conspiracy involving psychic experiments, a mysterious character known as <strong>G*Boy (G304)</strong>, and the fictional <strong>MITER-Corp</strong>.
-          </p>
-          <p class="lore-text">
-            What began as experiments on "homeless babies" to create psychic soldiers evolved into a story of escape, rebellion, and a decentralized network of "operatives" — you.
-          </p>
-          <a href="/lore" class="read-more-btn">READ THE FULL LORE →</a>
+          <p class="lore-text" v-html="homeConfig.howItStarted.p1"></p>
+          <p class="lore-text" v-html="homeConfig.howItStarted.p2"></p>
+          <a :href="homeConfig.howItStarted.link" class="read-more-btn">{{ homeConfig.howItStarted.cta }}</a>
         </div>
       </div>
 
       <!-- Latest Transmission -->
       <div class="grid-item">
-        <h3 class="section-title">LATEST TRANSMISSION</h3>
+        <h3 class="section-title">{{ homeConfig.latestTransmission.title }}</h3>
         <div class="card-content">
           <div class="transmission-preview">
-            <img :src="withBase('/images/img-1.jpg')" alt="Transmission Thumbnail" class="transmission-img" />
+            <img :src="withBase(homeConfig.latestTransmission.image)" alt="Transmission Thumbnail" class="transmission-img" />
             <div class="transmission-info">
-              <h4>THE 1994 ARCHIVES</h4>
-              <p>Archived video logs from September 1994 reveal the origin of G*Boy.</p>
-              <a href="/transmissions/overview" class="watch-btn">VIEW LOGS</a>
+              <h4>{{ homeConfig.latestTransmission.subTitle }}</h4>
+              <p>{{ homeConfig.latestTransmission.desc }}</p>
+              <a :href="homeConfig.latestTransmission.link" class="watch-btn">{{ homeConfig.latestTransmission.cta }}</a>
             </div>
           </div>
         </div>
@@ -90,16 +70,14 @@ import { data as tweets } from '../../../wiki/tweets.data.ts'
 
     <!-- Row 4: Community Spotlight -->
     <div class="community-section">
-      <h3 class="section-title">COMMUNITY MEMBER SPOTLIGHT BY <a href="https://x.com/_Marcotics_" target="_blank" class="highlight-link">@_Marcotics_</a></h3>
+      <h3 class="section-title">{{ homeConfig.communitySpotlight.title }} <a :href="homeConfig.communitySpotlight.curatorLink" target="_blank" class="highlight-link">{{ homeConfig.communitySpotlight.curator }}</a></h3>
       <div class="community-grid">
-        <div class="community-card tweet-card">
-          <Tweet :data="tweets['1997747437252022470']" />
-        </div>
-        <div class="community-card tweet-card">
-          <Tweet :data="tweets['1990160825462730847']" />
-        </div>
-        <div class="community-card tweet-card">
-          <Tweet :data="tweets['1997747437252022470']" />
+        <div 
+            v-for="id in homeConfig.communitySpotlight.tweetIds" 
+            :key="id" 
+            class="community-card tweet-card"
+        >
+          <Tweet :data="tweets[id]" />
         </div>
       </div>
     </div>

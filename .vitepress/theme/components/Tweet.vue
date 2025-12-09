@@ -1,15 +1,18 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import CustomTweet from './CustomTweet.vue'
-import { data as tweetsData } from '../../../wiki/tweets.data'
+import { data as tweetsDataRaw } from '../../../wiki/tweets.data'
+import type { TweetData } from '../../types'
 
-const props = defineProps({
-  id: String,
-  data: Object // Optional: pre-fetched data (for backward compatibility)
-})
+const tweetsData = tweetsDataRaw as Record<string, TweetData>
+
+const props = defineProps<{
+  id?: string
+  data?: TweetData
+}>()
 
 // Use build-time data from tweets.data.ts
-const finalData = computed(() => {
+const finalData = computed<TweetData | null>(() => {
   // If data prop is provided, use it (for backward compatibility)
   if (props.data) {
     return props.data

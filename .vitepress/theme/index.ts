@@ -7,6 +7,7 @@ import ContributeForm from './components/ContributeForm.vue'
 import CustomTweet from './components/CustomTweet.vue'
 import MemeGallery from './components/MemeGallery.vue'
 import MemeMasonry from './components/MemeMasonry.vue'
+import BadgeCounter from './components/BadgeCounter.vue'
 import './custom.css'
 
 export default {
@@ -20,6 +21,7 @@ export default {
         app.component('MemeGallery', MemeGallery)
         app.component('MemeMasonry', MemeMasonry)
         app.component('ContributeForm', ContributeForm)
+        app.component('BadgeCounter', BadgeCounter)
 
         // Debugging: Global Error Handler
         app.config.errorHandler = (err: any, instance: any, info: any) => {

@@ -2,6 +2,7 @@
 import DefaultTheme from 'vitepress/theme'
 import HomeBanner from './components/HomeBanner.vue'
 import HomeContent from './components/HomeContent.vue'
+import GBoyBanner from './components/GBoyBanner.vue'
 import ScrollingBar from './components/ScrollingBar.vue'
 import { useData } from 'vitepress'
 
@@ -15,6 +16,7 @@ const { frontmatter } = useData()
       <div class="hero-spacer"></div>
       <HomeBanner v-if="frontmatter.layout === 'home' && !frontmatter.hide_home_elements" />
       <HomeContent v-if="frontmatter.layout === 'home' && !frontmatter.hide_home_elements" />
+      <GBoyBanner v-if="frontmatter.layout === 'home' && !frontmatter.hide_home_elements" />
     </template>
     <template #layout-bottom>
       <ScrollingBar v-if="frontmatter.layout === 'home' && !frontmatter.hide_scrolling_bar" />

@@ -2,3 +2,5 @@ node_modules
 .DS_Store
 .vitepress/dist
 .vitepress/cache
+scripts/check_wallet_badges.py
+scripts/config.json

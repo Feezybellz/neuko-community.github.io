@@ -4,8 +4,19 @@ import { ref, onMounted } from 'vue'
 
 const bgImage = ref(withBase('/images/home-banner.jpg'))
 const creatorHandle = ref('')
+const badgeStats = ref({ Rabbit: 0, Moth: 0, Snake: 0 })
 
-onMounted(() => {
+onMounted(async () => {
+  // Fetch badge stats
+  try {
+    const res = await fetch('/badge_stats.json')
+    if (res.ok) {
+      badgeStats.value = await res.json()
+    }
+  } catch (e) {
+    console.error('Failed to load badge stats', e)
+  }
+
   // Use glob only to get filenames. Eager is false to avoid importing public assets via relative path,
   // which triggers Vite warnings.
   const images = import.meta.glob('../../../public/hero/*.{jpg,jpeg,png,webp}', { eager: false })
@@ -45,14 +56,30 @@ onMounted(() => {
       <!-- Bottom Section: Info Bar -->
       <div class="banner-bottom">
         <div class="bottom-left">
-          <span class="ticker-text">
-            BUY ON: 
+          <div class="ticker-text">
+            <span>BUY ON: </span>
             <a href="https://magiceden.us/marketplace/gboy_badges_" target="_blank" class="banner-link">MAGIC EDEN</a>
-            <span class="separator">/</span>
-            <a href="https://www.tensor.trade/trade/gboy_badges" target="_blank" class="banner-link">TENSOR</a>
-            <span class="separator desktop-only">|</span>
-            <a href="https://x.com/neukoai" target="_blank" class="banner-link desktop-only">VIEW OFFICIAL X ACCOUNT @NEUKOAI</a>
-          </span>
+            <span class="separator">|</span>
+            <a href="https://x.com/neukoai" target="_blank" class="banner-link">OFFICIAL X ACCOUNT @NEUKOAI</a>
+            <span class="separator">|</span>
+            
+            <!-- Badge Stats -->
+            <a href="https://x.com/neukoai/status/1998483693195899014" target="_blank" class="badge-stats-group">
+                <span class="stat-item" title="Rabbit Sent / Total">
+                    <img :src="withBase('/images/badges/rabbit.png')" alt="Rabbit" class="badge-icon" /> {{ badgeStats.Rabbit }}/200 ({{ Math.round((badgeStats.Rabbit/200)*100) }}%)
+                </span>
+                <span class="stat-item" title="Moth Sent / Total">
+                     <img :src="withBase('/images/badges/moth.png')" alt="Moth" class="badge-icon" /> {{ badgeStats.Moth }}/462 ({{ Math.round((badgeStats.Moth/462)*100) }}%)
+                </span>
+                <span class="stat-item" title="Snake Sent / Total">
+                     <img :src="withBase('/images/badges/snake.png')" alt="Snake" class="badge-icon" /> {{ badgeStats.Snake }}/834 ({{ Math.round((badgeStats.Snake/834)*100) }}%)
+                </span>
+                
+                <span class="highlight-text">
+                     sent to save G*BOY
+                </span>
+            </a>
+          </div>
         </div>
 
         <div class="bottom-right">
@@ -165,6 +192,51 @@ onMounted(() => {
     overflow: hidden;
     text-overflow: ellipsis;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.badge-stats-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 0 0.5rem;
+    color: black;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    padding: 2px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.badge-stats-group:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: black;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stat-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-weight: 800;
+}
+
+.badge-icon {
+    height: 1.8em;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.highlight-text {
+    text-decoration: none;
+    margin-left: 0.5rem;
+    font-weight: 800;
+    border-bottom: none;
 }
 
 .arrow {

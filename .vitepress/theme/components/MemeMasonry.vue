@@ -1,6 +1,15 @@
 <script setup lang="ts">
-import { ref, onMounted, computed, nextTick, shallowRef } from 'vue'
+import { ref, onMounted, computed, nextTick, shallowRef, watch } from 'vue'
 import ScrollingBar from './ScrollingBar.vue'
+
+// --- Types & Utils ---
+import type { Meme } from '../../types'
+import { getMemeImageUrl } from '../../utils/imageUrl'
+
+// --- Composables ---
+import { useMasonryLayout } from '../../composables/useMasonryLayout'
+import { useDraggableCanvas } from '../../composables/useDraggableCanvas'
+import { useVisibilityCulling } from '../../composables/useVisibilityCulling'
 
 const props = defineProps<{}>()
 const isDev = import.meta.env.DEV
@@ -10,433 +19,133 @@ const CELL_SIZE = 100
 const GUTTER = 16     
 const CHUNK_SIZE = 2000 
 
-// --- Types ---
-interface Meme {
-    slug: string
-    title: string
-    cf_asset_id: string
-    uploader: {
-        username: string
-    }
-    type?: string
-}
-
 // --- State ---
-const memes = shallowRef<Meme[]>([])
-const allItems = shallowRef<PositionedItem[]>([])
-const visibleItems = shallowRef<PositionedItem[]>([])
-const chunks = new Map<string, PositionedItem[]>()
-type PositionedItem = {
-  type: 'MEME' | 'TITLE'
-  id: string
-  x: number 
-  y: number
-  w: number
-  h: number 
-  pixelX: number 
-  pixelY: number
-  pixelW: number
-  pixelH: number
-  data?: Meme
-}
-
-
-
 const containerRef = ref<HTMLElement | null>(null)
-const isDragging = ref(false)
-const dragThresholdPassed = ref(false)
-const startX = ref(0)
-const startY = ref(0)
-const scrollLeft = ref(0)
-const scrollTop = ref(0)
-const scale = ref(1)
+const memes = shallowRef<Meme[]>([])
 const showReturnCenter = ref(false)
-// Bounds for clamping scroll
-const contentBounds = ref({
-  minX: Infinity,
-  minY: Infinity,
-  maxX: -Infinity,
-  maxY: -Infinity
-})
-
-function updateBounds(x: number, y: number, w: number, h: number) {
-  if (x < contentBounds.value.minX) contentBounds.value.minX = x
-  if (y < contentBounds.value.minY) contentBounds.value.minY = y
-  if (x + w > contentBounds.value.maxX) contentBounds.value.maxX = x + w
-  if (y + h > contentBounds.value.maxY) contentBounds.value.maxY = y + h
-}
-
-function clampScroll(x: number, y: number) {
-  if (!containerRef.value) return { x, y }
-  const vw = window.innerWidth
-  const vh = window.innerHeight
-  const padding = 200 // Buffer in pixels
-  
-  const minX = contentBounds.value.minX - padding
-  const maxX = contentBounds.value.maxX + padding - vw
-  const minY = contentBounds.value.minY - padding
-  const maxY = contentBounds.value.maxY + padding - vh
-
-  return {
-    x: Math.max(minX, Math.min(x, maxX)),
-    y: Math.max(minY, Math.min(y, maxY))
-  }
-}
-
-
-
 const isLoading = ref(true)
+const loadingProgress = ref(0)
+const debugStats = ref({ visibleCount: 0, totalCount: 0, loadedSizeMB: '0.00' })
 
-// Dynamic Canvas Size (Computed because memes are loaded async)
-const canvasConfig = computed(() => {
-  const totalCells = memes.value.length * 4 
-  const dimensionCells = Math.ceil(Math.sqrt(totalCells * 2.5)) 
-  const size = dimensionCells * (CELL_SIZE + GUTTER)
-  return { size, dimensionCells }
-})
-const dimensionCells = computed(() => canvasConfig.value.dimensionCells)
-const CANVAS_SIZE = computed(() => canvasConfig.value.size)
- 
+// 1. Layout Logic
+const { 
+  allItems, 
+  chunks, 
+  contentBounds, 
+  canvasSize,
+  calculateLayout 
+} = useMasonryLayout({ cellSize: CELL_SIZE, gutter: GUTTER, chunkSize: CHUNK_SIZE })
 
-// --- Logic ---
+const CANVAS_SIZE = computed(() => canvasSize.value.size)
 
-function getImageUrl(meme: Meme, width?: number) {
-  if (!meme) return ''
-  const variant = width ? `width=${width},fit=contain,format=auto` : 'public'
-  return `https://memedepot.com/cdn-cgi/imagedelivery/naCPMwxXX46-hrE49eZovw/${meme.cf_asset_id}/${variant}`
-}
-
-// Loading progress
-const loadingProgress = ref(0) // 0 to 100
-
-function layoutItems() {
-  isLoading.value = true
-  loadingProgress.value = 0
-  
-  // Clean initialization
-  const grid = new Set<string>() 
-  const placedItems: PositionedItem[] = []
-  chunks.clear()
-  contentBounds.value = { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity }
-
-  const center = Math.floor(CANVAS_SIZE.value / (CELL_SIZE + GUTTER) / 2)
-  
-  // -- Place Title --
-  const isMobile = window.innerWidth < 768
-  const titleW = isMobile ? 3 : 8
-  const titleH = isMobile ? 3 : 4 
-  
-  const titleX = center - Math.floor(titleW / 2)
-  const titleY = center - Math.floor(titleH / 2)
-  
-  placeItem(placedItems, grid, {
-    type: 'TITLE',
-    id: 'center-title',
-    x: titleX, y: titleY, w: titleW, h: titleH
-  })
-
-  // Filter memes
-  const shuffledMemes = [...memes.value]
-    .filter(m => !m.title.toLowerCase().endsWith('.gif'))
-    .sort(() => Math.random() - 0.5)
-  
-  const TOTAL = shuffledMemes.length
-  if (TOTAL === 0) {
-    isLoading.value = false
-    return
-  }
-
-  // Use a batched processing loop
-  let index = 0
-  const BATCH_SIZE = 50 // process 50 items per tick
-
-  function processBatch() {
-    const startTime = performance.now()
-    
-    while (index < TOTAL && performance.now() - startTime < 10) { // Allocating up to 10ms per frame
-      const meme = shuffledMemes[index]
-      const rand = Math.random()
-      let w = 2, h = 2
-      if (rand > 0.85) { w = 3; h = 3 } 
-      else if (rand > 0.65) { w = 2; h = 3 } 
-      else if (rand > 0.45) { w = 3; h = 2 } 
-      else if (rand > 0.15) { w = 2; h = 2 } 
-      else { w = 1; h = 1 } 
-      
-      const pos = findSpiralPosition(grid, center, center, w, h)
-      if (pos) {
-        placeItem(placedItems, grid, {
-          type: 'MEME',
-          id: meme.slug || `meme-${index}`,
-          x: pos.x, y: pos.y, w: w, h: h,
-          data: meme
-        })
-        const placed = placedItems[placedItems.length - 1]
-        updateBounds(placed.pixelX, placed.pixelY, placed.pixelW, placed.pixelH)
-      }
-      index++
-    }
-
-    loadingProgress.value = Math.floor((index / TOTAL) * 100)
-
-    if (index < TOTAL) {
-      requestAnimationFrame(processBatch)
-    } else {
-      // Done
-      allItems.value = placedItems
-      updateVisibility()
-      isLoading.value = false
-      nextTick(() => scrollToCenter())
-    }
-  }
-
-  requestAnimationFrame(processBatch)
-}
-
-function placeItem(list: PositionedItem[], grid: Set<string>, partial: any) {
-  const pixelX = partial.x * (CELL_SIZE + GUTTER)
-  const pixelY = partial.y * (CELL_SIZE + GUTTER)
-  const pixelW = partial.w * CELL_SIZE + (partial.w - 1) * GUTTER
-  const pixelH = partial.h * CELL_SIZE + (partial.h - 1) * GUTTER
-
-  const item: PositionedItem = {
-    ...partial,
-    pixelX, pixelY, pixelW, pixelH
-  }
-  
-  list.push(item)
-  
-  for (let i = 0; i < partial.w; i++) {
-    for (let j = 0; j < partial.h; j++) {
-      grid.add(`${partial.x + i},${partial.y + j}`)
-    }
-  }
-
-  const startCX = Math.floor(pixelX / CHUNK_SIZE)
-  const startCY = Math.floor(pixelY / CHUNK_SIZE)
-  const endCX = Math.floor((pixelX + pixelW) / CHUNK_SIZE)
-  const endCY = Math.floor((pixelY + pixelH) / CHUNK_SIZE)
-
-  for(let cx = startCX; cx <= endCX; cx++) {
-    for(let cy = startCY; cy <= endCY; cy++) {
-      const key = `${cx},${cy}`
-      if (!chunks.has(key)) chunks.set(key, [])
-      chunks.get(key)!.push(item)
-    }
-  }
-}
-
-function findSpiralPosition(grid: Set<string>, centerX: number, centerY: number, w: number, h: number) {
-  let r = 0
-  const maxR = dimensionCells.value  
-  
-  while (r < maxR) {
-    for(let x = centerX - r; x <= centerX + r; x++) {
-       if (canPlace(grid, x, centerY - r, w, h)) return { x, y: centerY - r }
-    }
-    for(let x = centerX - r; x <= centerX + r; x++) {
-       if (canPlace(grid, x, centerY + r, w, h)) return { x, y: centerY + r }
-    }
-    for(let y = centerY - r + 1; y < centerY + r; y++) {
-       if (canPlace(grid, centerX - r, y, w, h)) return { x: centerX - r, y }
-    }
-    for(let y = centerY - r + 1; y < centerY + r; y++) {
-       if (canPlace(grid, centerX + r, y, w, h)) return { x: centerX + r, y }
-    }
-    r++
-  }
-  return null
-}
-
-function canPlace(grid: Set<string>, x: number, y: number, w: number, h: number): boolean {
-  for (let i = 0; i < w; i++) {
-    for (let j = 0; j < h; j++) {
-      if (grid.has(`${x + i},${y + j}`)) return false
-    }
-  }
-  return true
-}
-
-function updateVisibility() {
-  if (!containerRef.value) return
-
-  const sL = containerRef.value.scrollLeft
-  const sT = containerRef.value.scrollTop
-  const vpW = window.innerWidth
-  const vpH = window.innerHeight
-
-  const effW = vpW / scale.value
-  const effH = vpH / scale.value
-  
-  const startCX = Math.floor((sL - CHUNK_SIZE) / CHUNK_SIZE)
-  const startCY = Math.floor((sT - CHUNK_SIZE) / CHUNK_SIZE)
-  const endCX = Math.floor((sL + effW + CHUNK_SIZE) / CHUNK_SIZE)
-  const endCY = Math.floor((sT + effH + CHUNK_SIZE) / CHUNK_SIZE)
-
-  const gathered = new Set<PositionedItem>()
-  
-  for(let cx = startCX; cx <= endCX; cx++) {
-    for(let cy = startCY; cy <= endCY; cy++) {
-      const key = `${cx},${cy}`
-      const chunkItems = chunks.get(key)
-      if (chunkItems) {
-        chunkItems.forEach(item => gathered.add(item))
-      }
-    }
-  }
-  
-  visibleItems.value = Array.from(gathered)
-  checkScrollCenter()
-}
-
-function scrollToCenter() {
-  if (containerRef.value) {
-    const scrollX = (CANVAS_SIZE.value - window.innerWidth) / 2
-    const scrollY = (CANVAS_SIZE.value - window.innerHeight) / 2
-    containerRef.value.scrollTo({ left: scrollX, top: scrollY, behavior: 'instant' }) 
-    updateVisibility()
-  }
-}
-
+// Helper for scroll center (Must be defined before usage)
 function checkScrollCenter() {
   if (!containerRef.value) return
   const scrollX = containerRef.value.scrollLeft
   const scrollY = containerRef.value.scrollTop
-  const centerX = (CANVAS_SIZE.value - window.innerWidth) / 2
-  const centerY = (CANVAS_SIZE.value - window.innerHeight) / 2
-  const dist = Math.sqrt(Math.pow(scrollX - centerX, 2) + Math.pow(scrollY - centerY, 2))
+  const cX = (CANVAS_SIZE.value - window.innerWidth) / 2
+  const cY = (CANVAS_SIZE.value - window.innerHeight) / 2
+  const dist = Math.sqrt(Math.pow(scrollX - cX, 2) + Math.pow(scrollY - cY, 2))
   showReturnCenter.value = dist > 600
 }
 
-// --- Interaction Handlers ---
+// 2. Visibility Culling
+const scale = ref(1)
 
-const onMouseDown = (e: MouseEvent) => {
-  if ((e.target as HTMLElement).closest('.nav-button')) return
-  isDragging.value = true
-  dragThresholdPassed.value = false
-  startX.value = e.pageX - (containerRef.value?.offsetLeft || 0)
-  startY.value = e.pageY - (containerRef.value?.offsetTop || 0)
-  scrollLeft.value = containerRef.value?.scrollLeft || 0
-  scrollTop.value = containerRef.value?.scrollTop || 0
-  if (containerRef.value) containerRef.value.style.cursor = 'grabbing'
+const { visibleItems, updateVisibility } = useVisibilityCulling({
+  containerRef,
+  chunks,
+  scale,
+  chunkSize: CHUNK_SIZE,
+  onCenterCheck: checkScrollCenter
+})
+
+// 3. Draggable Canvas
+const {
+  isDragging,
+  dragThresholdPassed,
+  onMouseDown,
+  onMouseMove,
+  onMouseUp,
+  onTouchStart,
+  onTouchMove,
+  onTouchEnd,
+  onWheel,
+  scrollToCenter,
+  scale: draggableScale
+} = useDraggableCanvas(containerRef, {
+  contentBounds,
+  canvasSize: computed(() => canvasSize.value.size),
+  updateVisibility
+})
+
+// Sync scale from draggable
+watch(draggableScale, (val) => {
+    scale.value = val
+}, { flush: 'sync' })
+
+// 4. Interaction Handlers & Helpers
+function getImageUrl(meme: Meme, width?: number) {
+  if (!meme) return ''
+  return getMemeImageUrl(meme.cf_asset_id, width ? { width } : undefined)
 }
 
-const onMouseMove = (e: MouseEvent) => {
-  if (!isDragging.value || !containerRef.value) return
-  e.preventDefault()
-  const x = e.pageX - (containerRef.value.offsetLeft || 0)
-  const y = e.pageY - (containerRef.value.offsetTop || 0)
-  const walkX = x - startX.value
-  const walkY = y - startY.value
-  
-  if (Math.abs(walkX) > 5 || Math.abs(walkY) > 5) {
-     dragThresholdPassed.value = true
-  }
-
-  const nextScrollLeft = scrollLeft.value - walkX
-  const nextScrollTop = scrollTop.value - walkY
-  
-  const clamped = clampScroll(nextScrollLeft, nextScrollTop)
-  containerRef.value.scrollLeft = clamped.x
-  containerRef.value.scrollTop = clamped.y
-  
-  requestAnimationFrame(updateVisibility)
-}
-
-const onMouseUp = () => {
-  isDragging.value = false
-  if (containerRef.value) containerRef.value.style.cursor = 'grab'
-}
-
-const onLinkClick = (e: MouseEvent, meme: Meme) => {
+function onLinkClick(e: MouseEvent, meme: Meme) {
   if (dragThresholdPassed.value) {
     e.preventDefault()
     e.stopPropagation()
-    return
   }
 }
 
-// Mobile Touch Support
-const onTouchStart = (e: TouchEvent) => {
-  if ((e.target as HTMLElement).closest('.nav-button')) return
-  isDragging.value = true
-  dragThresholdPassed.value = false
-  const touch = e.touches[0]
-  startX.value = touch.pageX - (containerRef.value?.offsetLeft || 0)
-  startY.value = touch.pageY - (containerRef.value?.offsetTop || 0)
-  scrollLeft.value = containerRef.value?.scrollLeft || 0
-  scrollTop.value = containerRef.value?.scrollTop || 0
-}
-
-const onTouchMove = (e: TouchEvent) => {
-  if (!isDragging.value || !containerRef.value) return
-  if (e.touches.length > 1) return 
-  e.preventDefault() 
-  const touch = e.touches[0]
-  const x = touch.pageX - (containerRef.value.offsetLeft || 0)
-  const y = touch.pageY - (containerRef.value.offsetTop || 0)
-  const walkX = x - startX.value
-  const walkY = y - startY.value
+// 5. Layout Execution
+function runLayout() {
+  isLoading.value = true
+  // Mobile check
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+  const { total, processGen, placedItems } = calculateLayout(memes.value, isMobile)
   
-  if (Math.abs(walkX) > 5 || Math.abs(walkY) > 5) {
-     dragThresholdPassed.value = true
+  if (total === 0) {
+      isLoading.value = false
+      return
   }
 
-  const nextScrollLeft = scrollLeft.value - walkX
-  const nextScrollTop = scrollTop.value - walkY
-  
-  const clamped = clampScroll(nextScrollLeft, nextScrollTop)
-  containerRef.value.scrollLeft = clamped.x
-  containerRef.value.scrollTop = clamped.y
-  
-  requestAnimationFrame(updateVisibility)
-}
+  // Initial items
+  allItems.value = placedItems
 
-const onTouchEnd = () => {
-  isDragging.value = false
-}
-
-
-const onWheel = (e: WheelEvent) => {
-  e.preventDefault()
-  if (e.ctrlKey || e.metaKey) {
-    const zoomSpeed = 0.002
-    scale.value = Math.min(Math.max(scale.value - (e.deltaY * zoomSpeed), 0.3), 1.5)
-    requestAnimationFrame(updateVisibility)
-  } else {
-    if (containerRef.value) {
-      const nextX = containerRef.value.scrollLeft + e.deltaX
-      const nextY = containerRef.value.scrollTop + e.deltaY
-      const clamped = clampScroll(nextX, nextY)
-      containerRef.value.scrollLeft = clamped.x
-      containerRef.value.scrollTop = clamped.y
-      requestAnimationFrame(updateVisibility)
+  function process() {
+    const start = performance.now()
+    let res = processGen?.next()
+    while (!res?.done && performance.now() - start < 10) {
+        res = processGen?.next()
+    }
+    
+    if (res?.done) {
+        // Finished - Clone array to trigger reactivity update for shallowRef if needed
+        allItems.value = [...allItems.value] 
+        loadingProgress.value = 100
+        isLoading.value = false
+        updateVisibility()
+        nextTick(() => scrollToCenter())
+    } else {
+        // Progress
+        if (typeof res?.value === 'number') {
+             loadingProgress.value = Math.floor((res.value / total) * 100)
+        }
+        requestAnimationFrame(process)
     }
   }
+  requestAnimationFrame(process)
 }
-
-// Debug Stats
-const debugStats = ref({
-  visibleCount: 0,
-  totalCount: 0,
-  loadedSizeMB: '0.00'
-})
 
 function updateDebugStats() {
   debugStats.value.visibleCount = visibleItems.value.length
   debugStats.value.totalCount = allItems.value.length
   
-  // Calculate approximate image transfer size
   const resources = performance.getEntriesByType('resource')
   let totalBytes = 0
   resources.forEach(entry => {
     // @ts-ignore
-    if (entry.initiatorType === 'img' || entry.initiatorType === 'css' || (entry.name && (entry.name.includes('.jpg') || entry.name.includes('.webp') || entry.name.includes('imagedelivery')))) {
-      // @ts-ignore
-      let size = entry.transferSize || entry.decodedBodySize || 0
-      if (size === 0) size = 40000 // Fallback estimate for CORS-restricted or cached images (approx 40KB)
-      totalBytes += size
-    }
+    if (entry.decodedBodySize) totalBytes += entry.decodedBodySize
   })
   debugStats.value.loadedSizeMB = (totalBytes / (1024 * 1024)).toFixed(2)
 }
@@ -452,8 +161,7 @@ onMounted(async () => {
         console.error('Failed to load memes', e)
     }
     
-    // Fallback or empty if failed, but still run layout to show title
-    layoutItems()
+    runLayout()
     setInterval(updateDebugStats, 1000)
 })
 </script>

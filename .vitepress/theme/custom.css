@@ -236,3 +236,104 @@ h1 {
     padding: 8px;
   }
 }
+
+/* --- CUSTOM HERO BANNER (G*BOY SPECIAL STYLE) --- */
+
+html .VPHero {
+  padding-top: 32px !important;
+  padding-bottom: 32px !important;
+}
+
+html .VPHero .container {
+  display: flex !important;
+  flex-direction: column !important;
+  max-width: 96vw !important;
+  /* Almost full width */
+  margin: 0 auto;
+  padding: 0 !important;
+}
+
+html .VPHero .image {
+  order: -1;
+  /* Image on top */
+  width: 100% !important;
+  flex: none !important;
+  margin-bottom: 32px;
+  padding: 0 !important;
+  display: block !important;
+  /* Ensure it is visible */
+}
+
+html .VPHero .image-container {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 24px;
+  /* Rounded corners */
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  margin: 0 !important;
+  transform: none !important;
+  /* Remove any default tilt/transform */
+}
+
+html .VPHero .image-bg {
+  display: none !important;
+  /* Hide background blobs */
+}
+
+html .VPHero .image-src {
+  width: 100% !important;
+  height: auto !important;
+  max-width: none !important;
+  object-fit: cover;
+  display: block;
+}
+
+/* Hide default text since banner has it, but keep actions */
+html .VPHero .main {
+  width: 100% !important;
+  max-width: 1000px !important;
+  margin: 0 auto;
+  text-align: center;
+  order: 2;
+}
+
+html .VPHero .name,
+html .VPHero .text,
+html .VPHero .tagline {
+  display: none !important;
+}
+
+html .VPHero .actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* --- CUSTOM NAV BAR --- */
+
+.VPNavBar {
+  background-color: rgba(10, 10, 10, 0.8) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #333;
+}
+
+.VPNavBar .content {
+  max-width: 98vw !important;
+  padding: 0 24px !important;
+}
+
+.VPNavBarTitle .title {
+  font-family: var(--vp-font-family-mono);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.VPNavBarMenuLink {
+  font-family: var(--vp-font-family-mono);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+}

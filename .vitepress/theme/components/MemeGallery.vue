@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { getMemeImageUrl } from '../../utils/imageUrl'
+import type { Meme } from '../../types'
 
-const memes = ref<any[]>([])
+const memes = ref<Meme[]>([])
 
 onMounted(async () => {
     try {
@@ -50,28 +52,26 @@ onMounted(async () => {
 // Maybe `https://memedepot.com/cdn-cgi/imagedelivery/<account>/<cf_asset_id>/<variant>`?
 // I don't have the account has.
 // Let me assume I need to do a small check or look for a public pattern.
-// Attempt: `https://memedepot.com/api/meme/<slug>` might give more info?
-// Or maybe I just use the page link for now if I can't find the image source?
-// No, user wants a "live image gallery".
-// Let's try to look for a known image URL pattern from the "uploader.avatar_url".
-// "https://memedepot.com/cdn-cgi/imagedelivery/naCPMwxXX46-hrE49eZovw/1193e201-9dc7-4ead-7feb-0f0f406b9000/width=500,height=500,fit=crop"
-// "naCPMwxXX46-hrE49eZovw" seems to be the account hash?
-// And "1193e201..." is likely an ID. 
-// The meme object has "cf_asset_id": "6bd85a04-1216-445c-14a1-27f6ead3d400".
-// So I can probably construct:
-// `https://memedepot.com/cdn-cgi/imagedelivery/naCPMwxXX46-hrE49eZovw/${memes.cf_asset_id}/public` (or similar variant)
-// I will try to verify this with a quick curl before committing the component code.
-// But for now I will write the component assuming I can get the URL, using a placeholder function. 
+function getUrl(meme: Meme) {
+    return getMemeImageUrl(meme.cf_asset_id)
+}
 </script>
 
 <template>
-  <div class="meme-gallery">
-    <div v-for="meme in memes" :key="meme.slug" class="meme-card">
-      <a :href="`https://memedepot.com/d/gboy/${meme.slug}`" target="_blank" rel="noopener" class="meme-link">
+  <div class="gallery-container">
+    <div class="gallery-grid">
+      <a 
+        v-for="meme in memes" 
+        :key="meme.slug"
+        :href="`https://memedepot.com/d/gboy/${meme.slug}`"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="gallery-item"
+      >
         <div class="media-wrapper">
           <video 
             v-if="meme.type === 'VIDEO' || meme.title.endsWith('.mp4') || meme.title.endsWith('.webm')"
-            :src="`https://memedepot.com/cdn-cgi/imagedelivery/naCPMwxXX46-hrE49eZovw/${meme.cf_asset_id}/public`"
+            :src="getUrl(meme)"
             class="gallery-media"
             autoplay
             loop
@@ -80,7 +80,7 @@ onMounted(async () => {
           ></video>
           <img 
             v-else
-            :src="`https://memedepot.com/cdn-cgi/imagedelivery/naCPMwxXX46-hrE49eZovw/${meme.cf_asset_id}/public`" 
+            :src="getUrl(meme)" 
             :alt="meme.title" 
             class="gallery-media"
             loading="lazy"
