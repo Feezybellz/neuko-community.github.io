@@ -1,16 +1,3 @@
 ---
 layout: home
-
-
-
-
-
 ---
-
-
-
-<GBoyBanner />
-
-<MemeGallery />
-
-
