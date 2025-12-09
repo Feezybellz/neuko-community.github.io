@@ -13,7 +13,7 @@ const { frontmatter } = useData()
   <Layout class="custom-layout">
     <template #home-hero-before>
       <div class="hero-spacer"></div>
-      <HomeBanner v-if="frontmatter.layout === 'home' && !frontmatter.hide_home_elements" />
+      <!-- <HomeBanner v-if="frontmatter.layout === 'home' && !frontmatter.hide_home_elements" /> -->
 
       <!-- <HomeContent v-if="frontmatter.layout === 'home' && !frontmatter.hide_home_elements" /> -->
 
