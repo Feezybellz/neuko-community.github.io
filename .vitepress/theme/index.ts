@@ -18,7 +18,7 @@ export default {
         app.component('GBoyBanner', GBoyBanner)
         app.component('CustomTweet', CustomTweet)
         app.component('MemeGallery', MemeGallery)
-        // app.component('MemeMasonry', MemeMasonry)
+        app.component('MemeMasonry', MemeMasonry)
         app.component('ContributeForm', ContributeForm)
 
         // Debugging: Global Error Handler
