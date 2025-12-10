@@ -32,6 +32,7 @@ jobs:
         run: python scripts/check_wallet_badges.py
       
       - name: Commit and Push changes
+        id: commit
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
@@ -41,6 +42,32 @@ jobs:
             git add public/badge_stats.json
             git commit -m "chore: update badge stats"
             git push
+            echo "changed=true" >> $GITHUB_OUTPUT
           else
             echo "No changes to badge stats"
+            echo "changed=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: Setup Bun
+        if: steps.commit.outputs.changed == 'true'
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        if: steps.commit.outputs.changed == 'true'
+        run: bun install
+
+      - name: Build docs
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          bun run docs:build
+          touch ./.vitepress/dist/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        if: steps.commit.outputs.changed == 'true'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./.vitepress/dist
+          publish_branch: gh-pages
