@@ -216,7 +216,8 @@ onMounted(() => {
       >
         <div v-if="item.type === 'TITLE'" class="center-title">
           <div class="title-bg">
-            <h1 class="gboy-title">G*BOY<br>MEMES</h1>
+            <h1 class="gboy-title">G*BOY MEMES</h1>
+            <div class="gboy-subtitle">[ {{ memes.length }} IMAGES LOADED ]</div>
           </div>
         </div>
 
@@ -229,15 +230,8 @@ onMounted(() => {
            @click="onLinkClick($event, item.data)"
         >
           <div class="media-wrapper">
-             <video 
-              v-if="item.data.type === 'VIDEO' || item.data.title.endsWith('.mp4') || item.data.title.endsWith('.webm')"
-              :src="getImageUrl(item.data)"
-              class="mosaic-media"
-              autoplay loop muted playsinline
-              draggable="false"
-            ></video>
+             <!-- Removed video tag since we filtered them out -->
             <img 
-              v-else
               :src="getImageUrl(item.data, 400)" 
               :srcset="getSrcSet(item.data)"
               sizes="(max-width: 768px) 50vw, 400px"
@@ -287,8 +281,10 @@ onMounted(() => {
   justify-content: center;
   border-radius: 4px; 
   box-shadow: 0 10px 40px rgba(237, 28, 37, 0.4); 
+  flex-direction: column;
 }
 .gboy-title { font-family: "helvetica-lt-pro", sans-serif; font-size: 5rem; font-weight: 900; text-align: center; line-height: 0.9; color: #FFFF0A; text-transform: uppercase; margin: 0; white-space: nowrap; }
+.gboy-subtitle { font-family: var(--vp-font-family-mono); color: #FFE600; font-size: 1.2rem; margin-top: 0.5rem; font-weight: bold; letter-spacing: 1px; }
 .nav-button { position: fixed; z-index: 200; font-family: var(--vp-font-family-mono); font-weight: bold; cursor: pointer; background: rgba(0,0,0,0.8); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; backdrop-filter: blur(8px); padding: 8px 12px; transition: all 0.2s ease; text-decoration: none; display: flex; align-items: center; gap: 6px; font-size: 0.8rem; }
 .nav-button:hover { background: #fff; color: #000; border-color: #fff; }
 .home-button { top: 20px; left: 20px; }

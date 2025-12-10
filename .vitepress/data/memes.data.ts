@@ -25,7 +25,14 @@ export default {
         try {
             const content = fs.readFileSync(jsonPath, 'utf-8')
             const json = JSON.parse(content)
-            return json.memes || []
+            const all = json.memes || []
+            // Filter out videos and gifs
+            return all.filter((m: Meme) =>
+                m.type !== 'VIDEO' &&
+                !m.title.toLowerCase().endsWith('.mp4') &&
+                !m.title.toLowerCase().endsWith('.webm') &&
+                !m.title.toLowerCase().endsWith('.gif')
+            )
         } catch (e) {
             console.error('Failed to load memes-archive.json', e)
             return []
