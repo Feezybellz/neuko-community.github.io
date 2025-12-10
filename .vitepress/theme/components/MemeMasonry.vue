@@ -198,7 +198,7 @@ watch(visibleItems, (items) => {
 
     <!-- Nav -->
     <a href="/" class="nav-button home-button" title="Back to Home"><span class="icon">⌂</span> HOME</a>
-    <div class="nav-button seen-counter" v-if="!isLoading">DISCOVERED: {{ seenIds.size }} / {{ memes.length }}</div>
+    <div class="nav-button seen-counter" v-if="!isLoading && isDev">DISCOVERED: {{ seenIds.size }} / {{ memes.length }}</div>
     <button class="nav-button center-button" :class="{ 'visible': showReturnCenter }" @click="scrollToCenter">RETURN TO CENTER</button>
 
     <!-- Marquee Overlay -->

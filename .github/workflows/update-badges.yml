@@ -12,24 +12,28 @@ jobs:
     permissions:
       contents: write
     
+    defaults:
+      run:
+        working-directory: ./site
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
       
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          python-version: '3.9'
+          bun-version: latest
           
       - name: Install dependencies
-        run: pip install requests
+        run: bun install
         
       - name: Run update script
         env:
           HELIUS_API_KEY: ${{ secrets.HELIUS_API_KEY }}
-        run: python scripts/check_wallet_badges.py
+        run: bun run scripts/check-wallet-badges.ts
       
       - name: Commit and Push changes
         id: commit
