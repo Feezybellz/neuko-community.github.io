@@ -27,13 +27,9 @@
 <style scoped>
 .scrolling-bar-container {
   width: auto;
-  max-width: 100%;
-  margin: 0;
+  margin: 2rem 15px 0.5rem 15px; /* Float off sides/bottom, tighter to credits */
   padding: 0;
-  position: absolute;
-  bottom: 15px; /* Float off bottom */
-  left: 15px;
-  right: 15px;
+  position: relative;
 }
 
 .scrolling-bar {
@@ -46,7 +42,7 @@
   font-size: 11px;
   white-space: nowrap;
   overflow: hidden;
-  border-radius: 4px; /* Fully rounded */
+  border-radius: 10px; /* Fully rounded */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
