@@ -23,10 +23,11 @@ export function useVisibilityCulling(options: VisibilityOptions) {
         const effW = vpW / options.scale.value
         const effH = vpH / options.scale.value
 
-        const startCX = Math.floor((sL - options.chunkSize) / options.chunkSize)
-        const startCY = Math.floor((sT - options.chunkSize) / options.chunkSize)
-        const endCX = Math.floor((sL + effW + options.chunkSize) / options.chunkSize)
-        const endCY = Math.floor((sT + effH + options.chunkSize) / options.chunkSize)
+        const BUFFER_PX = 2500 // Increased buffer for smoother scrolling
+        const startCX = Math.floor((sL - BUFFER_PX) / options.chunkSize)
+        const startCY = Math.floor((sT - BUFFER_PX) / options.chunkSize)
+        const endCX = Math.floor((sL + effW + BUFFER_PX) / options.chunkSize)
+        const endCY = Math.floor((sT + effH + BUFFER_PX) / options.chunkSize)
 
         const gathered = new Set<PositionedItem>()
 

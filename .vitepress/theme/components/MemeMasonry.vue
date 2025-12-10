@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed, nextTick, shallowRef, watch } from 'vue'
+import { ref, onMounted, computed, nextTick, shallowRef, watch, reactive } from 'vue'
 import ScrollingBar from './ScrollingBar.vue'
 
 // --- Types & Utils ---
@@ -18,7 +18,7 @@ const isDev = import.meta.env.DEV
 // --- Configuration ---
 const CELL_SIZE = 100 
 const GUTTER = 16     
-const CHUNK_SIZE = 2000 
+const CHUNK_SIZE = 1000 
 
 // --- State ---
 const containerRef = ref<HTMLElement | null>(null)
@@ -26,6 +26,7 @@ const memes = shallowRef<Meme[]>(loadedMemes)
 const showReturnCenter = ref(false)
 const isLoading = ref(true)
 const loadingProgress = ref(0)
+const seenIds = reactive(new Set<string>())
 const debugStats = ref({ visibleCount: 0, totalCount: 0, loadedSizeMB: '0.00' })
 
 // 1. Layout Logic
@@ -160,6 +161,14 @@ onMounted(() => {
     runLayout()
     setInterval(updateDebugStats, 1000)
 })
+
+watch(visibleItems, (items) => {
+    items.forEach(item => {
+        if (item.data?.cf_asset_id) {
+            seenIds.add(item.data.cf_asset_id)
+        }
+    })
+}, { deep: true })
 </script>
 
 <template>
@@ -188,6 +197,7 @@ onMounted(() => {
 
     <!-- Nav -->
     <a href="/" class="nav-button home-button" title="Back to Home"><span class="icon">⌂</span> HOME</a>
+    <div class="nav-button seen-counter" v-if="!isLoading">DISCOVERED: {{ seenIds.size }} / {{ memes.length }}</div>
     <button class="nav-button center-button" :class="{ 'visible': showReturnCenter }" @click="scrollToCenter">RETURN TO CENTER</button>
 
     <!-- Marquee Overlay -->
@@ -241,9 +251,9 @@ onMounted(() => {
               draggable="false"
             />
           </div>
-          <div v-if="item.data.uploader?.username" class="attribution-overlay">
+          <div class="attribution-overlay">
             <span class="attribution-text">by </span>
-            <span class="attribution-handle">@{{ item.data.uploader.username }}</span>
+            <span class="attribution-handle">@{{ item.data.uploader?.username || 'Unknown' }}</span>
           </div>
         </a>
       </div>
@@ -288,12 +298,32 @@ onMounted(() => {
 .nav-button { position: fixed; z-index: 200; font-family: var(--vp-font-family-mono); font-weight: bold; cursor: pointer; background: rgba(0,0,0,0.8); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; backdrop-filter: blur(8px); padding: 8px 12px; transition: all 0.2s ease; text-decoration: none; display: flex; align-items: center; gap: 6px; font-size: 0.8rem; }
 .nav-button:hover { background: #fff; color: #000; border-color: #fff; }
 .home-button { top: 20px; left: 20px; }
-.center-button { bottom: 20px; right: 20px; background: #FFE600; color: #000; border: none; box-shadow: 0 4px 12px rgba(255, 230, 0, 0.3); opacity: 0; transform: translateY(20px); pointer-events: auto; transition: opacity 0.3s ease, transform 0.3s ease; }
+.seen-counter { bottom: 80px; left: 20px; border: 1px solid #FFE600; color: #FFE600; background: #000; font-family: var(--vp-font-family-mono); font-size: 0.8rem; padding: 8px 12px; cursor: default; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+.seen-counter:hover { background: #FFE600; color: #000; }
+.center-button { bottom: 80px; right: 20px; background: #FFE600; color: #000; border: none; box-shadow: 0 4px 12px rgba(255, 230, 0, 0.3); opacity: 0; transform: translateY(20px); pointer-events: auto; transition: opacity 0.3s ease, transform 0.3s ease; }
 .center-button:not(.visible) { opacity: 0; transform: translateY(20px); pointer-events: none; }
-.meme-link { display: block; width: 100%; height: 100%; cursor: pointer; -webkit-user-drag: none; user-drag: none; }
+.meme-link { display: block; width: 100%; height: 100%; cursor: pointer; -webkit-user-drag: none; user-drag: none; text-decoration: none; border: none; }
+.meme-link:hover { text-decoration: none; border: none; }
 .media-wrapper { width: 100%; height: 100%; }
 .mosaic-media { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s; pointer-events: none; -webkit-user-drag: none; user-drag: none; }
-.attribution-overlay { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px); padding: 4px 8px; border-radius: 4px; font-size: 0.65rem; color: rgba(255,255,255,0.9); opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.attribution-overlay { 
+  position: absolute; 
+  bottom: 8px; 
+  right: 8px; 
+  background: #FFE600; 
+  padding: 4px 8px; 
+  border-radius: 4px; 
+  font-size: 0.65rem; 
+  color: #000; 
+  font-weight: bold; 
+  opacity: 0; 
+  transition: opacity 0.2s; 
+  pointer-events: none;
+  max-width: calc(100% - 16px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .mosaic-item:hover .attribution-overlay { opacity: 1; }
 
 .loading-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #000; z-index: 500; display: flex; align-items: center; justify-content: center; }
