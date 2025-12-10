@@ -26,13 +26,14 @@
 
 <style scoped>
 .scrolling-bar-container {
-  width: 100%;
+  width: auto;
   max-width: 100%;
   margin: 0;
-  padding: 0 1rem;
+  padding: 0;
   position: absolute;
-  bottom: 0px;
-  left: 0;
+  bottom: 15px; /* Float off bottom */
+  left: 15px;
+  right: 15px;
 }
 
 .scrolling-bar {
@@ -40,13 +41,13 @@
   color: black;
   font-family: var(--vp-font-family-mono);
   font-weight: bold;
-  padding: 6px 0; /* Reduced padding */
+  padding: 6px 0;
   text-transform: uppercase;
-  font-size: 11px; /* Reduced font size */
+  font-size: 11px;
   white-space: nowrap;
   overflow: hidden;
-  border-radius: 8px 8px 0 0; /* Rounded top only, flat bottom */
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 4px; /* Fully rounded */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .scrolling-wrapper {
