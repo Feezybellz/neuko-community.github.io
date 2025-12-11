@@ -1,10 +1,20 @@
+```
 <script setup>
 import { withBase } from 'vitepress'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 const bgImage = ref(withBase('/images/home-banner.jpg'))
 const creatorHandle = ref('')
 const badgeStats = ref({ Rabbit: 0, Moth: 0, Snake: 0 })
+
+// Computed totals
+const totalSent = computed(() => {
+    return (badgeStats.value.Rabbit || 0) + (badgeStats.value.Moth || 0) + (badgeStats.value.Snake || 0)
+})
+
+const totalPercent = computed(() => {
+    return Math.round((totalSent.value / 1496) * 100)
+})
 
 onMounted(async () => {
   // Fetch badge stats
@@ -15,6 +25,7 @@ onMounted(async () => {
     }
   } catch (e) {
     console.error('Failed to load badge stats', e)
+    // Keep defaults 0
   }
 
   // Use glob only to get filenames. Eager is false to avoid importing public assets via relative path,
@@ -70,22 +81,19 @@ onMounted(async () => {
             <a href="https://x.com/neukoai/status/1998483693195899014" target="_blank" class="badge-stats-group">
                 <span class="stat-item" title="Rabbit Sent / Total">
                     <img :src="withBase('/images/badges/rabbit.png')" alt="Rabbit" class="badge-icon" /> 
-                    {{ badgeStats.Rabbit }}/200 <span class="mobile-hide">({{ Math.round((badgeStats.Rabbit/200)*100) }}%)</span>
+                    {{ badgeStats.Rabbit }}/200 ({{ Math.round((badgeStats.Rabbit/200)*100) }}%)
                 </span>
                 <span class="stat-item" title="Moth Sent / Total">
                      <img :src="withBase('/images/badges/moth.png')" alt="Moth" class="badge-icon" /> 
-                     {{ badgeStats.Moth }}/462 <span class="mobile-hide">({{ Math.round((badgeStats.Moth/462)*100) }}%)</span>
+                     {{ badgeStats.Moth }}/462 ({{ Math.round((badgeStats.Moth/462)*100) }}%)
                 </span>
                 <span class="stat-item" title="Snake Sent / Total">
                      <img :src="withBase('/images/badges/snake.png')" alt="Snake" class="badge-icon" /> 
-                     {{ badgeStats.Snake }}/834 <span class="mobile-hide">({{ Math.round((badgeStats.Snake/834)*100) }}%)</span>
+                     {{ badgeStats.Snake }}/834 ({{ Math.round((badgeStats.Snake/834)*100) }}%)
                 </span>
                 
-                <span class="highlight-text mobile-hide">
-                     sent to save G*BOY
-                </span>
-                <span class="highlight-text mobile-only">
-                     sent
+                <span class="highlight-text mobile-break">
+                     {{ totalSent }}/1496 ({{ totalPercent }}%) SENT TO SAVE G*BOY
                 </span>
             </a>
           </div>
@@ -387,12 +395,18 @@ onMounted(async () => {
     }
 
     .badge-stats-group {
-        flex-wrap: nowrap; /* Force single line */
-        white-space: nowrap;
+        display: flex; /* Flex for mobile too */
+        flex-wrap: wrap; /* Allow wrapping */
         justify-content: center;
         margin: 0.25rem 0 0 0;
         width: 100%;
-        gap: 0.5rem; /* Reduce gap */
+        gap: 0.5rem;
+    }
+    
+    .mobile-break {
+        display: block;
+        width: 100%; /* Force new line */
+        margin-top: 2px;
     }
 
     .action-btn {
