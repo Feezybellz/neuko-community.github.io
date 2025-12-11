@@ -1,10 +1,9 @@
-
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 // --- Config ---
-import config from './script-config.json';
+// Removed dependency on local script-config.json for GitHub Actions compatibility
 const HELIUS_API_KEY = process.env.HELIUS_API_KEY
 
 if (!HELIUS_API_KEY) {
@@ -14,8 +13,9 @@ if (!HELIUS_API_KEY) {
 const WALLET_ADDRESS = "ES5SWKCcRkW8vwzDMcTd6utwEEpEkh6VH3vtWHv3sbDy"
 
 // Fallback or derived RPC
+const RPC_BASE_URL = "https://mainnet.helius-rpc.com"
 const RPC_URL = HELIUS_API_KEY
-    ? `${config.rpcUrl}/?api-key=${HELIUS_API_KEY}`
+    ? `${RPC_BASE_URL}/?api-key=${HELIUS_API_KEY}`
     : "https://api.mainnet-beta.solana.com"
 
 // Constants for Valuation (Unused but kept in config if needed later)
