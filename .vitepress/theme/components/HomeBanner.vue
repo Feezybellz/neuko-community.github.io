@@ -64,7 +64,7 @@ onMounted(async () => {
                 <a href="https://x.com/neukoai" target="_blank" class="banner-link">OFFICIAL X ACCOUNT @NEUKOAI</a>
             </div>
             
-            <span class="separator mobile-hide">|</span>
+
             
             <!-- Badge Stats -->
             <a href="https://x.com/neukoai/status/1998483693195899014" target="_blank" class="badge-stats-group">
