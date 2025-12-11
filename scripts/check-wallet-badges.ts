@@ -111,20 +111,42 @@ interface MagicEdenToken {
 }
 
 async function getAllAssets(wallet: string): Promise<Asset[]> {
+    const allTokens: MagicEdenToken[] = []
+    let offset = 0
+    const limit = 100 // Magic Eden limit per request
+
     try {
         console.log(`Fetching badges from Magic Eden for ${wallet}...`)
-        // Use the user-provided endpoint for tokens
-        const url = `https://api-mainnet.magiceden.dev/v2/wallets/${wallet}/tokens?collection_symbol=gboy_badges_`
 
-        const res = await fetch(url)
-        if (!res.ok) {
-            throw new Error(`Magic Eden API returned ${res.status}`)
+        while (true) {
+            // Use user-provided endpoint + pagination params
+            const url = `https://api-mainnet.magiceden.dev/v2/wallets/${wallet}/tokens?collection_symbol=gboy_badges_&offset=${offset}&limit=${limit}`
+
+            const res = await fetch(url)
+            if (!res.ok) {
+                throw new Error(`Magic Eden API returned ${res.status}`)
+            }
+
+            const tokens = (await res.json()) as MagicEdenToken[]
+            if (tokens.length === 0) {
+                break
+            }
+
+            allTokens.push(...tokens)
+
+            if (tokens.length < limit) {
+                break // End of list
+            }
+
+            offset += limit
+            // Respect rate limits slightly
+            await delay(200)
         }
 
-        const tokens = (await res.json()) as MagicEdenToken[]
+        console.log(`Fetched ${allTokens.length} total badges from Magic Eden.`)
 
         // Map to existing Asset interface to preserve downstream logic
-        return tokens.map(t => ({
+        return allTokens.map(t => ({
             content: {
                 metadata: {
                     name: t.name
