@@ -223,7 +223,7 @@ onMounted(async () => {
 .badge-stats-group {
     display: inline-flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.4rem;
     margin: 0 0.5rem;
     color: black;
     border: 1px solid rgba(0, 0, 0, 0.2);
