@@ -8,7 +8,6 @@
     "build": "vitepress build",
     "preview": "vitepress preview",
     "scrape:memes": "bun scripts/scrape-memes.ts",
-    "check:badges": "bun scripts/check-wallet-badges.ts",
     "lint": "eslint . --fix",
     "format": "prettier --write ."
   },
