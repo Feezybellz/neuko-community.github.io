@@ -14,14 +14,23 @@ const { frontmatter } = useData()
   <Layout class="custom-layout">
     <template #home-hero-before>
       <div class="hero-spacer"></div>
-      <HomeBanner v-if="frontmatter.layout === 'home' && !frontmatter.hide_home_elements" />
+      <HomeBanner
+        v-if="
+          (frontmatter.layout === 'home' && !frontmatter.hide_home_elements) ||
+          frontmatter.show_home_banner
+        "
+      />
       <HomeContent v-if="frontmatter.layout === 'home' && !frontmatter.hide_home_elements" />
       <GBoyBanner v-if="frontmatter.layout === 'home' && !frontmatter.hide_home_elements" />
     </template>
     <template #layout-bottom>
       <ScrollingBar v-if="frontmatter.layout === 'home' && !frontmatter.hide_scrolling_bar" />
       <div v-if="frontmatter.layout === 'home'" class="footer-credits">
-        2025 - built by <a href="https://x.com/afkboom" target="_blank">@afkboom</a> | populated by the community - <a href="https://github.com/neuko-community/neuko-community.github.io" target="_blank">github repo</a>
+        2025 - built by <a href="https://x.com/afkboom" target="_blank">@afkboom</a> | populated by
+        the community -
+        <a href="https://github.com/neuko-community/neuko-community.github.io" target="_blank"
+          >github repo</a
+        >
       </div>
     </template>
   </Layout>
@@ -29,7 +38,6 @@ const { frontmatter } = useData()
 
 <style>
 /* Hide default Navbar override removed - use frontmatter navbar: false instead */
-
 
 /* Add padding to top of hero area */
 .hero-spacer {

@@ -1,0 +1,547 @@
+<script setup>
+import { ref, computed } from 'vue'
+import CryptoJS from 'crypto-js'
+
+// --- State ---
+const mainText = ref('')
+const userKey = ref('neuko-secret')
+const mode = ref('encryption') // 'encryption' or 'decryption'
+const copyStatus = ref({})
+
+// --- Morse Map Constants ---
+const MORSE_MAP = {
+  A: '.-',
+  B: '-...',
+  C: '-.-.',
+  D: '-..',
+  E: '.',
+  F: '..-.',
+  G: '--.',
+  H: '....',
+  I: '..',
+  J: '.---',
+  K: '-.-',
+  L: '.-..',
+  M: '--',
+  N: '-.',
+  O: '---',
+  P: '.--.',
+  Q: '--.-',
+  R: '.-.',
+  S: '...',
+  T: '-',
+  U: '..-',
+  V: '...-',
+  W: '.--',
+  X: '-..-',
+  Y: '-.--',
+  Z: '--..',
+  1: '.----',
+  2: '..---',
+  3: '...--',
+  4: '....-',
+  5: '.....',
+  6: '-....',
+  7: '--...',
+  8: '---..',
+  9: '----.',
+  0: '-----',
+  ' ': '/'
+}
+const REVERSE_MORSE = Object.fromEntries(Object.entries(MORSE_MAP).map(([k, v]) => [v, k]))
+
+// --- Tool Definitions ---
+const tools = [
+  {
+    name: 'Base64',
+    isHash: false,
+    enc: (s) => btoa(s),
+    dec: (s) => {
+      try {
+        return atob(s)
+      } catch {
+        return ''
+      }
+    }
+  },
+  {
+    name: 'AES Encryption',
+    isHash: false,
+    enc: (s, k) => CryptoJS.AES.encrypt(s, k).toString(),
+    dec: (s, k) => {
+      try {
+        const bytes = CryptoJS.AES.decrypt(s, k)
+        return bytes.toString(CryptoJS.enc.Utf8) || 'Invalid Key'
+      } catch {
+        return 'Invalid Key'
+      }
+    }
+  },
+  {
+    name: 'Caesar Cipher (Shift 3)',
+    isHash: false,
+    enc: (s) =>
+      s.replace(/[a-z]/gi, (c) =>
+        String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 3) ? c : c - 26)
+      ),
+    dec: (s) =>
+      s.replace(/[a-z]/gi, (c) =>
+        String.fromCharCode((c <= 'Z' ? 65 : 97) <= (c = c.charCodeAt(0) - 3) ? c : c + 26)
+      )
+  },
+  {
+    name: 'Vigenere Cipher',
+    isHash: false,
+    enc: (s, k) => {
+      if (!k) return s
+      return s
+        .split('')
+        .map((c, i) => {
+          if (!/[a-z]/i.test(c)) return c
+          const base = c <= 'Z' ? 65 : 97
+          const shift = k.toLowerCase().charCodeAt(i % k.length) - 97
+          return String.fromCharCode(((c.charCodeAt(0) - base + shift) % 26) + base)
+        })
+        .join('')
+    },
+    dec: (s, k) => {
+      if (!k) return s
+      return s
+        .split('')
+        .map((c, i) => {
+          if (!/[a-z]/i.test(c)) return c
+          const base = c <= 'Z' ? 65 : 97
+          const shift = k.toLowerCase().charCodeAt(i % k.length) - 97
+          return String.fromCharCode(((c.charCodeAt(0) - base - shift + 26) % 26) + base)
+        })
+        .join('')
+    }
+  },
+  {
+    name: 'ROT13',
+    isHash: false,
+    enc: (s) =>
+      s.replace(/[a-zA-Z]/g, (c) =>
+        String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26)
+      ),
+    dec: (s) =>
+      s.replace(/[a-zA-Z]/g, (c) =>
+        String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26)
+      )
+  },
+  {
+    name: 'LeetSpeak',
+    isHash: false,
+    enc: (s) =>
+      s
+        .toUpperCase()
+        .replace(/A/g, '4')
+        .replace(/E/g, '3')
+        .replace(/G/g, '6')
+        .replace(/I/g, '1')
+        .replace(/O/g, '0')
+        .replace(/S/g, '5')
+        .replace(/T/g, '7'),
+    dec: (s) =>
+      s
+        .toUpperCase()
+        .replace(/4/g, 'A')
+        .replace(/3/g, 'E')
+        .replace(/6/g, 'G')
+        .replace(/1/g, 'I')
+        .replace(/0/g, 'O')
+        .replace(/5/g, 'S')
+        .replace(/7/g, 'T')
+  },
+  {
+    name: 'Hexadecimal',
+    isHash: false,
+    enc: (s) =>
+      s
+        .split('')
+        .map((c) => c.charCodeAt(0).toString(16).padStart(2, '0'))
+        .join(' '),
+    dec: (s) => {
+      try {
+        return s
+          .split(' ')
+          .map((h) => String.fromCharCode(parseInt(h, 16)))
+          .join('')
+      } catch {
+        return ''
+      }
+    }
+  },
+  {
+    name: 'Binary',
+    isHash: false,
+    enc: (s) =>
+      s
+        .split('')
+        .map((c) => c.charCodeAt(0).toString(2).padStart(8, '0'))
+        .join(' '),
+    dec: (s) => {
+      try {
+        return s
+          .split(' ')
+          .map((b) => String.fromCharCode(parseInt(b, 2)))
+          .join('')
+      } catch {
+        return ''
+      }
+    }
+  },
+  {
+    name: 'Unicode Escape',
+    isHash: false,
+    enc: (s) =>
+      s
+        .split('')
+        .map((c) => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))
+        .join(''),
+    dec: (s) => {
+      try {
+        return JSON.parse('"' + s.replace(/"/g, '\\"') + '"')
+      } catch {
+        return ''
+      }
+    }
+  },
+  {
+    name: 'Atbash Cipher',
+    isHash: false,
+    enc: (s) =>
+      s.replace(/[a-z]/gi, (c) =>
+        String.fromCharCode((c <= 'Z' ? 90 : 122) - (c.charCodeAt(0) - (c <= 'Z' ? 65 : 97)))
+      ),
+    dec: (s) =>
+      s.replace(/[a-z]/gi, (c) =>
+        String.fromCharCode((c <= 'Z' ? 90 : 122) - (c.charCodeAt(0) - (c <= 'Z' ? 65 : 97)))
+      )
+  },
+  {
+    name: 'URL Encode',
+    isHash: false,
+    enc: (s) => encodeURIComponent(s),
+    dec: (s) => {
+      try {
+        return decodeURIComponent(s)
+      } catch {
+        return ''
+      }
+    }
+  },
+  {
+    name: 'Morse Code',
+    isHash: false,
+    enc: (s) =>
+      s
+        .toUpperCase()
+        .split('')
+        .map((c) => MORSE_MAP[c] || '')
+        .join(' '),
+    dec: (s) =>
+      s
+        .split(' ')
+        .map((c) => REVERSE_MORSE[c] || '')
+        .join('')
+  },
+  { name: 'SHA-256', isHash: true, enc: (s) => CryptoJS.SHA256(s).toString() },
+  { name: 'SHA-512', isHash: true, enc: (s) => CryptoJS.SHA512(s).toString() },
+  { name: 'SHA-3', isHash: true, enc: (s) => CryptoJS.SHA3(s).toString() },
+  { name: 'MD5', isHash: true, enc: (s) => CryptoJS.MD5(s).toString() },
+  { name: 'RIPEMD-160', isHash: true, enc: (s) => CryptoJS.RIPEMD160(s).toString() }
+]
+
+// --- Computed Results ---
+const results = computed(() => {
+  // If there is no text, return empty strings for everything
+  if (!mainText.value || mainText.value.trim() === '') {
+    return tools.map((tool) => ({ ...tool, output: '' }))
+  }
+
+  return tools.map((tool) => {
+    let output = ''
+    if (mode.value === 'encryption') {
+      output = tool.enc(mainText.value, userKey.value)
+    } else {
+      output = tool.isHash
+        ? '[One-Way Hash]'
+        : tool.dec
+          ? tool.dec(mainText.value, userKey.value)
+          : ''
+    }
+    return { ...tool, output }
+  })
+})
+
+// --- Methods ---
+const updateFromTool = (e, tool) => {
+  const inputVal = e.target.value
+
+  if (mode.value === 'encryption') {
+    if (tool.isHash) return
+    const decrypted = tool.dec(inputVal, userKey.value)
+    if (decrypted && decrypted !== 'Invalid Key' && decrypted !== 'Invalid Key or Payload') {
+      mainText.value = decrypted
+    }
+  } else {
+    // In decryption mode, typing in a card (the result) updates the main input (the cipher)
+    mainText.value = inputVal
+  }
+}
+
+const clearAll = () => {
+  mainText.value = ''
+}
+
+const copy = (text, toolName) => {
+  if (!text || text.includes('Invalid') || text === '[One-Way Hash]') return
+  navigator.clipboard.writeText(text)
+
+  copyStatus.value[toolName] = 'COPIED!'
+  setTimeout(() => {
+    copyStatus.value[toolName] = 'COPY'
+  }, 1000)
+}
+</script>
+
+<template>
+  <div class="cipher-container">
+    <div class="tabs">
+      <button :class="{ active: mode === 'encryption' }" @click="mode = 'encryption'">
+        ENCRYPT / HASH
+      </button>
+      <button :class="{ active: mode === 'decryption' }" @click="mode = 'decryption'">
+        DECRYPT
+      </button>
+      <button class="clear-btn" @click="clearAll">CLEAR ALL</button>
+    </div>
+
+    <div class="input-group">
+      <div class="field">
+        <label>{{ mode === 'encryption' ? 'Plain Text Input' : 'Encrypted / Cipher Text' }}</label>
+        <textarea
+          v-model="mainText"
+          placeholder="Start typing to see the magic..."
+          class="main-input"
+        ></textarea>
+      </div>
+
+      <div class="field">
+        <label>Secret Key (Password)</label>
+        <input v-model="userKey" type="text" class="key-input" placeholder="Enter custom key..." />
+      </div>
+    </div>
+
+    <div class="grid">
+      <div v-for="tool in results" :key="tool.name" class="card">
+        <div class="card-header">
+          <span class="badge">{{ tool.isHash ? 'Hash' : 'Cipher' }}</span>
+          <button class="copy-btn" @click="copy(tool.output, tool.name)">
+            {{ copyStatus[tool.name] || 'COPY' }}
+          </button>
+        </div>
+
+        <h3 class="card-title">{{ tool.name }}</h3>
+
+        <textarea
+          :readonly="tool.isHash"
+          :value="tool.output"
+          @input="updateFromTool($event, tool)"
+          :placeholder="
+            tool.isHash && mode === 'decryption' ? '[One-Way Hash]' : 'Type here to sync...'
+          "
+          class="result-box"
+          :class="{ 'hash-readonly': tool.isHash }"
+        ></textarea>
+      </div>
+    </div>
+    <div class="tool-footer">
+      Built with love by
+      <a href="https://x.com/feezybellz_ii" target="_blank" rel="noopener noreferrer">
+        "That Chill Guy"
+      </a>
+      to help save <strong>GBOY</strong>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.cipher-container {
+  margin-top: 1rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  cursor: pointer;
+  color: var(--vp-c-text-1);
+  font-weight: 700;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.tabs button.active {
+  background: var(--vp-c-brand-1);
+  color: white;
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--vp-c-brand-1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.main-input {
+  width: 100%;
+  height: 120px;
+  padding: 15px;
+  border-radius: 16px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  border: 2px solid var(--vp-c-divider);
+  font-size: 1.1rem;
+  transition: border-color 0.2s;
+}
+
+.main-input:focus {
+  border-color: var(--vp-c-brand-1);
+  outline: none;
+}
+
+.key-input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+  border: 2px solid var(--vp-c-divider);
+  color: var(--vp-c-text-1);
+  font-family: monospace;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 20px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.badge {
+  font-size: 9px;
+  background: var(--vp-c-bg-mute);
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: var(--vp-c-text-2);
+}
+
+.copy-btn {
+  color: var(--vp-c-brand-1);
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--vp-c-text-1);
+}
+
+.result-box {
+  width: 100%;
+  height: 100px;
+  background: var(--vp-c-bg-mute);
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-family: var(--vp-font-family-mono);
+  font-size: 13px;
+  padding: 12px;
+  resize: none;
+  color: var(--vp-c-text-1);
+  transition: all 0.2s;
+}
+
+.result-box:focus:not(.hash-readonly) {
+  border-color: var(--vp-c-brand-1);
+  background: var(--vp-c-bg-soft);
+  outline: none;
+}
+
+.hash-readonly {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.tool-footer {
+  margin-top: 3rem;
+  padding: 2rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--vp-c-text-2);
+  border-top: 1px solid var(--vp-c-divider);
+  font-family: var(--vp-font-family-base);
+}
+
+.tool-footer a {
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.tool-footer a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.tool-footer strong {
+  color: #ffe800; /* GBOY specific gold if you want it to pop, or use var(--vp-c-brand-1) */
+  letter-spacing: 1px;
+}
+</style>
