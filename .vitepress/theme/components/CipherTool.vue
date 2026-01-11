@@ -201,7 +201,19 @@ const tools = [
         .join(''),
     dec: (s) => {
       try {
-        return JSON.parse('"' + s.replace(/"/g, '\\"') + '"')
+        // Validate format first - only allow valid \uXXXX patterns
+        // Remove whitespace for validation, but preserve structure
+        const cleaned = s.replace(/\s/g, '')
+        // Check if string contains only valid \uXXXX patterns
+        if (!cleaned || !/^(\\u[0-9a-fA-F]{4})+$/.test(cleaned)) {
+          return ''
+        }
+        // Safe parsing - JSON.parse with validated input
+        const parsed = JSON.parse('"' + s + '"')
+        // Additional safety: ensure result is a string
+        // Note: Output is rendered in <textarea> which treats content as text, not HTML
+        // This prevents XSS even if decoded content contains HTML/JS
+        return typeof parsed === 'string' ? parsed : ''
       } catch {
         return ''
       }
@@ -240,11 +252,24 @@ const tools = [
         .split('')
         .map((c) => MORSE_MAP[c] || '')
         .join(' '),
-    dec: (s) =>
-      s
-        .split(' ')
-        .map((c) => REVERSE_MORSE[c] || '')
-        .join('')
+    dec: (s) => {
+      // Split on word boundaries: '/' or 2+ spaces
+      // Handle both '/' and multiple spaces as word separators
+      const parts = s.split(/(?:\s{2,}|\/)/)
+
+      return parts
+        .map((part) => {
+          // Split each part on single spaces to get Morse code patterns
+          return part
+            .trim()
+            .split(/\s+/)
+            .filter((pattern) => pattern.length > 0) // Remove empty patterns
+            .map((pattern) => REVERSE_MORSE[pattern] || '')
+            .join('')
+        })
+        .filter((word) => word.length > 0) // Remove empty words
+        .join(' ')
+    }
   },
   { name: 'SHA-256', isHash: true, enc: (s) => CryptoJS.SHA256(s).toString() },
   { name: 'SHA-512', isHash: true, enc: (s) => CryptoJS.SHA512(s).toString() },
@@ -262,14 +287,18 @@ const results = computed(() => {
 
   return tools.map((tool) => {
     let output = ''
-    if (mode.value === 'encryption') {
-      output = tool.enc(mainText.value, userKey.value)
-    } else {
-      output = tool.isHash
-        ? '[One-Way Hash]'
-        : tool.dec
-          ? tool.dec(mainText.value, userKey.value)
-          : ''
+    try {
+      if (mode.value === 'encryption') {
+        output = tool.enc(mainText.value, userKey.value)
+      } else {
+        output = tool.isHash
+          ? '[One-Way Hash]'
+          : tool.dec
+            ? tool.dec(mainText.value, userKey.value)
+            : ''
+      }
+    } catch {
+      output = '[Error processing input]'
     }
     return { ...tool, output }
   })
