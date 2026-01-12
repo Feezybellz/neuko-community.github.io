@@ -278,30 +278,34 @@ const tools = [
   { name: 'RIPEMD-160', isHash: true, enc: (s) => CryptoJS.RIPEMD160(s).toString() }
 ]
 
-// --- Computed Results ---
-const results = computed(() => {
-  // If there is no text, return empty strings for everything
-  if (!mainText.value || mainText.value.trim() === '') {
-    return tools.map((tool) => ({ ...tool, output: '' }))
-  }
+const selectedTools = ref(tools.map((t) => t.name))
 
-  return tools.map((tool) => {
+// --- Computed Results ---
+
+const filteredResults = computed(() => {
+  const allResults = tools.map((tool) => {
     let output = ''
-    try {
-      if (mode.value === 'encryption') {
-        output = tool.enc(mainText.value, userKey.value)
-      } else {
-        output = tool.isHash
-          ? '[One-Way Hash]'
-          : tool.dec
-            ? tool.dec(mainText.value, userKey.value)
-            : ''
+    if (!mainText.value || mainText.value.trim() === '') {
+      output = ''
+    } else {
+      try {
+        if (mode.value === 'encryption') {
+          output = tool.enc(mainText.value, userKey.value)
+        } else {
+          output = tool.isHash
+            ? '[One-Way Hash]'
+            : tool.dec
+              ? tool.dec(mainText.value, userKey.value)
+              : ''
+        }
+      } catch {
+        output = '[Error processing input]'
       }
-    } catch {
-      output = '[Error processing input]'
     }
     return { ...tool, output }
   })
+
+  return allResults.filter((tool) => selectedTools.value.includes(tool.name))
 })
 
 // --- Methods ---
@@ -363,8 +367,42 @@ const copy = (text, toolName) => {
       </div>
     </div>
 
-    <div class="grid">
-      <div v-for="tool in results" :key="tool.name" class="card">
+    <div class="filter-section">
+      <div class="filter-header">
+        <label class="filter-label">Active Algorithms</label>
+        <div class="filter-actions">
+          <button @click="selectedTools = tools.map((t) => t.name)" class="action-link">
+            Select All
+          </button>
+          <button
+            @click="selectedTools = tools.filter((t) => !t.isHash).map((t) => t.name)"
+            class="action-link"
+          >
+            Ciphers Only
+          </button>
+          <button
+            @click="selectedTools = tools.filter((t) => t.isHash).map((t) => t.name)"
+            class="action-link"
+          >
+            Hashes Only
+          </button>
+          <button @click="selectedTools = []" class="action-link">Clear</button>
+        </div>
+      </div>
+
+      <div class="filter-chips">
+        <label v-for="tool in tools" :key="'filter-' + tool.name" class="modern-chip">
+          <input type="checkbox" v-model="selectedTools" :value="tool.name" />
+          <div class="chip-content">
+            <span class="chip-indicator"></span>
+            <span class="chip-text">{{ tool.name }}</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <div v-if="filteredResults.length > 0" class="grid">
+      <div v-for="tool in filteredResults" :key="tool.name" class="card">
         <div class="card-header">
           <span class="badge">{{ tool.isHash ? 'Hash' : 'Cipher' }}</span>
           <button class="copy-btn" @click="copy(tool.output, tool.name)">
@@ -375,16 +413,21 @@ const copy = (text, toolName) => {
         <h3 class="card-title">{{ tool.name }}</h3>
 
         <textarea
-          :readonly="tool.isHash"
+          :readonly="true"
           :value="tool.output"
-          @input="updateFromTool($event, tool)"
-          :placeholder="
-            tool.isHash && mode === 'decryption' ? '[One-Way Hash]' : 'Type here to sync...'
-          "
+          :placeholder="'Output is shown here...'"
           class="result-box"
           :class="{ 'hash-readonly': tool.isHash }"
         ></textarea>
       </div>
+    </div>
+    <div v-else class="empty-placeholder">
+      <div class="empty-icon">🛸</div>
+      <h3>No algorithms selected</h3>
+      <p>Pick some tools from the filters above to start de-coding.</p>
+      <button @click="selectedTools = tools.map((t) => t.name)" class="btn-restore">
+        Restore All Tools
+      </button>
     </div>
     <div class="tool-footer">
       Built with love by
@@ -421,7 +464,7 @@ const copy = (text, toolName) => {
 
 .tabs button.active {
   background: var(--vp-c-brand-1);
-  color: white;
+  color: #000;
   border-color: var(--vp-c-brand-1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -570,7 +613,151 @@ const copy = (text, toolName) => {
 }
 
 .tool-footer strong {
-  color: #ffe800; /* GBOY specific gold if you want it to pop, or use var(--vp-c-brand-1) */
+  color: var(--vp-c-brand-1);
   letter-spacing: 1px;
+}
+
+.filter-section {
+  margin-bottom: 2.5rem;
+  padding: 20px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 24px;
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 0 5px;
+}
+
+.filter-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-link {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--vp-c-brand-1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  opacity: 0.7;
+}
+
+.action-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.modern-chip {
+  cursor: pointer;
+  user-select: none;
+}
+
+.modern-chip input {
+  display: none;
+}
+
+.chip-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--vp-c-bg-mute);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 100px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chip-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--vp-c-text-3);
+  transition: all 0.3s ease;
+}
+
+.chip-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+}
+
+/* Active State */
+.modern-chip input:checked + .chip-content {
+  background: var(--vp-c-brand-soft);
+  border-color: var(--vp-c-brand-1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modern-chip input:checked + .chip-content .chip-text {
+  color: var(--vp-c-brand-1);
+}
+
+.modern-chip input:checked + .chip-content .chip-indicator {
+  background: var(--vp-c-brand-1);
+  box-shadow: 0 0 8px var(--vp-c-brand-1);
+  transform: scale(1.5);
+}
+
+.modern-chip:hover .chip-content {
+  border-color: var(--vp-c-brand-1);
+  background: var(--vp-c-bg-soft);
+}
+
+.empty-placeholder {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--vp-c-bg-soft);
+  border: 2px dashed var(--vp-c-divider);
+  border-radius: 32px;
+  margin: 2rem 0;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 10px var(--vp-c-brand-1));
+}
+
+.empty-placeholder h3 {
+  font-weight: 800;
+  color: var(--vp-c-text-1);
+  margin-bottom: 0.5rem;
+}
+
+.empty-placeholder p {
+  color: var(--vp-c-text-2);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-restore {
+  background: var(--vp-c-brand-1);
+  color: #000;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btn-restore:hover {
+  transform: scale(1.05);
 }
 </style>
