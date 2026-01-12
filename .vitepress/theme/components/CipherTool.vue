@@ -413,12 +413,9 @@ const copy = (text, toolName) => {
         <h3 class="card-title">{{ tool.name }}</h3>
 
         <textarea
-          :readonly="tool.isHash"
+          :readonly="true"
           :value="tool.output"
-          @input="updateFromTool($event, tool)"
-          :placeholder="
-            tool.isHash && mode === 'decryption' ? '[One-Way Hash]' : 'Type here to sync...'
-          "
+          :placeholder="'Output is shown here...'"
           class="result-box"
           :class="{ 'hash-readonly': tool.isHash }"
         ></textarea>
