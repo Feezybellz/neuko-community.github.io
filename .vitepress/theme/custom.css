@@ -12,12 +12,12 @@
   --vp-c-text-3: #888888;
 
   /* Accents */
-  --vp-c-brand-1: #FFE800;
+  --vp-c-brand-1: #ffe800;
   /* G*Boy Yellow */
-  --vp-c-brand-2: #FFD700;
-  --vp-c-brand-3: #FFC400;
+  --vp-c-brand-2: #ffd700;
+  --vp-c-brand-3: #ffc400;
 
-  --vp-c-danger-1: #FF3333;
+  --vp-c-danger-1: #ff3333;
   /* Neuko Red */
 
   --vp-c-border: #333333;
@@ -29,7 +29,7 @@
   --vp-sidebar-bg-color: #0a0a0a;
   --vp-sidebar-width: 280px;
   --vp-nav-bg-color: #0a0a0a;
-  --vp-nav-height: 0px;
+  --vp-nav-height: 64px;
 
   /* Fonts */
   --vp-font-family-base: 'Inter', sans-serif;
@@ -113,7 +113,7 @@ h1 {
   border-right: 1px solid var(--vp-c-border);
 }
 
-.VPSidebarItem.is-active>.item>.link {
+.VPSidebarItem.is-active > .item > .link {
   color: var(--vp-c-brand-1);
   background-color: var(--vp-c-bg-elv);
 }
@@ -319,14 +319,13 @@ html .VPHero .actions {
 /* --- CUSTOM NAV BAR --- */
 
 .VPNavBar {
-  background-color: rgba(10, 10, 10, 0.8) !important;
+  background-color: rgba(10, 10, 10, 0.8);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--vp-c-border);
 }
 
 .VPNavBar .content {
-  max-width: 98vw !important;
-  padding: 0 24px !important;
+  max-width: 98vw;
 }
 
 .VPNavBarTitle .title {
@@ -350,7 +349,9 @@ html .VPHero .actions {
   border: 1px solid var(--vp-c-border);
   border-radius: 12px;
   padding: 1.5rem;
-  transition: transform 0.2s, border-color 0.2s;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
   display: flex;
   flex-direction: column;
 }
