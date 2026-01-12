@@ -5,6 +5,7 @@ import GBoyBanner from './components/GBoyBanner.vue'
 import Timeline from './components/Timeline.vue'
 import CipherTool from './components/CipherTool.vue'
 import SteganographyTool from './components/SteganographyTool.vue'
+import CommunityXnWallet from './components/CommunityXnWallet.vue'
 
 import './custom.css'
 
@@ -20,5 +21,6 @@ export default {
     app.component('Timeline', Timeline)
     app.component('CipherTool', CipherTool)
     app.component('SteganographyTool', SteganographyTool)
+    app.component('CommunityXnWallet', CommunityXnWallet)
   }
 }
