@@ -4,9 +4,10 @@ import CryptoJS from 'crypto-js'
 
 // --- State ---
 const mainText = ref('')
-const userKey = ref('neuko-secret')
+const userKey = ref('neukosecret')
 const mode = ref('encryption') // 'encryption' or 'decryption'
 const copyStatus = ref({})
+const showFilterModal = ref(false)
 
 // --- Morse Map Constants ---
 const MORSE_MAP = {
@@ -309,20 +310,6 @@ const filteredResults = computed(() => {
 })
 
 // --- Methods ---
-const updateFromTool = (e, tool) => {
-  const inputVal = e.target.value
-
-  if (mode.value === 'encryption') {
-    if (tool.isHash) return
-    const decrypted = tool.dec(inputVal, userKey.value)
-    if (decrypted && decrypted !== 'Invalid Key' && decrypted !== 'Invalid Key or Payload') {
-      mainText.value = decrypted
-    }
-  } else {
-    // In decryption mode, typing in a card (the result) updates the main input (the cipher)
-    mainText.value = inputVal
-  }
-}
 
 const clearAll = () => {
   mainText.value = ''
@@ -336,6 +323,18 @@ const copy = (text, toolName) => {
   setTimeout(() => {
     copyStatus.value[toolName] = 'COPY'
   }, 1000)
+}
+
+const closeModal = () => {
+  showFilterModal.value = false
+}
+
+const sanitizeKey = (event) => {
+  // Remove spaces and special characters, keep only alphanumeric
+  const sanitized = event.target.value.replace(/[^a-zA-Z0-9]/g, '')
+  userKey.value = sanitized
+  // Update the input value to reflect the sanitized version
+  event.target.value = sanitized
 }
 </script>
 
@@ -363,11 +362,24 @@ const copy = (text, toolName) => {
 
       <div class="field">
         <label>Secret Key (Password)</label>
-        <input v-model="userKey" type="text" class="key-input" placeholder="Enter custom key..." />
+        <input
+          v-model="userKey"
+          type="text"
+          class="key-input"
+          placeholder="Enter custom key..."
+          @input="sanitizeKey"
+        />
       </div>
     </div>
 
-    <div class="filter-section">
+    <!-- Mobile: Button to open modal -->
+    <button class="filter-modal-trigger" @click="showFilterModal = true">
+      <span>Select Algorithms</span>
+      <span class="selected-count">({{ selectedTools.length }}/{{ tools.length }})</span>
+    </button>
+
+    <!-- Desktop: Inline filter section -->
+    <div class="filter-section filter-section-desktop">
       <div class="filter-header">
         <label class="filter-label">Active Algorithms</label>
         <div class="filter-actions">
@@ -398,6 +410,57 @@ const copy = (text, toolName) => {
             <span class="chip-text">{{ tool.name }}</span>
           </div>
         </label>
+      </div>
+    </div>
+
+    <!-- Mobile: Modal overlay -->
+    <div
+      v-if="showFilterModal"
+      class="filter-modal-overlay"
+      @click="closeModal"
+      @touchstart="closeModal"
+    >
+      <div class="filter-modal" @click.stop @touchstart.stop>
+        <div class="filter-modal-header">
+          <h3>Select Algorithms</h3>
+          <button class="filter-modal-close" @click="closeModal">×</button>
+        </div>
+        <div class="filter-modal-content">
+          <div class="filter-header">
+            <label class="filter-label">Active Algorithms</label>
+            <div class="filter-actions">
+              <button @click="selectedTools = tools.map((t) => t.name)" class="action-link">
+                Select All
+              </button>
+              <button
+                @click="selectedTools = tools.filter((t) => !t.isHash).map((t) => t.name)"
+                class="action-link"
+              >
+                Ciphers Only
+              </button>
+              <button
+                @click="selectedTools = tools.filter((t) => t.isHash).map((t) => t.name)"
+                class="action-link"
+              >
+                Hashes Only
+              </button>
+              <button @click="selectedTools = []" class="action-link">Clear</button>
+            </div>
+          </div>
+
+          <div class="filter-chips">
+            <label v-for="tool in tools" :key="'modal-filter-' + tool.name" class="modern-chip">
+              <input type="checkbox" v-model="selectedTools" :value="tool.name" />
+              <div class="chip-content">
+                <span class="chip-indicator"></span>
+                <span class="chip-text">{{ tool.name }}</span>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="filter-modal-footer">
+          <button class="filter-modal-done" @click="closeModal">Done</button>
+        </div>
       </div>
     </div>
 
@@ -759,5 +822,170 @@ const copy = (text, toolName) => {
 
 .btn-restore:hover {
   transform: scale(1.05);
+}
+
+/* Mobile filter modal trigger button */
+.filter-modal-trigger {
+  width: 100%;
+  padding: 14px 20px;
+  margin-bottom: 1.5rem;
+  background: var(--vp-c-bg-soft);
+  border: 2px solid var(--vp-c-brand-1);
+  border-radius: 12px;
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-modal-trigger:hover {
+  background: var(--vp-c-brand-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.selected-count {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* Modal overlay */
+.filter-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal content */
+.filter-modal {
+  background: var(--vp-c-bg);
+  border-radius: 24px 24px 0 0;
+  width: 100%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease-out;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.filter-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.filter-modal-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+}
+
+.filter-modal-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.filter-modal-close:hover {
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+}
+
+.filter-modal-content {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.filter-modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.filter-modal-done {
+  width: 100%;
+  padding: 14px;
+  background: var(--vp-c-brand-1);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.filter-modal-done:hover {
+  transform: scale(1.02);
+}
+
+.filter-modal-done:active {
+  transform: scale(0.98);
+}
+
+/* Responsive: Show/hide based on screen size */
+@media (min-width: 768px) {
+  .filter-modal-trigger {
+    display: none !important;
+  }
+
+  .filter-section-desktop {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .filter-modal-trigger {
+    display: flex !important;
+  }
+
+  .filter-section-desktop {
+    display: none;
+  }
 }
 </style>
