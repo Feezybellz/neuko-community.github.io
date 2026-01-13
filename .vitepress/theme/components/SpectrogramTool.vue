@@ -1036,8 +1036,10 @@ onUnmounted(() => {
   }
 
   .color-btn {
-    flex: 1;
+    flex: 0 0 calc((100% - 16px) / 3);
     padding: 8px 10px;
+    width: calc((100% - 16px) / 3);
+    box-sizing: border-box;
   }
 
   .color-preview {
