@@ -12,10 +12,11 @@ const audioPlayer = ref<HTMLAudioElement | null>(null)
 
 // Spectrogram settings
 const selectedColorScheme = ref('hot')
-const fftSize = ref(2048)
-const hopSize = ref(512) // Samples to skip between FFT windows
-const useLogFrequency = ref(true) // Use logarithmic frequency scale
+const fftSize = ref(1024) // default to medium resolution
+const useLogFrequency = ref(false) // Use logarithmic frequency scale
 const spectrogramDataCache = ref<number[][] | null>(null)
+const minHz = ref(440) // frequency floor to keep upper bands visible
+const maxHz = ref<number | null>(null) // null => Nyquist
 
 // Proper color scheme implementations
 const colorSchemes = {
@@ -93,7 +94,7 @@ const colorSchemes = {
 }
 
 let audioContext: AudioContext | null = null
-let audioBuffer: AudioBuffer | null = null
+const audioBuffer = ref<AudioBuffer | null>(null)
 
 // Handle file upload
 const handleFileUpload = async (event: Event) => {
@@ -121,8 +122,8 @@ const handleFileUpload = async (event: Event) => {
   try {
     // Load and process audio
     await processAudioFile(file)
-  } catch (err: any) {
-    error.value = err.message || 'Failed to process audio file'
+  } catch (err: unknown) {
+    error.value = err instanceof Error ? err.message : 'Failed to process audio file'
     console.error('Error processing audio:', err)
   } finally {
     isProcessing.value = false
@@ -132,14 +133,17 @@ const handleFileUpload = async (event: Event) => {
 // Process audio file and generate spectrogram
 const processAudioFile = async (file: File) => {
   // Initialize audio context
-  audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+  const AudioContextClass =
+    window.AudioContext ||
+    (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+  audioContext = new AudioContextClass()
 
   // Read file as array buffer
   const arrayBuffer = await file.arrayBuffer()
 
   // Decode audio data
   progress.value = 30
-  audioBuffer = await audioContext.decodeAudioData(arrayBuffer)
+  audioBuffer.value = await audioContext.decodeAudioData(arrayBuffer)
   progress.value = 50
 
   // Generate spectrogram
@@ -149,7 +153,7 @@ const processAudioFile = async (file: File) => {
 
 // Generate spectrogram from audio buffer using Web Audio API
 const generateSpectrogram = async () => {
-  if (!audioBuffer || !canvasRef.value) return
+  if (!audioBuffer.value || !canvasRef.value) return
 
   isProcessing.value = true
   spectrogramDataCache.value = null
@@ -158,22 +162,21 @@ const generateSpectrogram = async () => {
   const ctx = canvas.getContext('2d')
   if (!ctx) return
 
-  const sampleRate = audioBuffer.sampleRate
-  const duration = audioBuffer.duration
-  const numberOfChannels = audioBuffer.numberOfChannels
+  const duration = audioBuffer.value.duration
+  const numberOfChannels = audioBuffer.value.numberOfChannels
 
   // Use first channel (or mix down if stereo)
   let channelData: Float32Array
   if (numberOfChannels > 1) {
     // Mix down to mono
-    const left = audioBuffer.getChannelData(0)
-    const right = audioBuffer.getChannelData(1)
+    const left = audioBuffer.value.getChannelData(0)
+    const right = audioBuffer.value.getChannelData(1)
     channelData = new Float32Array(left.length)
     for (let i = 0; i < left.length; i++) {
       channelData[i] = (left[i] + right[i]) / 2
     }
   } else {
-    channelData = audioBuffer.getChannelData(0)
+    channelData = audioBuffer.value.getChannelData(0)
   }
 
   // Calculate dimensions - higher resolution for better detail
@@ -207,17 +210,21 @@ const generateSpectrogram = async () => {
   ctx.fillStyle = '#000'
   ctx.fillRect(0, 0, width, height)
 
-  // Process audio using efficient windowed FFT
+  // Process audio using efficient windowed FFT with hopSize
   const windowSize = fftSize.value
+  // Use 75% overlap (hopSize = fftSize / 4) for better temporal resolution
+  const hopSize = Math.floor(windowSize / 4)
 
-  // Store all frequency data
-  const spectrogramData: number[][] = []
+  // Store all frequency data with time positions
+  // Structure: { time: number (in samples), data: number[] }[]
+  const frames: Array<{ time: number; data: number[] }> = []
 
-  // Process in overlapping windows using proper FFT
-  for (let x = 0; x < width; x++) {
-    const sampleIndex = Math.floor((x / width) * channelData.length)
-    const windowStart = Math.max(0, sampleIndex - windowSize / 2)
-    const windowEnd = Math.min(channelData.length, windowStart + windowSize)
+  // Compute frames by hopSize
+  const totalSamples = channelData.length
+  let frameCount = 0
+  for (let sampleIndex = 0; sampleIndex < totalSamples - windowSize; sampleIndex += hopSize) {
+    const windowStart = sampleIndex
+    const windowEnd = Math.min(totalSamples, sampleIndex + windowSize)
     const actualWindowSize = windowEnd - windowStart
 
     if (actualWindowSize >= windowSize / 4) {
@@ -233,15 +240,45 @@ const generateSpectrogram = async () => {
 
       // Perform FFT
       const fftResult = performFFT(windowedSamples)
-      spectrogramData.push(Array.from(fftResult))
-    } else {
-      spectrogramData.push(new Array(frequencyBinCount).fill(0))
+      frames.push({
+        time: sampleIndex + windowSize / 2, // Center of window
+        data: Array.from(fftResult)
+      })
     }
 
+    frameCount++
     // Update progress
-    if (x % 20 === 0) {
-      progress.value = 50 + (x / width) * 50
+    if (frameCount % 50 === 0) {
+      const estimatedTotalFrames = Math.ceil((totalSamples - windowSize) / hopSize)
+      progress.value = 50 + (frameCount / estimatedTotalFrames) * 50
       await new Promise((resolve) => setTimeout(resolve, 0))
+    }
+  }
+
+  // Map frames to pixels - create spectrogramData array indexed by pixel column
+  const spectrogramData: number[][] = new Array(width)
+  const samplesPerPixel = channelData.length / width
+
+  // Since frames are sorted by time, we can efficiently map them to pixels
+  let frameIndex = 0
+  for (let x = 0; x < width; x++) {
+    const targetSampleTime = x * samplesPerPixel
+
+    // Find the frame closest to this pixel's time position
+    // Since frames are sorted, we can advance frameIndex as we go
+    while (
+      frameIndex < frames.length - 1 &&
+      Math.abs(frames[frameIndex + 1].time - targetSampleTime) <
+        Math.abs(frames[frameIndex].time - targetSampleTime)
+    ) {
+      frameIndex++
+    }
+
+    // Use the nearest frame
+    if (frames[frameIndex]) {
+      spectrogramData[x] = frames[frameIndex].data
+    } else {
+      spectrogramData[x] = new Array(frequencyBinCount).fill(0)
     }
   }
 
@@ -289,20 +326,15 @@ const drawSpectrogram = () => {
   const height = canvas.height
   const frequencyBinCount = spectrogramData[0]?.length ?? 0
   if (!frequencyBinCount) return
-
-  // Normalize across entire spectrogram
-  let globalMax = 0
-  for (const column of spectrogramData) {
-    for (const value of column) {
-      if (value > globalMax) globalMax = value
-    }
-  }
+  const sr = audioBuffer.value?.sampleRate ?? 44100
+  const nyquist = sr / 2
+  const maxHzVal = Math.max(minHz.value, maxHz.value ?? nyquist)
+  const binHz = sr / fftSize.value
 
   const imageData = ctx.createImageData(width, height)
   const data = imageData.data
-
-  const minFreq = 2 // or 4 // include DC to show full range
-  const maxFreq = frequencyBinCount - 1
+  const minFreqHz = minHz.value
+  const maxFreqHz = Math.min(maxHzVal, nyquist)
 
   for (let x = 0; x < width; x++) {
     const column = spectrogramData[x] || []
@@ -311,26 +343,21 @@ const drawSpectrogram = () => {
       let freqIndex: number
 
       if (useLogFrequency.value) {
-        const normalizedY = (height - 1 - y) / (height - 1)
-        const logMin = Math.log10(minFreq + 1e-6) // avoid log(0)
-        const logMax = Math.log10(maxFreq + 1)
-        const logFreq = logMin + normalizedY * (logMax - logMin)
-        freqIndex = Math.floor(Math.pow(10, logFreq))
+        const t = (height - 1 - y) / (height - 1)
+        const hz = minFreqHz * Math.pow(maxFreqHz / minFreqHz, t)
+        freqIndex = Math.round(hz / binHz)
       } else {
-        freqIndex = Math.floor(((height - 1 - y) / (height - 1)) * (frequencyBinCount - 1))
+        const t = (height - 1 - y) / (height - 1)
+        const hz = minFreqHz + t * (maxFreqHz - minFreqHz)
+        freqIndex = Math.round(hz / binHz)
       }
 
       const clampedFreqIndex = Math.max(0, Math.min(frequencyBinCount - 1, freqIndex))
       const magnitude = column[clampedFreqIndex] || 0
 
-      // Convert to dB
       const db = 20 * Math.log10(magnitude + 1e-12)
-
-      // Choose a visible dynamic range (tune these)
       const minDb = -100
       const maxDb = -20
-
-      // Normalize dB into 0..1
       const clampedValue = Math.max(0, Math.min(1, (db - minDb) / (maxDb - minDb)))
 
       const color =
@@ -347,6 +374,25 @@ const drawSpectrogram = () => {
   }
 
   ctx.putImageData(imageData, 0, 0)
+
+  // Frequency tick labels (right aligned)
+  ctx.save()
+  ctx.font = '12px system-ui'
+  ctx.fillStyle = 'white'
+  ctx.textAlign = 'right'
+  ctx.textBaseline = 'middle'
+
+  const ticks = [minFreqHz, 5000, 10000, 15000, 19000, Math.floor(maxFreqHz)]
+  for (const hz of ticks) {
+    if (hz < minFreqHz || hz > maxFreqHz) continue
+    const t = useLogFrequency.value
+      ? Math.log(hz / minFreqHz) / Math.log(maxFreqHz / minFreqHz)
+      : (hz - minFreqHz) / (maxFreqHz - minFreqHz)
+    const y = height - 1 - t * (height - 1)
+    const label = hz >= 1000 ? `${(hz / 1000).toFixed(1)} kHz` : `${hz} Hz`
+    ctx.fillText(label, width - 6, y)
+  }
+  ctx.restore()
 }
 
 // Radix-2 FFT implementation
@@ -421,7 +467,7 @@ const clearAll = () => {
     audioContext.close()
     audioContext = null
   }
-  audioBuffer = null
+  audioBuffer.value = null
   error.value = ''
   progress.value = 0
 
