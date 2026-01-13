@@ -44,19 +44,6 @@ const initAudio = () => {
   analyser.connect(audioCtx.destination)
 }
 
-const handleAudioUpload = (event) => {
-  const file = event.target.files[0]
-  if (file) {
-    initAudio()
-    audioPlayer.value.src = URL.createObjectURL(file)
-    isAudioLoaded.value = true
-    // Reset canvas on new upload
-    const ctx = canvasRef.value.getContext('2d')
-    ctx.fillStyle = '#000'
-    ctx.fillRect(0, 0, canvasRef.value.width, canvasRef.value.height)
-  }
-}
-
 const draw = () => {
   if (!analyser || audioPlayer.value.paused) {
     cancelAnimationFrame(animationId)
@@ -167,6 +154,31 @@ const decodeZeroWidth = () => {
 onUnmounted(() => {
   if (animationId) cancelAnimationFrame(animationId)
 })
+
+// --- New State ---
+const playbackSpeed = ref(1.0)
+const speedOptions = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0]
+
+// --- New Method ---
+const updateSpeed = (speed) => {
+  playbackSpeed.value = speed
+  if (audioPlayer.value) {
+    audioPlayer.value.playbackRate = speed
+  }
+}
+
+const handleAudioUpload = (event) => {
+  const file = event.target.files[0]
+  if (file) {
+    initAudio()
+    audioPlayer.value.src = URL.createObjectURL(file)
+    audioPlayer.value.playbackRate = playbackSpeed.value
+    isAudioLoaded.value = true
+    const ctx = canvasRef.value.getContext('2d')
+    ctx.fillStyle = '#000'
+    ctx.fillRect(0, 0, canvasRef.value.width, canvasRef.value.height)
+  }
+}
 </script>
 
 <template>
@@ -203,18 +215,36 @@ onUnmounted(() => {
         </div>
 
         <div class="viz-settings">
-          <div class="setting-item">
-            <span class="label">Heatmap:</span>
-            <div class="heatmap-selector">
-              <button
-                v-for="(fn, name) in heatmaps"
-                :key="name"
-                @click="currentHeatmap = name"
-                :class="['heat-btn', name, { selected: currentHeatmap === name }]"
-              ></button>
+          <div class="viz-settings">
+            <div class="settings-group" style="display: flex; gap: 20px; align-items: center">
+              <div class="setting-item">
+                <span class="label">Speed:</span>
+                <select
+                  class="speed-select"
+                  :value="playbackSpeed"
+                  @change="updateSpeed(parseFloat($event.target.value))"
+                >
+                  <option v-for="speed in speedOptions" :key="speed" :value="speed">
+                    {{ speed }}x
+                  </option>
+                </select>
+              </div>
+
+              <div class="setting-item">
+                <span class="label">Heatmap:</span>
+                <div class="heatmap-selector">
+                  <button
+                    v-for="(fn, name) in heatmaps"
+                    :key="name"
+                    @click="currentHeatmap = name"
+                    :class="['heat-btn', name, { selected: currentHeatmap === name }]"
+                  ></button>
+                </div>
+              </div>
             </div>
+
+            <button @click="takeScreenshot" class="btn-secondary">📸 TAKE SNAPSHOT</button>
           </div>
-          <button @click="takeScreenshot" class="btn-secondary">📸 TAKE SNAPSHOT</button>
         </div>
       </div>
 
@@ -484,5 +514,28 @@ canvas {
   color: var(--vp-c-brand-1);
   font-weight: 700;
   text-decoration: none;
+}
+
+.speed-select {
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.speed-select:hover {
+  border-color: var(--vp-c-brand-1);
+}
+
+.settings-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 </style>
