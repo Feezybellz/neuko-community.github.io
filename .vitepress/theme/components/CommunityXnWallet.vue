@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 // Importing the JSON file directly so it gets bundled into the JS
-import rawData from '../../data/community_x_n_wallet.json'
+import rawData from '../../data/community_x_wallet.json'
 
 // --- State ---
 const password = ref('')
