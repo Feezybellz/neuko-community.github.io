@@ -513,13 +513,6 @@ onUnmounted(() => {
       <label for="audio-upload" class="upload-button">
         {{ audioFile ? '📁 Change Audio File' : '📁 Upload Audio File' }}
       </label>
-
-      <div v-if="audioFile" class="file-info">
-        <span class="file-name">{{ audioFile.name }}</span>
-        <span v-if="audioBuffer" class="file-duration">
-          Duration: {{ audioBuffer.duration.toFixed(2) }}s
-        </span>
-      </div>
     </div>
 
     <div v-if="isProcessing" class="processing-indicator">
@@ -534,6 +527,13 @@ onUnmounted(() => {
     </div>
 
     <div v-if="audioFile && !isProcessing" class="controls-section">
+      <div v-if="audioFile" class="file-info">
+        <span class="file-name">{{ audioFile.name }}</span>
+        <span v-if="audioBuffer" class="file-duration">
+          Duration: {{ audioBuffer.duration.toFixed(2) }}s
+        </span>
+      </div>
+
       <div class="audio-player-wrapper">
         <audio ref="audioPlayer" :src="audioUrl" controls class="audio-player"></audio>
       </div>
@@ -569,6 +569,7 @@ onUnmounted(() => {
           </div>
         </div>
 
+        <!-- FFT Size control removed from UI (code kept) -->
         <div class="setting-group">
           <label class="setting-label">FFT Size:</label>
           <select
@@ -587,7 +588,8 @@ onUnmounted(() => {
           </select>
         </div>
 
-        <div class="setting-group">
+        <!-- Logarithmic Frequency Scale control removed from UI (code kept) -->
+        <!-- <div class="setting-group">
           <label class="checkbox-label">
             <input
               type="checkbox"
@@ -604,7 +606,7 @@ onUnmounted(() => {
             />
             <span>Logarithmic Frequency Scale</span>
           </label>
-        </div>
+        </div> -->
 
         <button @click="downloadSpectrogram" class="action-button" :disabled="!audioBuffer">
           💾 Download Spectrogram
@@ -688,6 +690,8 @@ onUnmounted(() => {
   cursor: pointer;
   border: none;
   transition: opacity 0.2s;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .upload-button:hover {
@@ -695,12 +699,14 @@ onUnmounted(() => {
 }
 
 .file-info {
-  margin-top: 12px;
   display: flex;
-  gap: 15px;
+  flex-wrap: wrap;
+  gap: 8px 15px;
   align-items: center;
   font-size: 0.85rem;
   color: var(--vp-c-text-2);
+  margin-left: 8px;
+  margin-bottom: 16px;
 }
 
 .file-name {
@@ -717,6 +723,8 @@ onUnmounted(() => {
   padding: 20px;
   background: var(--vp-c-bg-mute);
   border-radius: 12px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .progress-bar {
@@ -726,6 +734,7 @@ onUnmounted(() => {
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
 .progress-fill {
@@ -939,12 +948,132 @@ onUnmounted(() => {
 }
 
 @media (max-width: 640px) {
-  .color-scheme-selector {
-    justify-content: center;
+  .spectrogram-container {
+    padding: 16px;
+    border-radius: 20px;
+    margin-top: 1rem;
+  }
+
+  .tool-header {
+    margin-bottom: 20px;
+  }
+
+  .header-info {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .header-info > div {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tool-icon {
+    font-size: 1.5rem;
+    padding: 8px;
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+
+  .tool-title {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .tool-desc {
+    font-size: 0.7rem;
+    line-height: 1.4;
+  }
+
+  .upload-section {
+    margin-bottom: 16px;
+  }
+
+  .upload-button {
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    font-size: 12px;
+  }
+
+  .file-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 0.8rem;
+  }
+
+  .file-name {
+    word-break: break-word;
+    width: 100%;
+  }
+
+  .processing-indicator {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .progress-text {
+    font-size: 0.8rem;
+  }
+
+  .controls-section {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .audio-player-wrapper {
+    margin-bottom: 16px;
   }
 
   .settings-panel {
-    gap: 15px;
+    gap: 16px;
+    padding-top: 16px;
+  }
+
+  .color-scheme-selector {
+    gap: 8px;
+  }
+
+  .color-btn {
+    flex: 1;
+    padding: 8px 10px;
+  }
+
+  .color-preview {
+    width: 50px;
+    height: 10px;
+  }
+
+  .color-name {
+    font-size: 8px;
+  }
+
+  .setting-select {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+  }
+
+  .action-button {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+
+  .action-button:last-child {
+    margin-bottom: 0;
+  }
+
+  .canvas-wrapper {
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .tool-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    font-size: 0.75rem;
   }
 }
 </style>
